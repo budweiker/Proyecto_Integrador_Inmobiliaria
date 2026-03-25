@@ -1,11 +1,13 @@
-  =>  Template Name    : TRAVELER - Free Travel Website Template
+  =>  ***Product Owner***    : Andrés Felipe Orozco
 
-  =>  Template Link    : https://htmlcodex.com/free-travel-website-template
+  =>  ***Scrum Master***    : Sergio Saldarriaga
 
-  =>  Template License : https://htmlcodex.com/license (or read the LICENSE.txt file)
+  =>  BackEnd : Arianna Zambrano
 
-  =>  Template Author  : HTML Codex
+  =>  Full stack  : Santiago Rodriguez
 
-  =>  Author Website   : https://htmlcodex.com
+  =>  FrontEnd   : Sergio Perez
 
-  =>  About HTML Codex : HTML Codex is one of the top creators and publishers of Free HTML templates, HTML landing pages, HTML email templates and HTML snippets in the world. Read more at ( https://htmlcodex.com/about-us )
+  =>  FrontEnd   : Weimar Tuberquia
+
+  =>  https://htmlcodex.com/free-travel-website-template
