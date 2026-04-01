@@ -71,6 +71,5 @@ $(document).ready(function() {
         }, 1200);
     });
 
-    // Inicializar tooltips via Bootstrap (Opcional)
-    // $('[data-toggle="tooltip"]').tooltip();
+
 });
