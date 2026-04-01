@@ -9787,7 +9787,7 @@ h6,
   /* Esto hace que el cambio de tamaño sea suave y no de golpe */
   transition: transform 0.3s ease;
   width: 200px;
- /*  filter: brightness(1.2); /* Lo hace un 20% más brillante */ */
+  /* filter: brightness(1.2); (Lo hace un 20% más brillante) */
 }
 
 .logo:hover {
@@ -9799,3 +9799,146 @@ h6,
   height: 130px;
   width: auto;
 }
+
+/* --- NUEVA PALETA Y ESTILOS INMOBILIARIA PREMIUM --- */
+:root {
+  --primary: #1B2A47; /* Azul oscuro */
+  --light: #F8F9FA;   /* Gris claro */
+  --white: #FFFFFF;
+}
+
+/* Cambiar colores primarios globales */
+.bg-primary { background-color: var(--primary) !important; }
+.text-primary { color: var(--primary) !important; }
+.btn-primary { 
+  background-color: var(--primary) !important; 
+  border-color: var(--primary) !important;
+  transition: all 0.3s ease;
+}
+.btn-primary:hover {
+  background-color: #121e33 !important; 
+  border-color: #121e33 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(27, 42, 71, 0.3);
+}
+
+.btn-outline-primary {
+  color: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+.btn-outline-primary:hover {
+  background-color: var(--primary) !important;
+  color: var(--white) !important;
+}
+
+/* NAVBAR */
+.transition-navbar {
+    transition: all 0.4s ease-in-out;
+}
+
+/* HERO SECTION */
+.hero-section {
+    background: url('../img/carousel-2.jpg') no-repeat center center;
+    background-size: cover;
+}
+.hero-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(to bottom, rgba(27, 42, 71, 0.5), rgba(15, 23, 42, 0.85));
+    z-index: 1;
+}
+.shadow-text {
+    text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+/* BUSCADOR FLOTANTE */
+.search-container {
+    padding: 0 15px;
+}
+.search-card {
+    background-color: #ffffff !important;
+    border: 1px solid rgba(0,0,0,0.05);
+    border-radius: 12px !important;
+}
+.search-card select.form-control {
+    border-radius: 8px;
+    border: 1px solid #e2e8f0 !important;
+    color: #475569;
+    font-size: 15px;
+    transition: all 0.3s;
+    height: 50px;
+    cursor: pointer;
+}
+.search-card select.form-control:focus {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 0.2rem rgba(27, 42, 71, 0.15);
+}
+.submit-btn {
+    height: 50px;
+}
+
+/* SERVICIOS */
+.service-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.08) !important;
+}
+.icon-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+.service-card:hover .icon-circle {
+    transform: scale(1.1);
+}
+
+/* PROPIEDADES DESTACADAS */
+.property-card {
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+.property-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12) !important;
+}
+.property-img img {
+    transition: transform 0.6s ease;
+}
+.property-card:hover .property-img img {
+    transform: scale(1.08);
+}
+.badge-status {
+    top: 15px;
+    left: 15px;
+    z-index: 2;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+.property-specs {
+    font-size: 0.85rem;
+}
+.property-title {
+    min-height: 48px;
+    line-height: 1.4;
+}
+
+/* CALL TO ACTION BOTONES */
+.btn-cta {
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+.btn-cta:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3) !important;
+}
+
+/* GENERAL SPACING */
+.py-5, .pb-5, .pt-5 {
+    padding-top: 5rem !important;
+    padding-bottom: 5rem !important;
+}
+

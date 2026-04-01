@@ -1,70 +1,76 @@
-(function ($) {
+$(document).ready(function() {
     "use strict";
-    
-    // Dropdown on mouse hover
-    $(document).ready(function () {
-        function toggleNavbarMethod() {
-            if ($(window).width() > 992) {
-                $('.navbar .dropdown').on('mouseover', function () {
-                    $('.dropdown-toggle', this).trigger('click');
-                }).on('mouseout', function () {
-                    $('.dropdown-toggle', this).trigger('click').blur();
-                });
-            } else {
-                $('.navbar .dropdown').off('mouseover').off('mouseout');
-            }
+
+    // 1. Scroll Suave para los links de navegación
+    $('.smooth-scroll').on('click', function(event) {
+        if (this.hash !== "") {
+            event.preventDefault();
+            var hash = this.hash;
+            var headerOffset = 70; // altura aprox del fixed header
+
+            $('html, body').animate({
+                scrollTop: $(hash).offset().top - headerOffset
+            }, 800, function() {
+                // Actualiza URL opcionalmente (sin salto):
+                // window.history.pushState(null, null, hash);
+            });
+            
+            // Cerrar menú responsivo en móviles al hacer clic en un link
+            $('.navbar-collapse').collapse('hide');
         }
-        toggleNavbarMethod();
-        $(window).resize(toggleNavbarMethod);
     });
-    
-    
-    // Back to top button
-    $(window).scroll(function () {
-        if ($(this).scrollTop() > 100) {
-            $('.back-to-top').fadeIn('slow');
+
+    // 2. Control visual del Navbar (Cambio de diseño al hacer scroll)
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 50) {
+            $('.navbar').addClass('shadow-sm').removeClass('py-3').addClass('py-2');
         } else {
-            $('.back-to-top').fadeOut('slow');
+            $('.navbar').removeClass('shadow-sm').removeClass('py-2').addClass('py-3');
         }
     });
-    $('.back-to-top').click(function () {
-        $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo');
-        return false;
-    });
 
+    // 3. Manejo funcional básico del Formulario "Buscador"
+    $('#searchForm').on('submit', function(e) {
+        e.preventDefault(); // Previene envío global
+        
+        // Obtener datos
+        var ubicacion = $('#ubicacion').val();
+        var tipo = $('#tipo').val();
+        var hab = $('#habitaciones').val();
+        var precio = $('#precio').val();
+        var btn = $(this).find('button[type="submit"]');
 
-    // Date and time picker
-    $('.date').datetimepicker({
-        format: 'L'
-    });
-    $('.time').datetimepicker({
-        format: 'LT'
-    });
+        // Reset anterior
+        var $feedback = $('#search-feedback');
+        $feedback.removeClass('d-none alert-success alert-danger').empty();
 
-
-    // Testimonials carousel
-    $(".testimonial-carousel").owlCarousel({
-        autoplay: true,
-        smartSpeed: 1500,
-        margin: 30,
-        dots: true,
-        loop: true,
-        center: true,
-        responsive: {
-            0:{
-                items:1
-            },
-            576:{
-                items:1
-            },
-            768:{
-                items:2
-            },
-            992:{
-                items:3
-            }
+        // Validar mínimos requeridos
+        if(ubicacion === "" || tipo === "") {
+            $feedback.addClass('alert alert-danger').text('Por favor, selecciona al menos Ubicación y Tipo de Inmueble.').removeClass('d-none');
+            return;
         }
-    });
-    
-})(jQuery);
 
+        // Simular llamada a API / Backend (Efecto loading)
+        btn.prop('disabled', true).html('Buscando <i class="fa fa-spinner fa-spin ml-2"></i>');
+
+        setTimeout(function() {
+            // Mostrar los datos capturados en consola como pidió el user
+            var searchData = {
+                "ubicacion": ubicacion,
+                "tipoInmueble": tipo,
+                "habitaciones": hab,
+                "precio_maximo": precio
+            };
+            console.log("Datos capturados del buscador:", searchData);
+
+            // Mensaje UI de simulación de éxito
+            $feedback.addClass('alert alert-success d-block').html('Búsqueda procesada. Revisa la consola para los datos. <br> (Se integrarían los resultados aquí)');
+            
+            // Restaurar estilo botón
+            btn.prop('disabled', false).html('Buscar <i class="fa fa-search ml-2"></i>');
+        }, 1200);
+    });
+
+    // Inicializar tooltips via Bootstrap (Opcional)
+    // $('[data-toggle="tooltip"]').tooltip();
+});

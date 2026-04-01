@@ -5,407 +5,351 @@
     <meta charset="utf-8">
     <title>Inmobiliaria Manuela - Encuentra tu hogar ideal</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Inmobiliaria, casas, departamentos, hogar" name="keywords">
-    <meta content="Encuentra tu hogar ideal con Inmobiliaria Manuela" name="description">
-
-    <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
-
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
-
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-
-    <!-- Libraries Stylesheet -->
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
-
-    <!-- Customized Bootstrap Stylesheet -->
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"> 
+    <!-- Bootstrap -->
     <link href="css/style.css" rel="stylesheet">
 </head>
 
-<body>
-    <!-- Topbar Start -->
-    <div class="container-fluid bg-white pt-3 d-none d-lg-block">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
-                    <div class="d-inline-flex align-items-center">
-                        <p><i class="fa fa-envelope mr-2"></i>contacto@inmobiliariamanuela.com</p>
-                        <p class="text-body px-3">|</p>
-                        <p><i class="fa fa-phone-alt mr-2"></i>+57 300 123 4567</p>
-                    </div>
-                </div>
-                <div class="col-lg-6 text-center text-lg-right">
-                    <div class="d-inline-flex align-items-center">
-                        <a class="text-primary px-3" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="text-primary px-3" href=""><i class="fab fa-instagram"></i></a>
-                        <a class="text-primary px-3" href=""><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
+<body data-spy="scroll" data-target=".navbar" data-offset="51">
+    <!-- Navbar Fija -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm fixed-top py-3 py-lg-0 px-3 px-lg-5 transition-navbar">
+        <a href="index.html" class="navbar-brand">
+            <h1 class="m-0 text-primary font-weight-bold"><i class="fa fa-home mr-2"></i>Inmobiliaria Manuela</h1>
+        </a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+            <div class="navbar-nav ml-auto py-0">
+                <a href="#inicio" class="nav-item nav-link smooth-scroll">Inicio</a>
+                <a href="#noestacreadoaun" class="nav-item nav-link smooth-scroll">Venta</a>
+                <a href="#package" class="nav-item nav-link smooth-scroll">Alquiler</a>
+                <a href="#service" class="nav-item nav-link smooth-scroll">Servicios</a>
+                <a href="#about" class="nav-item nav-link smooth-scroll">Nosotros</a>
+                <a href="#contact" class="nav-item nav-link smooth-scroll">Contacto</a>
             </div>
+            <a href="#contacto" class="btn btn-primary btn-cta rounded-pill py-2 px-4 d-none d-lg-block ml-3 font-weight-bold text-white smooth-scroll">Listar Propiedad</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <div id="inicio" class="hero-section position-relative vh-100 d-flex align-items-center">
+        <div class="hero-overlay"></div>
+        <div class="container position-relative text-center" style="z-index: 2; margin-top: 50px;">
+            <h1 class="display-3 text-white font-weight-bold mb-4 shadow-text">Encuentra tu hogar ideal</h1>
+            <p class="text-white mb-5 shadow-text lead w-75 mx-auto" style="font-size: 1.25rem;">Conectamos tus sueños con las mejores ubicaciones</p>
+            <a href="#destacadas" class="btn btn-primary rounded-pill py-3 px-5 font-weight-bold smooth-scroll text-white shadow-lg btn-cta">Explorar propiedades</a>
         </div>
     </div>
-    <!-- Topbar End -->
 
-    <!-- Navbar Start -->
-    <div class="container-fluid position-relative nav-bar p-0">
-        <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
-            <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
-                <a href="index.html" class="logo text-decoration-none">
-                   <h1 class="m-0 text-primary"><span class="text-dark">INMOBILIARIA</span> MANUELA</h1>
-                </a>
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
-                    <div class="navbar-nav ml-auto py-0">
-                        <a href="index.html" class="nav-item nav-link active">Inicio</a>
-                        <a href="#destacadas" class="nav-item nav-link">Propiedades</a>
-                        <a href="#servicios" class="nav-item nav-link">Servicios</a>
-                        <a href="#contacto" class="nav-item nav-link">Contacto</a>
+    <!-- Buscador (Flotante) -->
+    <div class="container search-container" style="margin-top: -120px; position: relative; z-index: 10;">
+        <div class="bg-white rounded-lg shadow-lg p-4 p-md-5 search-card">
+            <h4 class="text-primary font-weight-bold mb-4">Busca tu próxima propiedad</h4>
+            <form id="searchForm">
+                <div class="row align-items-end">
+                    <div class="col-lg-3 col-md-6 mb-3 mb-lg-0">
+                        <label class="font-weight-bold text-primary small text-uppercase" for="ubicacion">Ubicación</label>
+                        <select class="form-control bg-light border-0 py-3" id="ubicacion" required>
+                            <option value="">Cualquier ubicación</option>
+                            <option value="CDMX">Ciudad de México</option>
+                            <option value="MTY">Monterrey</option>
+                            <option value="GDL">Guadalajara</option>
+                            <option value="QRO">Querétaro</option>
+                            <option value="MER">Mérida</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-3 mb-lg-0">
+                        <label class="font-weight-bold text-primary small text-uppercase" for="tipo">Tipo de Inmueble</label>
+                        <select class="form-control bg-light border-0 py-3" id="tipo" required>
+                            <option value="">Cualquier tipo</option>
+                            <option value="casa">Casa</option>
+                            <option value="departamento">Departamento</option>
+                            <option value="terreno">Terreno</option>
+                            <option value="oficina">Oficina Comercial</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-2 col-md-6 mb-3 mb-lg-0">
+                        <label class="font-weight-bold text-primary small text-uppercase" for="habitaciones">Habitaciones</label>
+                        <select class="form-control bg-light border-0 py-3" id="habitaciones">
+                            <option value="todas">Todas</option>
+                            <option value="1">1 o más</option>
+                            <option value="2">2 o más</option>
+                            <option value="3">3 o más</option>
+                            <option value="4">4 o más</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-2 col-md-6 mb-3 mb-lg-0">
+                        <label class="font-weight-bold text-primary small text-uppercase" for="precio">Rango de Precio</label>
+                        <select class="form-control bg-light border-0 py-3" id="precio">
+                            <option value="ilimitado">Sin límite</option>
+                            <option value="1000000">Hasta $1M MXN</option>
+                            <option value="3000000">Hasta $3M MXN</option>
+                            <option value="5000000">Hasta $5M MXN</option>
+                            <option value="10000000">Hasta $10M MXN</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-2 mt-3 mt-lg-0">
+                        <button class="btn btn-primary btn-block py-3 font-weight-bold shadow-sm d-flex align-items-center justify-content-center text-white submit-btn" type="submit">
+                            Buscar <i class="fa fa-search ml-2"></i>
+                        </button>
                     </div>
                 </div>
-            </nav>
+                <div id="search-feedback" class="mt-4 text-center d-none p-3 rounded font-weight-bold">
+                    <!-- Mensaje de confirmacion ira aqui -->
+                </div>
+            </form>
         </div>
     </div>
-    <!-- Navbar End -->
 
-    <!-- Hero Start -->
-    <div class="container-fluid p-0 position-relative">
-        <div id="header-carousel" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="w-100" src="img/carousel-1.jpg" alt="Hero Image" style="object-fit: cover; height: 80vh;">
-                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center" style="background: rgba(0,0,0,0.5);">
-                        <div class="p-3" style="max-width: 900px;">
-                            <h4 class="text-white text-uppercase mb-md-3">Encuentra Tu Hogar</h4>
-                            <h1 class="display-3 text-white mb-md-4">Encuentra tu hogar ideal</h1>
-                            <p class="text-white mb-md-5 fs-4">Las mejores propiedades en las ubicaciones más exclusivas</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Hero End -->
-
-    <!-- Booking / Search Board Start -->
-    <div class="container-fluid booking pb-5" style="margin-top: -60px; position: relative; z-index: 10;">
-        <div class="container pb-5">
-            <div class="bg-white shadow-lg p-4 rounded">
-                <form id="property-search-form">
-                    <div class="row align-items-end">
-                        <div class="col-lg-10">
-                            <div class="row">
-                                <div class="col-md-3 mb-3 mb-md-0">
-                                    <label class="font-weight-bold">Ubicación</label>
-                                    <select class="custom-select px-4" style="height: 47px;">
-                                        <option selected>Cualquier ubicación</option>
-                                        <option value="1">Ciudad de México</option>
-                                        <option value="2">Monterrey</option>
-                                        <option value="3">Guadalajara</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-3 mb-3 mb-md-0">
-                                    <label class="font-weight-bold">Tipo de inmueble</label>
-                                    <select class="custom-select px-4" style="height: 47px;">
-                                        <option selected>Cualquier tipo</option>
-                                        <option value="casa">Casa</option>
-                                        <option value="departamento">Departamento</option>
-                                        <option value="terreno">Terreno</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-3 mb-3 mb-md-0">
-                                    <label class="font-weight-bold">Precio Máximo</label>
-                                    <select class="custom-select px-4" style="height: 47px;">
-                                        <option selected>Sin límite</option>
-                                        <option value="1M">Hasta $1,000,000</option>
-                                        <option value="3M">Hasta $3,000,000</option>
-                                        <option value="5M">Hasta $5,000,000</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-3 mb-3 mb-md-0">
-                                    <label class="font-weight-bold">Habitaciones</label>
-                                    <select class="custom-select px-4" style="height: 47px;">
-                                        <option selected>Todas</option>
-                                        <option value="1">1+</option>
-                                        <option value="2">2+</option>
-                                        <option value="3">3+</option>
-                                        <option value="4">4+</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 mt-3 mt-lg-0">
-                            <button class="btn btn-primary btn-block text-white font-weight-bold" type="submit" style="height: 47px;">Buscar</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!-- Booking / Search Board End -->
-
-    <!-- Value Section Start -->
-    <div id="servicios" class="container-fluid pb-5">
-        <div class="container pb-5">
-            <div class="row pt-5 pb-5 bg-light rounded shadow-sm">
-                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-                    <div class="d-flex align-items-center bg-white p-4 h-100 shadow-sm rounded">
-                        <div class="bg-primary d-flex align-items-center justify-content-center mr-4" style="width: 70px; height: 70px; border-radius: 5px;">
-                            <i class="fa fa-tag text-white fa-2x"></i>
-                        </div>
-                        <div>
-                            <h5 class="mb-1 font-weight-bold">Precios Competitivos</h5>
-                            <p class="m-0 text-muted">Las mejores tarifas del mercado y opciones rentables adaptadas a tu presupuesto.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-                    <div class="d-flex align-items-center bg-white p-4 h-100 shadow-sm rounded">
-                        <div class="bg-primary d-flex align-items-center justify-content-center mr-4" style="width: 70px; height: 70px; border-radius: 5px;">
-                            <i class="fa fa-user-tie text-white fa-2x"></i>
-                        </div>
-                        <div>
-                            <h5 class="mb-1 font-weight-bold">Asesoría Profesional</h5>
-                            <p class="m-0 text-muted">Te acompañamos en cada paso con expertos dedicados a brindarte seguridad y confianza.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-                    <div class="d-flex align-items-center bg-white p-4 h-100 shadow-sm rounded">
-                        <div class="bg-primary d-flex align-items-center justify-content-center mr-4" style="width: 70px; height: 70px; border-radius: 5px;">
-                            <i class="fa fa-map-marked-alt text-white fa-2x"></i>
-                        </div>
-                        <div>
-                            <h5 class="mb-1 font-weight-bold">Amplia Cobertura</h5>
-                            <p class="m-0 text-muted">Extensa red de propiedades exclusivas en las ubicaciones con mayor crecimiento.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Value Section End -->
-
-    <!-- Featured Properties Start -->
-    <div id="destacadas" class="container-fluid py-5">
-        <div class="container pt-5 pb-3">
-            <div class="text-center mb-5 pb-3">
-                <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Explora</h6>
-                <h1>Propiedades Destacadas</h1>
-            </div>
-            <div class="row">
-                <!-- Tarjeta 1 -->
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="package-item bg-white mb-2 shadow-sm rounded overflow-hidden">
-                        <div class="position-relative">
-                            <img class="img-fluid w-100" src="img/destination-1.png" alt="Propiedad 1" style="height: 250px; object-fit: cover;">
-                            <div class="bg-primary text-white position-absolute px-3 py-1 font-weight-bold" style="top: 15px; right: 15px; border-radius: 5px;">En Venta</div>
-                        </div>
-                        <div class="p-4">
-                            <h4 class="mb-3">$2,500,000 <small class="text-muted" style="font-size: 14px;">MXN</small></h4>
-                            <a class="h5 text-decoration-none text-dark font-weight-bold d-block mb-2" href="">Hermosa Casa en Zona Exclusiva</a>
-                            <p class="text-muted mb-3"><i class="fa fa-map-marker-alt text-primary mr-2"></i>Ciudad de México, Centro</p>
-                            <div class="d-flex justify-content-between mb-3 border-top pt-3">
-                                <small class="m-0"><i class="fa fa-bed text-primary mr-2"></i>3 Hab</small>
-                                <small class="m-0"><i class="fa fa-bath text-primary mr-2"></i>2 Baños</small>
-                                <small class="m-0"><i class="fa fa-ruler-combined text-primary mr-2"></i>150 m&sup2;</small>
-                            </div>
-                            <a href="" class="btn btn-outline-primary btn-block font-weight-bold">Ver Detalles</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Tarjeta 2 -->
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="package-item bg-white mb-2 shadow-sm rounded overflow-hidden">
-                        <div class="position-relative">
-                            <img class="img-fluid w-100" src="img/destination-2.png" alt="Propiedad 2" style="height: 250px; object-fit: cover;">
-                            <div class="bg-success text-white position-absolute px-3 py-1 font-weight-bold" style="top: 15px; right: 15px; border-radius: 5px;">En Renta</div>
-                        </div>
-                        <div class="p-4">
-                            <h4 class="mb-3">$18,000 <small class="text-muted" style="font-size: 14px;">MXN / mes</small></h4>
-                            <a class="h5 text-decoration-none text-dark font-weight-bold d-block mb-2" href="">Departamento con Vista al Mar</a>
-                            <p class="text-muted mb-3"><i class="fa fa-map-marker-alt text-primary mr-2"></i>Cancún, Zona Hotelera</p>
-                            <div class="d-flex justify-content-between mb-3 border-top pt-3">
-                                <small class="m-0"><i class="fa fa-bed text-primary mr-2"></i>2 Hab</small>
-                                <small class="m-0"><i class="fa fa-bath text-primary mr-2"></i>2 Baños</small>
-                                <small class="m-0"><i class="fa fa-ruler-combined text-primary mr-2"></i>100 m&sup2;</small>
-                            </div>
-                            <a href="" class="btn btn-outline-primary btn-block font-weight-bold">Ver Detalles</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Tarjeta 3 -->
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="package-item bg-white mb-2 shadow-sm rounded overflow-hidden">
-                        <div class="position-relative">
-                            <img class="img-fluid w-100" src="img/destination-3.png" alt="Propiedad 3" style="height: 250px; object-fit: cover;">
-                            <div class="bg-primary text-white position-absolute px-3 py-1 font-weight-bold" style="top: 15px; right: 15px; border-radius: 5px;">En Venta</div>
-                        </div>
-                        <div class="p-4">
-                            <h4 class="mb-3">$4,200,000 <small class="text-muted" style="font-size: 14px;">MXN</small></h4>
-                            <a class="h5 text-decoration-none text-dark font-weight-bold d-block mb-2" href="">Residencia Familiar con Piscina</a>
-                            <p class="text-muted mb-3"><i class="fa fa-map-marker-alt text-primary mr-2"></i>Monterrey, Nuevo León</p>
-                            <div class="d-flex justify-content-between mb-3 border-top pt-3">
-                                <small class="m-0"><i class="fa fa-bed text-primary mr-2"></i>4 Hab</small>
-                                <small class="m-0"><i class="fa fa-bath text-primary mr-2"></i>3 Baños</small>
-                                <small class="m-0"><i class="fa fa-ruler-combined text-primary mr-2"></i>280 m&sup2;</small>
-                            </div>
-                            <a href="" class="btn btn-outline-primary btn-block font-weight-bold">Ver Detalles</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Tarjeta 4 -->
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="package-item bg-white mb-2 shadow-sm rounded overflow-hidden">
-                        <div class="position-relative">
-                            <img class="img-fluid w-100" src="img/destination-4.png" alt="Propiedad 4" style="height: 250px; object-fit: cover;">
-                            <div class="bg-primary text-white position-absolute px-3 py-1 font-weight-bold" style="top: 15px; right: 15px; border-radius: 5px;">En Venta</div>
-                        </div>
-                        <div class="p-4">
-                            <h4 class="mb-3">$1,600,000 <small class="text-muted" style="font-size: 14px;">MXN</small></h4>
-                            <a class="h5 text-decoration-none text-dark font-weight-bold d-block mb-2" href="">Terreno Ideal Inversión</a>
-                            <p class="text-muted mb-3"><i class="fa fa-map-marker-alt text-primary mr-2"></i>Mérida, Yucatán</p>
-                            <div class="d-flex justify-content-between mb-3 border-top pt-3">
-                                <small class="m-0"><i class="fa fa-cube text-primary mr-2"></i>Terreno</small>
-                                <small class="m-0"><i class="fa fa-ruler-combined text-primary mr-2"></i>400 m&sup2;</small>
-                            </div>
-                            <a href="" class="btn btn-outline-primary btn-block font-weight-bold">Ver Detalles</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Tarjeta 5 -->
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="package-item bg-white mb-2 shadow-sm rounded overflow-hidden">
-                        <div class="position-relative">
-                            <img class="img-fluid w-100" src="img/destination-5.png" alt="Propiedad 5" style="height: 250px; object-fit: cover;">
-                            <div class="bg-success text-white position-absolute px-3 py-1 font-weight-bold" style="top: 15px; right: 15px; border-radius: 5px;">En Renta</div>
-                        </div>
-                        <div class="p-4">
-                            <h4 class="mb-3">$25,000 <small class="text-muted" style="font-size: 14px;">MXN / mes</small></h4>
-                            <a class="h5 text-decoration-none text-dark font-weight-bold d-block mb-2" href="">Penthouse de Lujo amueblado</a>
-                            <p class="text-muted mb-3"><i class="fa fa-map-marker-alt text-primary mr-2"></i>Guadalajara, Jalisco</p>
-                            <div class="d-flex justify-content-between mb-3 border-top pt-3">
-                                <small class="m-0"><i class="fa fa-bed text-primary mr-2"></i>3 Hab</small>
-                                <small class="m-0"><i class="fa fa-bath text-primary mr-2"></i>3 Baños</small>
-                                <small class="m-0"><i class="fa fa-ruler-combined text-primary mr-2"></i>200 m&sup2;</small>
-                            </div>
-                            <a href="" class="btn btn-outline-primary btn-block font-weight-bold">Ver Detalles</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Tarjeta 6 -->
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="package-item bg-white mb-2 shadow-sm rounded overflow-hidden">
-                        <div class="position-relative">
-                            <img class="img-fluid w-100" src="img/destination-6.png" alt="Propiedad 6" style="height: 250px; object-fit: cover;">
-                            <div class="bg-primary text-white position-absolute px-3 py-1 font-weight-bold" style="top: 15px; right: 15px; border-radius: 5px;">En Venta</div>
-                        </div>
-                        <div class="p-4">
-                            <h4 class="mb-3">$3,100,000 <small class="text-muted" style="font-size: 14px;">MXN</small></h4>
-                            <a class="h5 text-decoration-none text-dark font-weight-bold d-block mb-2" href="">Townhouse Minimalista</a>
-                            <p class="text-muted mb-3"><i class="fa fa-map-marker-alt text-primary mr-2"></i>Querétaro, Qro</p>
-                            <div class="d-flex justify-content-between mb-3 border-top pt-3">
-                                <small class="m-0"><i class="fa fa-bed text-primary mr-2"></i>2 Hab</small>
-                                <small class="m-0"><i class="fa fa-bath text-primary mr-2"></i>2.5 Baños</small>
-                                <small class="m-0"><i class="fa fa-ruler-combined text-primary mr-2"></i>130 m&sup2;</small>
-                            </div>
-                            <a href="" class="btn btn-outline-primary btn-block font-weight-bold">Ver Detalles</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Featured Properties End -->
-
-    <!-- CTA Start -->
-    <div class="container-fluid bg-primary py-5 text-center my-5 shadow">
+    <!-- Servicios -->
+    <div id="servicios" class="container-fluid py-5 mt-5 bg-white">
         <div class="container py-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <h1 class="text-white mb-4">¿Quieres vender o rentar tu propiedad?</h1>
-                    <p class="text-white mb-5 fs-5">Nosotros te ayudamos a encontrar al cliente perfecto de manera rápida y segura. Deja tu inmueble en manos de los expertos.</p>
-                    <a href="#contacto" class="btn btn-light py-md-3 px-md-5 mt-2 font-weight-bold rounded-pill text-primary" style="font-size: 18px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">Publicar Propiedad</a>
+            <div class="text-center mb-5 pb-3">
+                <h6 class="text-primary text-uppercase font-weight-bold" style="letter-spacing: 2px;">Conoce</h6>
+                <h2 class="display-4 font-weight-bold text-dark">Nuestros Servicios</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="service-card bg-light p-5 rounded-lg shadow-sm text-center h-100 border-0">
+                        <div class="icon-circle bg-white text-primary mx-auto mb-4 shadow">
+                            <i class="fa fa-hand-holding-usd fa-2x"></i>
+                        </div>
+                        <h4 class="font-weight-bold mb-3 text-dark">Precios Competitivos</h4>
+                        <p class="text-muted mb-0">Obtén las mejores oportunidades del mercado. Propiedades adaptadas a presupuestos realistas y orientadas a la plusvalía.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="service-card bg-light p-5 rounded-lg shadow-sm text-center h-100 border-0">
+                        <div class="icon-circle bg-white text-primary mx-auto mb-4 shadow">
+                            <i class="fa fa-user-tie fa-2x"></i>
+                        </div>
+                        <h4 class="font-weight-bold mb-3 text-dark">Asesoría Profesional</h4>
+                        <p class="text-muted mb-0">Contamos con un equipo de expertos legales y comerciales que te guiarán paso a paso en toda la documentación.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="service-card bg-light p-5 rounded-lg shadow-sm text-center h-100 border-0">
+                        <div class="icon-circle bg-white text-primary mx-auto mb-4 shadow">
+                            <i class="fa fa-map-marked-alt fa-2x"></i>
+                        </div>
+                        <h4 class="font-weight-bold mb-3 text-dark">Amplitud de Zonas</h4>
+                        <p class="text-muted mb-0">Acceso a red exclusiva de inventario en las principales zonas metropolitanas con mayor crecimiento urbano.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- CTA End -->
 
-    <!-- Footer Start -->
-    <div id="contacto" class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-lg-5">
-        <div class="row pt-5">
-            <div class="col-lg-4 col-md-6 mb-5">
-                <a href="index.html" class="navbar-brand">
-                    <h1 class="text-primary"><span class="text-white">INMOBILIARIA</span> MANUELA</h1>
-                </a>
-                <p>Tu aliado de confianza en el mercado de bienes raíces. Acompañándote a encontrar el espacio ideal o a maximizar el valor de tu inversión.</p>
-                <h6 class="text-white text-uppercase mt-4 mb-3" style="letter-spacing: 5px;">Síguenos</h6>
-                <div class="d-flex justify-content-start">
-                    <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a class="btn btn-outline-primary btn-square" href="#"><i class="fab fa-instagram"></i></a>
-                </div>
+    <!-- Propiedades Destacadas -->
+    <div id="destacadas" class="container-fluid bg-light py-5">
+        <div class="container py-5">
+            <div class="text-center mb-5 pb-3">
+                <h6 class="text-primary text-uppercase font-weight-bold" style="letter-spacing: 2px;">Catálogo Seleccionado</h6>
+                <h2 class="display-4 font-weight-bold text-dark">Propiedades Destacadas</h2>
             </div>
-            <div class="col-lg-4 col-md-6 mb-5">
-                <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Enlaces Rápidos</h5>
-                <div class="d-flex flex-column justify-content-start">
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Inicio</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Nosotros</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Propiedades</a>
-                    <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Servicios</a>
-                    <a class="text-white-50" href="#"><i class="fa fa-angle-right mr-2"></i>Contacto</a>
+            <div class="row">
+                <!-- Propiedad 1 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="property-card bg-white rounded-lg shadow-sm overflow-hidden h-100 d-flex flex-column">
+                        <div class="position-relative overflow-hidden property-img" style="height: 250px;">
+                            <img class="img-fluid w-100 h-100" src="img/destination-1.png" alt="Propiedad" style="object-fit:cover;">
+                            <div class="badge-status bg-primary text-white position-absolute font-weight-bold px-3 py-1 rounded">Venta</div>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <h4 class="text-primary font-weight-bold mb-2">$2,500,000 <span class="small text-muted font-weight-normal">MXN</span></h4>
+                            <h5 class="font-weight-bold mb-2 text-dark property-title">Casa Minimalista Sur</h5>
+                            <p class="text-muted mb-4"><i class="fa fa-map-marker-alt text-primary mr-2"></i>Ciudad de México, Pedregal</p>
+                            
+                            <div class="mt-auto">
+                                <div class="d-flex justify-content-between mb-4 pt-3 border-top border-light">
+                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-bed text-primary mr-1"></i>3</span>
+                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-bath text-primary mr-1"></i>2.5</span>
+                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-car text-primary mr-1"></i>2</span>
+                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-ruler-combined text-primary mr-1"></i>150m&sup2;</span>
+                                </div>
+                                <a href="#" class="btn btn-outline-primary btn-block rounded py-2 font-weight-bold w-100">Ver Detalles</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-5">
-                <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Contacto</h5>
-                <p><i class="fa fa-map-marker-alt mr-2"></i>Av. Reforma 123, Ciudad de México, México</p>
-                <p><i class="fa fa-phone-alt mr-2"></i>+57 300 123 4567</p>
-                <p><i class="fa fa-envelope mr-2"></i>contacto@inmobiliariamanuela.com</p>
+                <!-- Propiedad 2 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="property-card bg-white rounded-lg shadow-sm overflow-hidden h-100 d-flex flex-column">
+                        <div class="position-relative overflow-hidden property-img" style="height: 250px;">
+                            <img class="img-fluid w-100 h-100" src="img/destination-2.png" alt="Propiedad" style="object-fit:cover;">
+                            <div class="badge-status bg-success text-white position-absolute font-weight-bold px-3 py-1 rounded">Renta</div>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <h4 class="text-primary font-weight-bold mb-2">$18,000 <span class="small text-muted font-weight-normal">MXN / mes</span></h4>
+                            <h5 class="font-weight-bold mb-2 text-dark property-title">Departamento con Balcón</h5>
+                            <p class="text-muted mb-4"><i class="fa fa-map-marker-alt text-primary mr-2"></i>Cancún, Quintana Roo</p>
+                            
+                            <div class="mt-auto">
+                                <div class="d-flex justify-content-between mb-4 pt-3 border-top border-light">
+                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-bed text-primary mr-1"></i>2</span>
+                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-bath text-primary mr-1"></i>2</span>
+                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-car text-primary mr-1"></i>1</span>
+                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-ruler-combined text-primary mr-1"></i>100m&sup2;</span>
+                                </div>
+                                <a href="#" class="btn btn-outline-primary btn-block rounded py-2 font-weight-bold w-100">Ver Detalles</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Propiedad 3 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="property-card bg-white rounded-lg shadow-sm overflow-hidden h-100 d-flex flex-column">
+                        <div class="position-relative overflow-hidden property-img" style="height: 250px;">
+                            <img class="img-fluid w-100 h-100" src="img/destination-3.png" alt="Propiedad" style="object-fit:cover;">
+                            <div class="badge-status bg-primary text-white position-absolute font-weight-bold px-3 py-1 rounded">Venta</div>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <h4 class="text-primary font-weight-bold mb-2">$5,100,000 <span class="small text-muted font-weight-normal">MXN</span></h4>
+                            <h5 class="font-weight-bold mb-2 text-dark property-title">Residencia de Autor</h5>
+                            <p class="text-muted mb-4"><i class="fa fa-map-marker-alt text-primary mr-2"></i>Monterrey, N.L. Cumbres</p>
+                            
+                            <div class="mt-auto">
+                                <div class="d-flex justify-content-between mb-4 pt-3 border-top border-light">
+                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-bed text-primary mr-1"></i>4</span>
+                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-bath text-primary mr-1"></i>4</span>
+                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-car text-primary mr-1"></i>3</span>
+                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-ruler-combined text-primary mr-1"></i>280m&sup2;</span>
+                                </div>
+                                <a href="#" class="btn btn-outline-primary btn-block rounded py-2 font-weight-bold w-100">Ver Detalles</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Propiedad 4 -->
+                 <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="property-card bg-white rounded-lg shadow-sm overflow-hidden h-100 d-flex flex-column">
+                        <div class="position-relative overflow-hidden property-img" style="height: 250px;">
+                            <img class="img-fluid w-100 h-100" src="img/destination-4.png" alt="Propiedad" style="object-fit:cover;">
+                            <div class="badge-status bg-secondary text-dark position-absolute font-weight-bold px-3 py-1 rounded" style="background-color: var(--warning) !important;">Preventa</div>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <h4 class="text-primary font-weight-bold mb-2">$3,400,000 <span class="small text-muted font-weight-normal">MXN</span></h4>
+                            <h5 class="font-weight-bold mb-2 text-dark property-title">Lofts Industriales Centro</h5>
+                            <p class="text-muted mb-4"><i class="fa fa-map-marker-alt text-primary mr-2"></i>Guadalajara, Zona Centro</p>
+                            
+                            <div class="mt-auto">
+                                <div class="d-flex justify-content-between mb-4 pt-3 border-top border-light">
+                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-bed text-primary mr-1"></i>1</span>
+                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-bath text-primary mr-1"></i>1</span>
+                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-car text-primary mr-1"></i>1</span>
+                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-ruler-combined text-primary mr-1"></i>80m&sup2;</span>
+                                </div>
+                                <a href="#" class="btn btn-outline-primary btn-block rounded py-2 font-weight-bold w-100">Ver Detalles</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Propiedad 5 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="property-card bg-white rounded-lg shadow-sm overflow-hidden h-100 d-flex flex-column">
+                        <div class="position-relative overflow-hidden property-img" style="height: 250px;">
+                            <img class="img-fluid w-100 h-100" src="img/destination-5.png" alt="Propiedad" style="object-fit:cover;">
+                            <div class="badge-status bg-primary text-white position-absolute font-weight-bold px-3 py-1 rounded">Venta</div>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <h4 class="text-primary font-weight-bold mb-2">$850,000 <span class="small text-muted font-weight-normal">MXN</span></h4>
+                            <h5 class="font-weight-bold mb-2 text-dark property-title">Terreno Residencial</h5>
+                            <p class="text-muted mb-4"><i class="fa fa-map-marker-alt text-primary mr-2"></i>Mérida, Yucatán</p>
+                            
+                            <div class="mt-auto">
+                                <div class="d-flex justify-content-between mb-4 pt-3 border-top border-light">
+                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-cube text-primary mr-1"></i>Lote</span>
+                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-ruler-combined text-primary mr-1"></i>300m&sup2;</span>
+                                </div>
+                                <a href="#" class="btn btn-outline-primary btn-block rounded py-2 font-weight-bold w-100">Ver Detalles</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Propiedad 6 -->
+                 <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="property-card bg-white rounded-lg shadow-sm overflow-hidden h-100 d-flex flex-column">
+                        <div class="position-relative overflow-hidden property-img" style="height: 250px;">
+                            <img class="img-fluid w-100 h-100" src="img/destination-6.png" alt="Propiedad" style="object-fit:cover;">
+                            <div class="badge-status bg-success text-white position-absolute font-weight-bold px-3 py-1 rounded">Renta</div>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <h4 class="text-primary font-weight-bold mb-2">$45,000 <span class="small text-muted font-weight-normal">MXN / mes</span></h4>
+                            <h5 class="font-weight-bold mb-2 text-dark property-title">Penthouse de Lujo</h5>
+                            <p class="text-muted mb-4"><i class="fa fa-map-marker-alt text-primary mr-2"></i>CDMX, Polanco</p>
+                            
+                            <div class="mt-auto">
+                                <div class="d-flex justify-content-between mb-4 pt-3 border-top border-light">
+                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-bed text-primary mr-1"></i>3</span>
+                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-bath text-primary mr-1"></i>3.5</span>
+                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-car text-primary mr-1"></i>3</span>
+                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-ruler-combined text-primary mr-1"></i>250m&sup2;</span>
+                                </div>
+                                <a href="#" class="btn btn-outline-primary btn-block rounded py-2 font-weight-bold w-100">Ver Detalles</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">
-        <div class="row">
-            <div class="col-lg-6 text-center text-md-left mb-3 mb-md-0">
-                <p class="m-0 text-white-50">&copy; <a href="#">Inmobiliaria Manuela</a>. Todos los derechos reservados.
-                </p>
-            </div>
+
+    <!-- CTA Global -->
+    <div class="container-fluid bg-primary py-5 text-center">
+        <div class="container py-5 my-3">
+            <h2 class="text-white font-weight-bold mb-4 display-4" style="font-size: 2.5rem;">¿Deseas vender o rentar tu inmueble?</h2>
+            <p class="text-white mb-5 fs-5 lead mx-auto" style="max-width: 700px; line-height: 1.8;">Alcanzamos a los clientes correctos con estrategias de marketing modernas, garantizando un proceso seguro, transparente y sin complicaciones.</p>
+            <a href="#contacto" class="btn btn-light btn-cta rounded-pill py-3 px-5 text-primary font-weight-bold shadow-lg mt-2 smooth-scroll" style="font-size: 1.1rem;">Publicar Proyecto Ahora</a>
         </div>
     </div>
-    <!-- Footer End -->
+
+    <!-- Footer -->
+    <footer id="contacto" class="container-fluid bg-dark text-light py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-5 pr-lg-5">
+                    <h2 class="text-white mb-4 font-weight-bold"><i class="fa fa-home mr-2 text-primary"></i>Inmobiliaria Manuela</h2>
+                    <p class="text-white-50 mb-4" style="line-height: 1.8;">Tu aliado estratégico en bienes raíces. Te acompañamos brindando certeza jurídica y oportunidades únicas de inversión.</p>
+                    <div class="d-flex mt-4">
+                        <a class="btn btn-primary d-flex align-items-center justify-content-center rounded-circle mr-2" style="width: 40px; height: 40px;" href="#"><i class="fab fa-facebook-f text-white"></i></a>
+                        <a class="btn btn-primary d-flex align-items-center justify-content-center rounded-circle mr-2" style="width: 40px; height: 40px;" href="#"><i class="fab fa-instagram text-white"></i></a>
+                        <a class="btn btn-primary d-flex align-items-center justify-content-center rounded-circle" style="width: 40px; height: 40px;" href="#"><i class="fab fa-linkedin-in text-white"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-5 pl-lg-5">
+                    <h5 class="text-white text-uppercase mb-4 font-weight-bold" style="letter-spacing: 1px;">Navegación</h5>
+                    <div class="d-flex flex-column justify-content-start">
+                        <a class="text-white-50 mb-3 smooth-scroll font-weight-bold" href="#inicio"><i class="fa fa-angle-right mr-2 text-primary"></i>Inicio</a>
+                        <a class="text-white-50 mb-3 smooth-scroll font-weight-bold" href="#destacadas"><i class="fa fa-angle-right mr-2 text-primary"></i>Propiedades</a>
+                        <a class="text-white-50 mb-3 smooth-scroll font-weight-bold" href="#servicios"><i class="fa fa-angle-right mr-2 text-primary"></i>Nuestros Servicios</a>
+                        <a class="text-white-50 smooth-scroll font-weight-bold" href="#contacto"><i class="fa fa-angle-right mr-2 text-primary"></i>Contacto Directo</a>
+                        
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-5">
+                    <h5 class="text-white text-uppercase mb-4 font-weight-bold" style="letter-spacing: 1px;">Área de Contacto</h5>
+                    <p class="text-white-50 mb-3"><i class="fa fa-map-marker-alt text-primary mr-3"></i>PONGAN LA DIRECCION ACA</p>
+                    <p class="text-white-50 mb-3"><i class="fa fa-phone-alt text-primary mr-3"></i>poner numero de telefono @andres</p>
+                    <p class="text-white-50 mb-3"><i class="fa fa-envelope text-primary mr-3"></i>poner correo de la inmobiliaria</p>
+                    <p class="text-white-50"><i class="fa fa-clock text-primary mr-3"></i>aca poner horarios (supongo que 24/7)</p>
+                </div>
+            </div>
+            <div class="row pt-4 mt-4" style="border-top: 1px solid rgba(255,255,255,0.1);">
+                <div class="col-12 text-center text-white-50">
+                    <p class="m-0">&copy; <script>document.write(new Date().getFullYear())</script> Inmobiliaria Manuela. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
 
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
-
-
-    <!-- JavaScript Libraries -->
+    <!-- JavaScript Base -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-
-    <!-- JS Formulario de Búsqueda basico para no recargar si deciden usarlo -->
-    <script>
-        document.getElementById('property-search-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Esta es una demostración de Front-end. El backend de búsqueda se configurará más adelante.');
-        });
-    </script>
-
-    <!-- Template Javascript -->
     <script src="js/main.js"></script>
 </body>
 
