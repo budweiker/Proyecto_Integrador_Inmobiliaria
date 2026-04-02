@@ -15,7 +15,7 @@ $(document).ready(function() {
                 // window.history.pushState(null, null, hash);
             });
             
-            // Cerrar menú responsivo en móviles al hacer clic en un link
+            // Cerrar menú responsivo en celular al hacer clic en un link
             $('.navbar-collapse').collapse('hide');
         }
     });

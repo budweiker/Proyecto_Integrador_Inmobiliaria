@@ -9800,124 +9800,265 @@ h6,
   width: auto;
 }
 
-/* --- ESTILOS INMOBILIARIA PREMIUM (v2) --- */
+
+/* --- ESTILOS INMOBILIARIA PREMIUM (v3 - Nueva Paleta) --- */
 :root {
-  --primary: #1B2A47; /* Azul oscuro principal */
-  --accent: #1B2A47;  /* Azul (Item activo) */
-  --light: #f8f9fa;
-  --white: #ffffff;
-  --gray-border: #e2e8f0;
+    --color-beige-claro: #F2F0E9;
+    --color-gris-suave: #D9D6CF;
+    --color-blanco-grisaceo: #FAF9F6;
+    --color-beige-intermedio: #E7E3DB;
+    --color-texto-oscuro: #2c2a25;
+    --color-texto-subtitulo: #5a5753;
+    --color-texto-secundario: #7a7672;
+    --color-verde-corporativo: #4eb478;
+}
+
+/* Modificadores globales y fondos base */
+body {
+    background-color: var(--color-beige-claro) !important;
+    color: var(--color-texto-secundario) !important;
+}
+
+/* Textos globales */
+h1, h2, h3, h4, h5, h6, .text-dark, .navbar-brand h1 {
+    color: var(--color-texto-oscuro) !important;
+}
+
+h4, h5, .property-title {
+    color: var(--color-texto-subtitulo) !important;
+}
+
+p, .text-muted, .text-white-50 {
+    color: var(--color-texto-secundario) !important;
+}
+
+/* Fix global para texto sobre verde */
+.btn-primary, .bg-primary, .text-white {
+    color: #ffffff !important;
+}
+.btn-primary h2, .btn-primary p, .bg-primary h2, .bg-primary p {
+    color: #ffffff !important;
+}
+
+
+/* Botones y primarios */
+.btn-primary, .bg-primary {
+    background-color: var(--color-verde-corporativo) !important;
+    border-color: var(--color-verde-corporativo) !important;
+    color: #ffffff !important;
+}
+.btn-primary:hover, .bg-primary:hover {
+    background-color: #3f9462 !important;
+    border-color: #3f9462 !important;
+}
+
+.text-primary, .navbar-brand i {
+    color: var(--color-verde-corporativo) !important;
+    background-color: transparent !important;
+}
+
+.btn-outline-primary {
+    border-color: var(--color-verde-corporativo) !important;
+    color: var(--color-verde-corporativo) !important;
+}
+.btn-outline-primary:hover {
+    background-color: var(--color-verde-corporativo) !important;
+    color: #ffffff !important;
 }
 
 /* NAVBAR */
+.navbar {
+    background-color: var(--color-blanco-grisaceo) !important;
+}
 .navbar-light .navbar-nav .nav-link {
-    color: #444 !important;
+    color: var(--color-texto-oscuro) !important;
     font-weight: 500;
     padding: 25px 15px;
     transition: color 0.3s ease;
 }
 
 .navbar-light .navbar-nav .nav-link:hover {
-    color: var(--primary) !important;
+    color: var(--color-verde-corporativo) !important;
 }
 
 .navbar-light .navbar-nav .nav-link.active {
-    color: var(--accent) !important;
+    color: var(--color-verde-corporativo) !important;
     font-weight: 700;
 }
 
+.navbar-nav .animated-link {
+    position: relative;
+    transition: all 0.3s ease;
+}
+.navbar-nav .animated-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0px; 
+    left: 50%;
+    background-color: var(--color-verde-corporativo);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+.navbar-nav .animated-link:hover::after,
+.navbar-nav .animated-link.active::after {
+    width: 80%;
+}
 .transition-navbar {
     transition: all 0.4s ease-in-out;
 }
 
 /* HERO SECTION */
 .hero-section {
-    background: url('../img/carousel-2.jpg') no-repeat center center;
+    background: url('../img/BANNERV3.png') no-repeat center center;
     background-size: cover;
 }
 .hero-overlay {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: linear-gradient(to bottom, rgba(27, 42, 71, 0.6), rgba(15, 23, 42, 0.85));
+    background: rgba(242, 240, 233, 0.6) !important;
     z-index: 1;
 }
+.hero-section h1, .hero-section p {
+    color: var(--color-texto-oscuro) !important;
+    text-shadow: none !important;
+}
 .shadow-text {
-    text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    /* Desactivar para que el texto oscuro sea legible sobre beige */
+    text-shadow: none !important; 
 }
 
 /* BUSCADOR MODERNO (TARJETA FLOTANTE) */
 .search-card {
-    background-color: var(--white) !important;
+    background-color: var(--color-blanco-grisaceo) !important;
     border-radius: 20px !important;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15) !important;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.05) !important;
     border: none !important;
     padding: 45px !important;
 }
-
 .search-card h4 {
     letter-spacing: 0.5px;
+    color: var(--color-texto-oscuro) !important;
 }
-
 .search-card .form-control {
+    background-color: var(--color-beige-intermedio) !important;
     border-radius: 10px;
-    border: 1px solid var(--gray-border) !important;
+    border: 1px solid var(--color-beige-intermedio) !important;
+    color: var(--color-texto-oscuro) !important;
     padding: 12px 18px;
     height: auto;
     font-size: 15px;
     transition: all 0.3s ease;
 }
-
 .search-card .form-control:focus {
-    border-color: var(--primary) !important;
-    box-shadow: 0 0 0 4px rgba(27, 42, 71, 0.1);
+    border-color: var(--color-verde-corporativo) !important;
+    box-shadow: 0 0 0 4px rgba(78, 180, 120, 0.1);
 }
-
 .search-card label {
     margin-bottom: 10px;
 }
-
-/* BOTÃ“N BUSCAR */
 .submit-btn {
     height: 55px;
     border-radius: 10px;
     font-size: 16px;
     letter-spacing: 1px;
     transition: all 0.3s ease;
+    background-color: var(--color-verde-corporativo) !important;
 }
-
 .submit-btn:hover {
-    background-color: #121e33 !important;
+    background-color: #3f9462 !important;
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(27, 42, 71, 0.3) !important;
+    box-shadow: 0 8px 20px rgba(78, 180, 120, 0.3) !important;
 }
 
-/* SECCIÃ“N DE IMAGEN PERSONALIZABLE */
-.custom-image-section {
-    width: 100%;
-    overflow: hidden;
-    border-radius: 20px;
-    margin-top: 50px;
-    background-color: #eee; /* Placeholder color */
-    min-height: 200px;
+/* ALTERNANCIA DE SECCIONES (F2F0E9 y FAF9F6) */
+#destacadas.bg-light {
+    background-color: var(--color-beige-claro) !important;
+}
+#servicios.bg-white {
+    background-color: var(--color-blanco-grisaceo) !important;
+}
+.container-fluid.bg-light {
+    background-color: var(--color-beige-claro) !important;
 }
 
-/* SERVICIOS Y PROPIEDADES */
-.service-card, .property-card {
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+/* TARJETAS DE PROPIEDADES Y SERVICIOS */
+.property-card, .service-card {
+    background-color: var(--color-blanco-grisaceo) !important;
+    border: 1px solid var(--color-beige-intermedio) !important;
     border-radius: 15px !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important;
     overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
-
 .service-card:hover, .property-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1) !important;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08) !important;
 }
-
 .icon-circle {
     width: 80px; height: 80px;
     border-radius: 50%;
-    background: #fff;
+    background: var(--color-blanco-grisaceo);
     display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--color-beige-intermedio) !important;
+}
+.icon-circle i {
+    color: var(--color-verde-corporativo) !important;
+}
+.badge-status {
+    background-color: var(--color-verde-corporativo) !important;
+    color: #ffffff !important;
+}
+.property-specs i {
+    color: var(--color-verde-corporativo) !important;
+}
+
+/* FOOTER */
+.real-estate-footer {
+    background-color: var(--color-gris-suave) !important;
+}
+.real-estate-footer h3, .real-estate-footer h5 {
+    color: var(--color-texto-oscuro) !important;
+}
+.real-estate-footer p, .real-estate-footer span, .real-estate-footer i:not(.btn-social i) {
+    color: var(--color-texto-oscuro) !important;
+}
+.real-estate-footer .fa.text-primary {
+    color: var(--color-verde-corporativo) !important;
+}
+.real-estate-footer .footer-links a {
+    transition: 0.3s all ease;
+    text-decoration: none;
+    display: inline-block;
+    color: var(--color-texto-secundario) !important;
+}
+.real-estate-footer .footer-links a:hover {
+    color: var(--color-verde-corporativo) !important;
+    transform: translateX(5px);
+}
+.real-estate-footer .btn-social {
+    width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    border: 1px solid var(--color-texto-oscuro) !important;
+    color: var(--color-texto-oscuro) !important;
+    background: transparent;
+    transition: 0.3s all ease;
+}
+.real-estate-footer .btn-social:hover {
+    background-color: var(--color-verde-corporativo) !important;
+    border-color: var(--color-verde-corporativo) !important;
+    color: #ffffff !important;
+    transform: translateY(-3px);
+}
+
+/* Sub-footer inferior */
+.real-estate-footer .container-fluid {
+    background-color: var(--color-beige-intermedio) !important;
+}
+.real-estate-footer .container-fluid p, .real-estate-footer .container-fluid span {
+    color: var(--color-texto-oscuro) !important;
 }
 
 /* RESPONSIVE FIXES */
@@ -9928,49 +10069,94 @@ h6,
     }
 }
 
-/* Nuevo Footer Inmobiliario Premium */
-.real-estate-footer {
-    background-color: #1a1a1a;
-    font-family: 'Poppins', sans-serif;
+:root {
+    --color-beige-claro: #F2F0E9;
+    --color-gris-suave: #D9D6CF;
+    --color-blanco-grisaceo: #FAF9F6;
+    --color-beige-intermedio: #E7E3DB;
+    --color-texto-oscuro: #2c2a25;
+    --color-texto-subtitulo: #5a5753;
+    --color-texto-secundario: #7a7672;
+    --color-verde-corporativo: #4eb478;
 }
 
-.real-estate-footer .footer-links a {
-    transition: 0.3s all ease;
-    text-decoration: none;
-    display: inline-block;
+/* Modificadores globales y fondos base */
+body {
+    background-color: var(--color-beige-claro) !important;
+    color: var(--color-texto-secundario) !important;
 }
 
-.real-estate-footer .footer-links a:hover {
-    color: #007bff !important;
-    transform: translateX(5px);
+/* Textos globales */
+h1, h2, h3, h4, h5, h6, .text-dark, .navbar-brand h1 {
+    color: var(--color-texto-oscuro) !important;
 }
 
-.real-estate-footer .btn-social {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    border-color: rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.5);
-    background: transparent;
-    transition: 0.3s all ease;
+h4, h5, .property-title {
+    color: var(--color-texto-subtitulo) !important;
 }
 
-.real-estate-footer .btn-social:hover {
-    background-color: #007bff;
-    border-color: #007bff;
-    color: #ffffff;
-    transform: translateY(-3px);
+p, .text-muted, .text-white-50 {
+    color: var(--color-texto-secundario) !important;
 }
 
-/* Animación leve para los enlaces del header */
+/* Fix global para texto sobre verde */
+.btn-primary, .bg-primary, .text-white {
+    color: #ffffff !important;
+}
+.btn-primary h2, .btn-primary p, .bg-primary h2, .bg-primary p {
+    color: #ffffff !important;
+}
+
+
+/* Botones y primarios */
+.btn-primary, .bg-primary {
+    background-color: var(--color-verde-corporativo) !important;
+    border-color: var(--color-verde-corporativo) !important;
+    color: #ffffff !important;
+}
+.btn-primary:hover, .bg-primary:hover {
+    background-color: #3f9462 !important;
+    border-color: #3f9462 !important;
+}
+
+.text-primary, .navbar-brand i {
+    color: var(--color-verde-corporativo) !important;
+    background-color: transparent !important;
+}
+
+.btn-outline-primary {
+    border-color: var(--color-verde-corporativo) !important;
+    color: var(--color-verde-corporativo) !important;
+}
+.btn-outline-primary:hover {
+    background-color: var(--color-verde-corporativo) !important;
+    color: #ffffff !important;
+}
+
+/* NAVBAR */
+.navbar {
+    background-color: var(--color-blanco-grisaceo) !important;
+}
+.navbar-light .navbar-nav .nav-link {
+    color: var(--color-texto-oscuro) !important;
+    font-weight: 500;
+    padding: 25px 15px;
+    transition: color 0.3s ease;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: var(--color-verde-corporativo) !important;
+}
+
+.navbar-light .navbar-nav .nav-link.active {
+    color: var(--color-verde-corporativo) !important;
+    font-weight: 700;
+}
+
 .navbar-nav .animated-link {
     position: relative;
     transition: all 0.3s ease;
 }
-
 .navbar-nav .animated-link::after {
     content: '';
     position: absolute;
@@ -9978,17 +10164,175 @@ h6,
     height: 2px;
     bottom: 0px; 
     left: 50%;
-    background-color: #007bff;
+    background-color: var(--color-verde-corporativo);
     transition: all 0.3s ease;
     transform: translateX(-50%);
 }
-
 .navbar-nav .animated-link:hover::after,
 .navbar-nav .animated-link.active::after {
     width: 80%;
 }
-
-.navbar-nav .animated-link:hover {
-    color: #007bff !important;
-    transform: translateY(-2px);
+.transition-navbar {
+    transition: all 0.4s ease-in-out;
 }
+
+/* HERO SECTION */
+.hero-section {
+    background: url('../img/BANNERV3.png') no-repeat center center;
+    background-size: cover;
+}
+.hero-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(242, 240, 233, 0.6) !important;
+    z-index: 1;
+}
+.hero-section h1, .hero-section p {
+    color: var(--color-texto-oscuro) !important;
+    text-shadow: none !important;
+}
+.shadow-text {
+    /* Desactivar para que el texto oscuro sea legible sobre beige */
+    text-shadow: none !important; 
+}
+
+/* BUSCADOR MODERNO (TARJETA FLOTANTE) */
+.search-card {
+    background-color: var(--color-blanco-grisaceo) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.05) !important;
+    border: none !important;
+    padding: 45px !important;
+}
+.search-card h4 {
+    letter-spacing: 0.5px;
+    color: var(--color-texto-oscuro) !important;
+}
+.search-card .form-control {
+    background-color: var(--color-beige-intermedio) !important;
+    border-radius: 10px;
+    border: 1px solid var(--color-beige-intermedio) !important;
+    color: var(--color-texto-oscuro) !important;
+    padding: 12px 18px;
+    height: auto;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+.search-card .form-control:focus {
+    border-color: var(--color-verde-corporativo) !important;
+    box-shadow: 0 0 0 4px rgba(78, 180, 120, 0.1);
+}
+.search-card label {
+    margin-bottom: 10px;
+}
+.submit-btn {
+    height: 55px;
+    border-radius: 10px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    background-color: var(--color-verde-corporativo) !important;
+}
+.submit-btn:hover {
+    background-color: #3f9462 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(78, 180, 120, 0.3) !important;
+}
+
+/* ALTERNANCIA DE SECCIONES (F2F0E9 y FAF9F6) */
+#destacadas.bg-light {
+    background-color: var(--color-beige-claro) !important;
+}
+#servicios.bg-white {
+    background-color: var(--color-blanco-grisaceo) !important;
+}
+.container-fluid.bg-light {
+    background-color: var(--color-beige-claro) !important;
+}
+
+/* TARJETAS DE PROPIEDADES Y SERVICIOS */
+.property-card, .service-card {
+    background-color: var(--color-blanco-grisaceo) !important;
+    border: 1px solid var(--color-beige-intermedio) !important;
+    border-radius: 15px !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.service-card:hover, .property-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08) !important;
+}
+.icon-circle {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: var(--color-blanco-grisaceo);
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--color-beige-intermedio) !important;
+}
+.icon-circle i {
+    color: var(--color-verde-corporativo) !important;
+}
+.badge-status {
+    background-color: var(--color-verde-corporativo) !important;
+    color: #ffffff !important;
+}
+.property-specs i {
+    color: var(--color-verde-corporativo) !important;
+}
+
+/* FOOTER */
+.real-estate-footer {
+    background-color: var(--color-gris-suave) !important;
+}
+.real-estate-footer h3, .real-estate-footer h5 {
+    color: var(--color-texto-oscuro) !important;
+}
+.real-estate-footer p, .real-estate-footer span, .real-estate-footer i:not(.btn-social i) {
+    color: var(--color-texto-oscuro) !important;
+}
+.real-estate-footer .fa.text-primary {
+    color: var(--color-verde-corporativo) !important;
+}
+.real-estate-footer .footer-links a {
+    transition: 0.3s all ease;
+    text-decoration: none;
+    display: inline-block;
+    color: var(--color-texto-secundario) !important;
+}
+.real-estate-footer .footer-links a:hover {
+    color: var(--color-verde-corporativo) !important;
+    transform: translateX(5px);
+}
+.real-estate-footer .btn-social {
+    width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    border: 1px solid var(--color-texto-oscuro) !important;
+    color: var(--color-texto-oscuro) !important;
+    background: transparent;
+    transition: 0.3s all ease;
+}
+.real-estate-footer .btn-social:hover {
+    background-color: var(--color-verde-corporativo) !important;
+    border-color: var(--color-verde-corporativo) !important;
+    color: #ffffff !important;
+    transform: translateY(-3px);
+}
+
+/* Sub-footer inferior */
+.real-estate-footer .container-fluid {
+    background-color: var(--color-beige-intermedio) !important;
+}
+.real-estate-footer .container-fluid p, .real-estate-footer .container-fluid span {
+    color: var(--color-texto-oscuro) !important;
+}
+
+/* RESPONSIVE FIXES */
+@media (max-width: 991.98px) {
+    .search-card {
+        padding: 30px !important;
+        margin-top: -80px !important;
+    }
+}
+
