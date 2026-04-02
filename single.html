@@ -63,50 +63,37 @@
     <!-- Topbar End -->
 
 
-    <!-- Navbar Start -->
-    <div class="container-fluid position-relative nav-bar p-0">
-        <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
-            <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
-                <a href="" class="navbar-brand">
-                    <h1 class="m-0 text-primary"><span class="text-dark">TRAVEL</span>ER</h1>
-                </a>
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
-                    <div class="navbar-nav ml-auto py-0">
-                        <a href="index.html" class="nav-item nav-link">Home</a>
-                        <a href="about.html" class="nav-item nav-link">About</a>
-                        <a href="service.html" class="nav-item nav-link">Services</a>
-                        <a href="package.html" class="nav-item nav-link">Tour Packages</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Pages</a>
-                            <div class="dropdown-menu border-0 rounded-0 m-0">
-                                <a href="blog.html" class="dropdown-item">Blog Grid</a>
-                                <a href="single.html" class="dropdown-item active">Blog Detail</a>
-                                <a href="destination.html" class="dropdown-item">Destination</a>
-                                <a href="guide.html" class="dropdown-item">Travel Guides</a>
-                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                            </div>
-                        </div>
-                        <a href="contact.html" class="nav-item nav-link">Contact</a>
-                    </div>
-                </div>
-            </nav>
+    <!-- Navbar Fija -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm fixed-top py-3 py-lg-0 px-3 px-lg-5 transition-navbar">
+        <a href="index.html" class="navbar-brand">
+            <h1 class="m-0 text-primary font-weight-bold"><i class="fa fa-home mr-2"></i>Inmobiliaria Manuela</h1>
+        </a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+            <div class="navbar-nav ml-auto py-0">
+                <a href="index.html" class="nav-item nav-link">Inicio</a>
+                <a href="destination.html" class="nav-item nav-link">Venta</a>
+                <a href="package.html" class="nav-item nav-link">Alquiler</a>
+                <a href="service.html" class="nav-item nav-link">Servicios</a>
+                <a href="about.html" class="nav-item nav-link">Nosotros</a>
+                <a href="contact.html" class="nav-item nav-link">Contacto</a>
+            </div>
+            <a href="#contacto" class="btn btn-primary btn-cta rounded-pill py-2 px-4 d-none d-lg-block ml-3 font-weight-bold text-white smooth-scroll">Listar Propiedad</a>
         </div>
-    </div>
-    <!-- Navbar End -->
+    </nav>
 
 
     <!-- Header Start -->
     <div class="container-fluid page-header">
         <div class="container">
             <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
-                <h3 class="display-4 text-white text-uppercase">Blog Detail</h3>
+                <h3 class="display-4 text-white text-uppercase">Detalle de Blog</h3>
                 <div class="d-inline-flex text-white">
-                    <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
+                    <p class="m-0 text-uppercase"><a class="text-white" href="">Inicio</a></p>
                     <i class="fa fa-angle-double-right pt-1 px-3"></i>
-                    <p class="m-0 text-uppercase">Blog Detail</p>
+                    <p class="m-0 text-uppercase">Detalle de Blog</p>
                 </div>
             </div>
         </div>
@@ -233,7 +220,7 @@
     
                     <!-- Comment List Start -->
                     <div class="bg-white" style="padding: 30px; margin-bottom: 30px;">
-                        <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">3 Comments</h4>
+                        <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">3 Comentarios</h4>
                         <div class="media mb-4">
                             <img src="img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
                             <div class="media-body">
@@ -273,27 +260,27 @@
     
                     <!-- Comment Form Start -->
                     <div class="bg-white mb-3" style="padding: 30px;">
-                        <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">Leave a comment</h4>
+                        <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">Dejar un Comentario</h4>
                         <form>
                             <div class="form-group">
-                                <label for="name">Name *</label>
+                                <label for="name">Nombre *</label>
                                 <input type="text" class="form-control" id="name">
                             </div>
                             <div class="form-group">
-                                <label for="email">Email *</label>
+                                <label for="email">Correo Electrónico *</label>
                                 <input type="email" class="form-control" id="email">
                             </div>
                             <div class="form-group">
-                                <label for="website">Website</label>
+                                <label for="website">Sitio Web</label>
                                 <input type="url" class="form-control" id="website">
                             </div>
-    
+
                             <div class="form-group">
-                                <label for="message">Message *</label>
+                                <label for="message">Mensaje *</label>
                                 <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
                             </div>
                             <div class="form-group mb-0">
-                                <input type="submit" value="Leave a comment"
+                                <input type="submit" value="Dejar un comentario"
                                     class="btn btn-primary font-weight-semi-bold py-2 px-3">
                             </div>
                         </form>
