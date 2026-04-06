@@ -10087,10 +10087,12 @@ body {
 }
 
 /* Textos globales */
-h1, h2, h3, h4, h5, h6, .text-dark, .navbar-brand h1 {
+h2, h3, h4, h5, h6, .text-dark, .navbar-brand h1 {
     color: var(--color-texto-oscuro) !important;
 }
-
+h1 {
+    color: var(--color-texto-beige) !important;
+}
 h4, h5, .property-title {
     color: var(--color-texto-subtitulo) !important;
 }

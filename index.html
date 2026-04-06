@@ -1,458 +1,60 @@
-<!DOCTYPE html>
+<!DOCTYPE html>     
 <html lang="es">
-
 <head>
-    <meta charset="utf-8">
-    <title>Inmobiliaria Manuela - Encuentra tu hogar ideal</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"> 
-    <!-- Bootstrap -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido Inmobiliaria</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link href="css/style.css" rel="stylesheet">
 </head>
-
-<body data-spy="scroll" data-target=".navbar" data-offset="51">
-    <!-- Navbar Fija -->
-    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm fixed-top py-3 py-lg-0 px-3 px-lg-5 transition-navbar">
-        <a href="index.html" class="navbar-brand d-flex align-items-center">
-            <img src="img/LOGOV2.png" alt="Inmobiliaria Manuela Logo" style="max-height: 55px;" class="mr-2">
-            <h1 class="m-0 text-primary font-weight-bold">Inmobiliaria Manuela</h1>
-        </a>
-        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-            <div class="navbar-nav ml-auto py-0">
-                <a href="index.html" class="nav-item nav-link active animated-link">Inicio</a>
-                <a href="destination.html" class="nav-item nav-link animated-link">Venta</a>
-                <a href="package.html" class="nav-item nav-link animated-link">Alquiler</a>
-                <a href="service.html" class="nav-item nav-link animated-link">Servicios</a>
-                <a href="about.html" class="nav-item nav-link animated-link">Nosotros</a>
-                <a href="contact.html" class="nav-item nav-link animated-link">Contacto</a>
-            </div>
-            <a href="#contacto" class="btn btn-primary btn-cta rounded-pill py-2 px-4 d-none d-lg-block ml-3 font-weight-bold text-white smooth-scroll">Listar Propiedad</a>
-        </div>
-    </nav>
-
-    <!-- Hero (head)-->
-    <div id="inicio" class="hero-section position-relative vh-100 d-flex align-items-center">
-        <div class="hero-overlay"></div>
-        <div class="container position-relative text-center" style="z-index: 2; margin-top: 50px;">
-            <h1 class="display-3 text-white font-weight-bold mb-4 shadow-text">Encuentra tu hogar ideal</h1>
-            <p class="text-white mb-5 shadow-text lead w-75 mx-auto" style="font-size: 1.25rem;">Conectamos tus sueños con las mejores ubicaciones</p>
-            <a href="#destacadas" class="btn btn-primary rounded-pill py-3 px-5 font-weight-bold smooth-scroll text-white shadow-lg btn-cta">Explorar propiedades</a>
+<body>
+    <div id="welcome-screen" class="d-flex flex-column justify-content-center align-items-center vh-100 bg-dark text-white text-center">
+        <div class="container">
+            <img src="img/LOGOV2.png" alt="Inmobiliaria Manuela Logo" style="max-height: 150px; margin-bottom: 30px;">
+            <h1 class="display-3 fw-bold mb-4">Bienvenido a Inmobiliaria Manuela Bermudez</h1>
+            <p class="lead mb-5">Encuentra el hogar de tus sueños.</p>
+            <button class="btn btn-primary btn-lg px-5 py-3 shadow" onclick="window.location.href='home.html'">
+                Explorar Propiedades
+            </button>
+            <button class="btn btn-light btn-lg px-5 py-3 shadow ml-3" onclick="window.location.href='login.html'">
+                Iniciar Sesión
+            </button>
         </div>
     </div>
 
-    <!-- Buscador (Flotante) -->
-    <div class="container search-container" style="margin-top: -120px; position: relative; z-index: 10;">
-        <div class="bg-white rounded-lg shadow-lg p-4 p-md-5 search-card">
-            <h4 class="text-primary font-weight-bold mb-4">Busca tu próxima propiedad</h4>
-            <form id="searchForm">
-                <div class="row align-items-end">
-                    <div class="col-lg-3 col-md-6 mb-3 mb-lg-0">
-                        <label class="font-weight-bold text-primary small text-uppercase" for="ubicacionInput">Ubicación</label>
-                        <input type="text" class="form-control bg-light border-0 py-3" id="ubicacionInput" placeholder="Ej: Mansión en Santa Fe">
-                    </div>
-                    <div class="col-lg-3 col-md-6 mb-3 mb-lg-0">
-                        <label class="font-weight-bold text-primary small text-uppercase" for="tipo">Tipo de Inmueble</label>
-                        <select class="form-control bg-light border-0 py-3" id="tipo">
-                            <option value="">Cualquier tipo</option>
-                            <option value="casa">Casa</option>
-                            <option value="departamento">Departamento</option>
-                            <option value="terreno">Terreno</option>
-                            <option value="oficina">Oficina Comercial</option>
-                        </select>
-                    </div>
-                    <div class="col-lg-2 col-md-6 mb-3 mb-lg-0">
-                        <label class="font-weight-bold text-primary small text-uppercase" for="habitaciones">Habitaciones</label>
-                        <select class="form-control bg-light border-0 py-3" id="habitaciones">
-                            <option value="todas">Todas</option>
-                            <option value="1">1 o más</option>
-                            <option value="2">2 o más</option>
-                            <option value="3">3 o más</option>
-                            <option value="4">4 o más</option>
-                        </select>
-                    </div>
-                    <div class="col-lg-2 col-md-6 mb-3 mb-lg-0">
-                        <label class="font-weight-bold text-primary small text-uppercase" for="precio">Rango de Precio</label>
-                        <select class="form-control bg-light border-0 py-3" id="precio">
-                            <option value="ilimitado">Sin límite</option>
-                            <option value="1000000">Hasta $1M COP</option>
-                            <option value="3000000">Hasta $3M COP</option>
-                            <option value="5000000">Hasta $5M COP</option>
-                            <option value="10000000">Hasta $10M COP</option>
-                        </select>
-                    </div>
-                    <div class="col-lg-2 mt-3 mt-lg-0">
-                        <button class="btn btn-primary btn-block py-3 font-weight-bold shadow-sm d-flex align-items-center justify-content-center text-white submit-btn" type="submit">
-                            Buscar <i class="fa fa-search ml-2"></i>
-                        </button>
+    <!-- Sección con 3 cards -->
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Sobre Nosotros</h5>
+                        <p class="card-text">Conoce más sobre nuestra historia y misión en el sector inmobiliario.</p>
+                        <a href="about.html" class="btn btn-primary">Leer Más</a>
                     </div>
                 </div>
-                <div id="search-feedback" class="mt-4 text-center d-none p-3 rounded font-weight-bold">
-                    <!-- Mensaje de confirmacion ira aqui -->
-                </div>
-            </form>
-        </div>
-
-        <!--  cierre del buscador  -->
-    </div>
-
-    <!-- Propiedades Destacadas (Resultados) -->
-    <div id="destacadas" class="container-fluid bg-light py-5">
-        <div class="container py-5">
-            <div class="text-center mb-5 pb-3">
-                <h6 class="text-primary text-uppercase font-weight-bold" style="letter-spacing: 2px;">Catálogo Seleccionado</h6>
-                <h2 class="display-4 font-weight-bold text-dark">Nuestras Propiedades</h2>
             </div>
-            <div class="row" id="property-grid">
-                <!-- Propiedad 1 -->
-                <div class="col-lg-4 col-md-6 mb-4 property-item" data-ubicacion="El Poblado" data-tipo="departamento" data-habitaciones="3" data-precio="4500000">
-                    <div class="property-card bg-white rounded-lg shadow-sm overflow-hidden h-100 d-flex flex-column">
-                        <div class="position-relative overflow-hidden property-img" style="height: 250px;">
-                            <img class="img-fluid w-100 h-100" src="img/destination-1.png" alt="Propiedad" style="object-fit:cover;">
-                            <div class="badge-status bg-success text-white position-absolute font-weight-bold px-3 py-1 rounded">Renta</div>
-                        </div>
-                        <div class="p-4 d-flex flex-column flex-grow-1">
-                            <h4 class="text-primary font-weight-bold mb-2">$4,500,000 <span class="small text-muted font-weight-normal">COP / mes</span></h4>
-                            <h5 class="font-weight-bold mb-2 text-dark property-title">Penthouse de Lujo</h5>
-                            <p class="text-muted mb-4"><i class="fa fa-map-marker-alt text-primary mr-2"></i>El Poblado</p>
-                            
-                            <div class="mt-auto">
-                                <div class="d-flex justify-content-between mb-4 pt-3 border-top border-light">
-                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-bed text-primary mr-1"></i>3</span>
-                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-bath text-primary mr-1"></i>3</span>
-                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-car text-primary mr-1"></i>2</span>
-                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-ruler-combined text-primary mr-1"></i>250m&sup2;</span>
-                                </div>
-                                <a href="property-details.html?id=1" class="btn btn-outline-primary btn-block rounded py-2 font-weight-bold w-100">Ver Detalles</a>
-                            </div>
-                        </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Nuestros Servicios</h5>
+                        <p class="card-text">Descubre los servicios que ofrecemos para ayudarte a encontrar tu hogar ideal.</p>
+                        <a href="service.html" class="btn btn-primary">Ver Servicios</a>
                     </div>
                 </div>
-                <!-- Propiedad 2 -->
-                <div class="col-lg-4 col-md-6 mb-4 property-item" data-ubicacion="Laureles" data-tipo="casa" data-habitaciones="4" data-precio="3800000">
-                    <div class="property-card bg-white rounded-lg shadow-sm overflow-hidden h-100 d-flex flex-column">
-                        <div class="position-relative overflow-hidden property-img" style="height: 250px;">
-                            <img class="img-fluid w-100 h-100" src="img/destination-2.png" alt="Propiedad" style="object-fit:cover;">
-                            <div class="badge-status bg-success text-white position-absolute font-weight-bold px-3 py-1 rounded">Renta</div>
-                        </div>
-                        <div class="p-4 d-flex flex-column flex-grow-1">
-                            <h4 class="text-primary font-weight-bold mb-2">$3,800,000 <span class="small text-muted font-weight-normal">COP / mes</span></h4>
-                            <h5 class="font-weight-bold mb-2 text-dark property-title">Casa con Jardín</h5>
-                            <p class="text-muted mb-4"><i class="fa fa-map-marker-alt text-primary mr-2"></i>Laureles</p>
-                            
-                            <div class="mt-auto">
-                                <div class="d-flex justify-content-between mb-4 pt-3 border-top border-light">
-                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-bed text-primary mr-1"></i>4</span>
-                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-bath text-primary mr-1"></i>3</span>
-                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-car text-primary mr-1"></i>2</span>
-                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-ruler-combined text-primary mr-1"></i>300m&sup2;</span>
-                                </div>
-                                <a href="property-details.html?id=2" class="btn btn-outline-primary btn-block rounded py-2 font-weight-bold w-100">Ver Detalles</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Propiedad 3 -->
-                <div class="col-lg-4 col-md-6 mb-4 property-item" data-ubicacion="Envigado" data-tipo="departamento" data-habitaciones="2" data-precio="2500000">
-                    <div class="property-card bg-white rounded-lg shadow-sm overflow-hidden h-100 d-flex flex-column">
-                        <div class="position-relative overflow-hidden property-img" style="height: 250px;">
-                            <img class="img-fluid w-100 h-100" src="img/destination-3.png" alt="Propiedad" style="object-fit:cover;">
-                            <div class="badge-status bg-success text-white position-absolute font-weight-bold px-3 py-1 rounded">Renta</div>
-                        </div>
-                        <div class="p-4 d-flex flex-column flex-grow-1">
-                            <h4 class="text-primary font-weight-bold mb-2">$2,500,000 <span class="small text-muted font-weight-normal">COP / mes</span></h4>
-                            <h5 class="font-weight-bold mb-2 text-dark property-title">Apartamento Vista Panorámica</h5>
-                            <p class="text-muted mb-4"><i class="fa fa-map-marker-alt text-primary mr-2"></i>Envigado</p>
-                            
-                            <div class="mt-auto">
-                                <div class="d-flex justify-content-between mb-4 pt-3 border-top border-light">
-                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-bed text-primary mr-1"></i>2</span>
-                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-bath text-primary mr-1"></i>2</span>
-                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-car text-primary mr-1"></i>1</span>
-                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-ruler-combined text-primary mr-1"></i>90m&sup2;</span>
-                                </div>
-                                <a href="property-details.html?id=3" class="btn btn-outline-primary btn-block rounded py-2 font-weight-bold w-100">Ver Detalles</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                 <!-- Propiedad 4 -->
-                 <div class="col-lg-4 col-md-6 mb-4 property-item" data-ubicacion="Sabaneta" data-tipo="departamento" data-habitaciones="3" data-precio="2800000">
-                    <div class="property-card bg-white rounded-lg shadow-sm overflow-hidden h-100 d-flex flex-column">
-                        <div class="position-relative overflow-hidden property-img" style="height: 250px;">
-                            <img class="img-fluid w-100 h-100" src="img/destination-4.png" alt="Propiedad" style="object-fit:cover;">
-                            <div class="badge-status bg-success text-white position-absolute font-weight-bold px-3 py-1 rounded">Renta</div>
-                        </div>
-                        <div class="p-4 d-flex flex-column flex-grow-1">
-                            <h4 class="text-primary font-weight-bold mb-2">$2,800,000 <span class="small text-muted font-weight-normal">COP / mes</span></h4>
-                            <h5 class="font-weight-bold mb-2 text-dark property-title">Apartamento Residencial</h5>
-                            <p class="text-muted mb-4"><i class="fa fa-map-marker-alt text-primary mr-2"></i>Sabaneta</p>
-                            
-                            <div class="mt-auto">
-                                <div class="d-flex justify-content-between mb-4 pt-3 border-top border-light">
-                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-bed text-primary mr-1"></i>3</span>
-                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-bath text-primary mr-1"></i>2</span>
-                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-car text-primary mr-1"></i>1</span>
-                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-ruler-combined text-primary mr-1"></i>110m&sup2;</span>
-                                </div>
-                                <a href="property-details.html?id=4" class="btn btn-outline-primary btn-block rounded py-2 font-weight-bold w-100">Ver Detalles</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Propiedad 5 -->
-                <div class="col-lg-4 col-md-6 mb-4 property-item" data-ubicacion="Bello" data-tipo="casa" data-habitaciones="3" data-precio="1500000">
-                    <div class="property-card bg-white rounded-lg shadow-sm overflow-hidden h-100 d-flex flex-column">
-                        <div class="position-relative overflow-hidden property-img" style="height: 250px;">
-                            <img class="img-fluid w-100 h-100" src="img/destination-5.png" alt="Propiedad" style="object-fit:cover;">
-                            <div class="badge-status bg-success text-white position-absolute font-weight-bold px-3 py-1 rounded">Renta</div>
-                        </div>
-                        <div class="p-4 d-flex flex-column flex-grow-1">
-                            <h4 class="text-primary font-weight-bold mb-2">$1,500,000 <span class="small text-muted font-weight-normal">COP / mes</span></h4>
-                            <h5 class="font-weight-bold mb-2 text-dark property-title">Casa Unifamiliar</h5>
-                            <p class="text-muted mb-4"><i class="fa fa-map-marker-alt text-primary mr-2"></i>Bello</p>
-                            
-                            <div class="mt-auto">
-                                <div class="d-flex justify-content-between mb-4 pt-3 border-top border-light">
-                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-bed text-primary mr-1"></i>3</span>
-                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-bath text-primary mr-1"></i>2</span>
-                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-car text-primary mr-1"></i>1</span>
-                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-ruler-combined text-primary mr-1"></i>120m&sup2;</span>
-                                </div>
-                                <a href="property-details.html?id=5" class="btn btn-outline-primary btn-block rounded py-2 font-weight-bold w-100">Ver Detalles</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Propiedad 6 -->
-                <div class="col-lg-4 col-md-6 mb-4 property-item" data-ubicacion="Rionegro" data-tipo="terreno" data-habitaciones="0" data-precio="800000">
-                    <div class="property-card bg-white rounded-lg shadow-sm overflow-hidden h-100 d-flex flex-column">
-                        <div class="position-relative overflow-hidden property-img" style="height: 250px;">
-                            <img class="img-fluid w-100 h-100" src="img/destination-6.png" alt="Propiedad" style="object-fit:cover;">
-                            <div class="badge-status bg-success text-white position-absolute font-weight-bold px-3 py-1 rounded">Renta</div>
-                        </div>
-                        <div class="p-4 d-flex flex-column flex-grow-1">
-                            <h4 class="text-primary font-weight-bold mb-2">$800,000 <span class="small text-muted font-weight-normal">COP / mes</span></h4>
-                            <h5 class="font-weight-bold mb-2 text-dark property-title">Lote Comercial</h5>
-                            <p class="text-muted mb-4"><i class="fa fa-map-marker-alt text-primary mr-2"></i>Rionegro</p>
-                            
-                            <div class="mt-auto">
-                                <div class="d-flex justify-content-between mb-4 pt-3 border-top border-light">
-                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-cube text-primary mr-1"></i>Lote</span>
-                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-ruler-combined text-primary mr-1"></i>500m&sup2;</span>
-                                </div>
-                                <a href="property-details.html?id=6" class="btn btn-outline-primary btn-block rounded py-2 font-weight-bold w-100">Ver Detalles</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Propiedad 7 -->
-                <div class="col-lg-4 col-md-6 mb-4 property-item" data-ubicacion="Itagüí" data-tipo="departamento" data-habitaciones="2" data-precio="1800000">
-                    <div class="property-card bg-white rounded-lg shadow-sm overflow-hidden h-100 d-flex flex-column">
-                        <div class="position-relative overflow-hidden property-img" style="height: 250px;">
-                            <img class="img-fluid w-100 h-100" src="img/destination-1.png" alt="Propiedad" style="object-fit:cover;">
-                            <div class="badge-status bg-success text-white position-absolute font-weight-bold px-3 py-1 rounded">Renta</div>
-                        </div>
-                        <div class="p-4 d-flex flex-column flex-grow-1">
-                            <h4 class="text-primary font-weight-bold mb-2">$1,800,000 <span class="small text-muted font-weight-normal">COP / mes</span></h4>
-                            <h5 class="font-weight-bold mb-2 text-dark property-title">Acogedor Apartamento</h5>
-                            <p class="text-muted mb-4"><i class="fa fa-map-marker-alt text-primary mr-2"></i>Itagüí</p>
-                            
-                            <div class="mt-auto">
-                                <div class="d-flex justify-content-between mb-4 pt-3 border-top border-light">
-                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-bed text-primary mr-1"></i>2</span>
-                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-bath text-primary mr-1"></i>1</span>
-                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-car text-primary mr-1"></i>1</span>
-                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-ruler-combined text-primary mr-1"></i>75m&sup2;</span>
-                                </div>
-                                <a href="property-details.html?id=7" class="btn btn-outline-primary btn-block rounded py-2 font-weight-bold w-100">Ver Detalles</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Propiedad 8 -->
-                <div class="col-lg-4 col-md-6 mb-4 property-item" data-ubicacion="La Estrella" data-tipo="casa" data-habitaciones="4" data-precio="3200000">
-                    <div class="property-card bg-white rounded-lg shadow-sm overflow-hidden h-100 d-flex flex-column">
-                        <div class="position-relative overflow-hidden property-img" style="height: 250px;">
-                            <img class="img-fluid w-100 h-100" src="img/destination-2.png" alt="Propiedad" style="object-fit:cover;">
-                            <div class="badge-status bg-success text-white position-absolute font-weight-bold px-3 py-1 rounded">Renta</div>
-                        </div>
-                        <div class="p-4 d-flex flex-column flex-grow-1">
-                            <h4 class="text-primary font-weight-bold mb-2">$3,200,000 <span class="small text-muted font-weight-normal">COP / mes</span></h4>
-                            <h5 class="font-weight-bold mb-2 text-dark property-title">Amplia Casa Familiar</h5>
-                            <p class="text-muted mb-4"><i class="fa fa-map-marker-alt text-primary mr-2"></i>La Estrella</p>
-                            
-                            <div class="mt-auto">
-                                <div class="d-flex justify-content-between mb-4 pt-3 border-top border-light">
-                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-bed text-primary mr-1"></i>4</span>
-                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-bath text-primary mr-1"></i>2</span>
-                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-car text-primary mr-1"></i>2</span>
-                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-ruler-combined text-primary mr-1"></i>220m&sup2;</span>
-                                </div>
-                                <a href="property-details.html?id=8" class="btn btn-outline-primary btn-block rounded py-2 font-weight-bold w-100">Ver Detalles</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Propiedad 9 -->
-                <div class="col-lg-4 col-md-6 mb-4 property-item" data-ubicacion="Copacabana" data-tipo="terreno" data-habitaciones="0" data-precio="900000">
-                    <div class="property-card bg-white rounded-lg shadow-sm overflow-hidden h-100 d-flex flex-column">
-                        <div class="position-relative overflow-hidden property-img" style="height: 250px;">
-                            <img class="img-fluid w-100 h-100" src="img/destination-3.png" alt="Propiedad" style="object-fit:cover;">
-                            <div class="badge-status bg-success text-white position-absolute font-weight-bold px-3 py-1 rounded">Renta</div>
-                        </div>
-                        <div class="p-4 d-flex flex-column flex-grow-1">
-                            <h4 class="text-primary font-weight-bold mb-2">$900,000 <span class="small text-muted font-weight-normal">COP / mes</span></h4>
-                            <h5 class="font-weight-bold mb-2 text-dark property-title">Zona Campestre</h5>
-                            <p class="text-muted mb-4"><i class="fa fa-map-marker-alt text-primary mr-2"></i>Copacabana</p>
-                            
-                            <div class="mt-auto">
-                                <div class="d-flex justify-content-between mb-4 pt-3 border-top border-light">
-                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-cube text-primary mr-1"></i>Lote Finca</span>
-                                    <span class="property-specs text-muted font-weight-bold"><i class="fa fa-ruler-combined text-primary mr-1"></i>400m&sup2;</span>
-                                </div>
-                                <a href="property-details.html?id=9" class="btn btn-outline-primary btn-block rounded py-2 font-weight-bold w-100">Ver Detalles</a>
-                            </div>
-                        </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Contacto</h5>
+                        <p class="card-text">Ponte en contacto con nosotros para cualquier consulta o asistencia.</p>
+                        <a href="contact.html" class="btn btn-primary">Contactar</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Servicios -->
-    <div id="servicios" class="container-fluid py-5 bg-white">
-        <div class="container py-5">
-            <div class="text-center mb-5 pb-3">
-                <h6 class="text-primary text-uppercase font-weight-bold" style="letter-spacing: 2px;">Conoce</h6>
-                <h2 class="display-4 font-weight-bold text-dark">Nuestros Servicios</h2>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="service-card bg-light p-5 rounded-lg shadow-sm text-center h-100 border-0">
-                        <div class="icon-circle bg-white text-primary mx-auto mb-4 shadow">
-                            <i class="fa fa-hand-holding-usd fa-2x"></i>
-                        </div>
-                        <h4 class="font-weight-bold mb-3 text-dark">Precios Competitivos</h4>
-                        <p class="text-muted mb-0">Obtén las mejores oportunidades del mercado. Propiedades adaptadas a presupuestos realistas y orientadas a la plusvalía.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="service-card bg-light p-5 rounded-lg shadow-sm text-center h-100 border-0">
-                        <div class="icon-circle bg-white text-primary mx-auto mb-4 shadow">
-                            <i class="fa fa-user-tie fa-2x"></i>
-                        </div>
-                        <h4 class="font-weight-bold mb-3 text-dark">Asesoría Profesional</h4>
-                        <p class="text-muted mb-0">Contamos con un equipo de expertos legales y comerciales que te guiarán paso a paso en toda la documentación.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="service-card bg-light p-5 rounded-lg shadow-sm text-center h-100 border-0">
-                        <div class="icon-circle bg-white text-primary mx-auto mb-4 shadow">
-                            <i class="fa fa-map-marked-alt fa-2x"></i>
-                        </div>
-                        <h4 class="font-weight-bold mb-3 text-dark">Amplitud de Zonas</h4>
-                        <p class="text-muted mb-0">Acceso a red exclusiva de inventario en las principales zonas metropolitanas con mayor crecimiento urbano.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- CTA Global -->
-    <div class="container-fluid bg-primary py-5 text-center">
-        <div class="container py-5 my-3">
-            <h2 class="font-weight-bold mb-4 display-4" style="color: #ffffff !important; font-size: 2.5rem;">¿Deseas vender o rentar tu inmueble?</h2>
-            <p class="mb-5 fs-5 lead mx-auto" style="color: #ffffff !important; max-width: 700px; line-height: 1.8;">Alcanzamos a los clientes correctos con estrategias de marketing modernas, garantizando un proceso seguro, transparente y sin complicaciones.</p>
-            <a href="#contacto" class="btn btn-light btn-cta rounded-pill py-3 px-5 font-weight-bold shadow-lg mt-2 smooth-scroll" style="color: var(--color-verde-corporativo) !important; background-color: #ffffff !important; border-color: #ffffff !important; font-size: 1.1rem;">Publicar Proyecto Ahora</a>
-        </div>
-    </div>
-
-    <!-- Footer-->
-    <footer class="real-estate-footer pt-5" id="contacto">
-        <div class="container pt-4 pb-3">
-            <div class="row">
-                <!-- COLUMNA 1: Logo y Descripción -->
-                <div class="col-lg-3 col-md-6 mb-5 pe-lg-4">
-                    <h3 class="text-white mb-4"><i class="fa fa-home text-primary mr-2"></i>Inm. Manuela</h3>
-                    <p class="text-white-50" style="line-height: 1.8; font-size: 0.95rem;">Tu aliado estratégico en bienes raíces. Brindamos certeza jurídica y oportunidades únicas de inversión con un enfoque profesional y humano.</p>
-                </div>
-                
-                <!-- COLUMNA 2: Rápido Links -->
-                <div class="col-lg-2 col-md-6 mb-5">
-                    <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 1px; font-weight: 600; font-size: 1rem;">Links Rápidos</h5>
-                    <div class="d-flex flex-column justify-content-start footer-links list-unstyled">
-                        <a class="text-white-50 mb-3" href="#inicio">Inicio</a>
-                        <a class="text-white-50 mb-3" href="#destacadas">Ventas</a>
-                        <a class="text-white-50 mb-3" href="#destacadas">Alquiler</a>
-                        <a class="text-white-50 mb-3" href="#servicios">Servicios</a>
-                    </div>
-                </div>
-                
-                <!-- COLUMNA 3: Propiedad types -->
-                <div class="col-lg-2 col-md-6 mb-5">
-                    <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 1px; font-weight: 600; font-size: 1rem;">Propiedades</h5>
-                    <div class="d-flex flex-column justify-content-start footer-links list-unstyled">
-                        <a class="text-white-50 mb-3" href="#">Casas</a>
-                        <a class="text-white-50 mb-3" href="#">Departamentos</a>
-                        <a class="text-white-50 mb-3" href="#">Comercial</a>
-                        <a class="text-white-50" href="#">Terrenos</a>
-                    </div>
-                </div>
-                
-                <!-- COLUMNA 4: Legal -->
-                <div class="col-lg-2 col-md-6 mb-5">
-                    <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 1px; font-weight: 600; font-size: 1rem;">Legal</h5>
-                    <div class="d-flex flex-column justify-content-start footer-links list-unstyled">
-                        <a class="text-white-50 mb-3" href="#contacto">Contactos</a>
-                        <a class="text-white-50 mb-3" href="#servicios">Servicios</a>
-                        <a class="text-white-50 mb-3" href="#">Privacidad</a>
-                        <a class="text-white-50" href="#">Términos Uso</a>
-                    </div>
-                </div>
-                
-                <!-- COLUMNA 5 y 6: Contacto -->
-                <div class="col-lg-3 col-md-6 mb-5">
-                    <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 1px; font-weight: 600; font-size: 1rem;">Contactanos</h5>
-                    <p class="text-white-50 mb-3 d-flex align-items-center">
-                        <i class="fa fa-phone-alt text-primary mr-3"></i>
-                        +57 300 123 4567
-                    </p>
-                    <p class="text-white-50 mb-4 d-flex align-items-center">
-                        <i class="fa fa-envelope text-primary mr-3"></i>
-                        info@inmomanuela.com
-                    </p>
-                    
-                   
-                    <div class="d-flex w-100 footer-social">
-                        <a class="btn btn-outline-light btn-social mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-light btn-social mr-2" href="#"><i class="fab fa-instagram"></i></a>
-                        <a class="btn btn-outline-light btn-social mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a class="btn btn-outline-light btn-social" href="#"><i class="fab fa-twitter"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- PARTE INFERIOR -->
-        <div class="container-fluid" style="background-color: #111111;">
-            <div class="row pt-4 pb-4">
-                <div class="col-12 text-center">
-                    <p class="m-0 text-white-50" style="font-size: 0.9rem;">&copy; <span class="text-white">Inmobiliaria Manuela</span>. Todos los derechos reservados.</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-
-    <!-- JavaScript Base -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="js/main.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
