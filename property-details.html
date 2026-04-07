@@ -11,6 +11,83 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"> 
     <!-- Bootstrap -->
     <link href="css/style.css" rel="stylesheet">
+    <!-- Owl Carousel -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.theme.default.min.css" rel="stylesheet">
+    <style>
+        .property-gallery .gallery-image-wrapper {
+            position: relative;
+        }
+        .property-gallery .gallery-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 42px;
+            height: 42px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 5;
+        }
+        .property-gallery .gallery-control:hover {
+            background: rgba(0, 0, 0, 0.75);
+        }
+        .property-gallery .gallery-prev {
+            left: 10px;
+        }
+        .property-gallery .gallery-next {
+            right: 10px;
+        }
+        .property-gallery .gallery-caption {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 0.75rem 1rem;
+            background: rgba(0, 0, 0, 0.45);
+            color: #fff;
+            font-weight: 600;
+            text-align: center;
+        }
+        .property-gallery .gallery-thumbs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+        .property-gallery .thumb-button {
+            border: none;
+            background: transparent;
+            padding: 0;
+            width: 70px;
+            height: 54px;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            opacity: 0.7;
+            transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .property-gallery .thumb-button.active {
+            opacity: 1;
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
+            transform: scale(1.02);
+        }
+        .property-gallery .thumb-button img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .property-gallery .gallery-image-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
 </head>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="51">
@@ -118,18 +195,36 @@
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <!-- Owl Carousel JS -->
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
     <!-- Base de datos de propiedades -->
     <script>
         const properties = [
             {
                 id: 1,
-                title: "Apartamento Lujo El Poblado",
+                title: "Casa De Lujo El Poblado",
                 location: "El Poblado",
                 type: "Departamento",
                 status: "Venta",
                 price: 450000000,
                 currency: "COP",
-                image: "img/destination-1.png",
+                images: [
+                    {src: "img/piscina de poblado.png", label: "Sala"},
+                    {src: "img/baño de poblado.png", label: "Baños"},
+                    {src: "img/cuarto 1 de poblado.png", label: "Habitaciones"},
+                    {src: "img/baño 2 de poblado.png", label: "Balcón"},
+                    {src: "img/cocina de poblado.png", label: "Cocina"},
+                    {src: "img/comedor de poblado.png", label: "Comedor"},
+                    {src: "img/sala de poblado.png", label: "Sala 2"},
+                    {src: "img/cuarto de cine poblado.png", label: "Cuarto Cine"},
+                    {src: "img/cuarto oficina de poblado.png", label: "Oficina"},
+                    {src: "img/pasillo poblado.png", label: "Pasillo"}
+                ],
                 bedrooms: 3,
                 bathrooms: 3,
                 garage: 2,
@@ -156,13 +251,19 @@
             },
             {
                 id: 2,
-                title: "Casa La Estrella",
-                location: "La Estrella",
+                title: "Casa De Lujo en Laureles",
+                location: "Laureles",
                 type: "Casa",
                 status: "Venta",
                 price: 350000000,
                 currency: "COP",
-                image: "img/destination-2.png",
+                images: [
+                    {src: "img/balcon de laureles.png", label: "Sala"},
+                    {src: "img/destination-3.png", label: "Baños"},
+                    {src: "img/destination-4.png", label: "Habitaciones"},
+                    {src: "img/destination-5.png", label: "Balcón"},
+                    {src: "img/destination-6.png", label: "Patio"}
+                ],
                 bedrooms: 4,
                 bathrooms: 3,
                 garage: 2,
@@ -190,12 +291,18 @@
             {
                 id: 3,
                 title: "Apartamento Vista Panorámica",
-                location: "Envigado",
+                location: "La Palma",
                 type: "Departamento",
-                status: "Alquiler",
+                status: "En Venta",
                 price: 2500000,
-                currency: "COP / mes",
-                image: "img/destination-3.png",
+                currency: "COP",
+                images: [
+                    {src: "img/destination-3.png", label: "Sala"},
+                    {src: "img/destination-4.png", label: "Baños"},
+                    {src: "img/destination-5.png", label: "Habitaciones"},
+                    {src: "img/destination-6.png", label: "Balcón"},
+                    {src: "img/destination-1.png", label: "Patio"}
+                ],
                 bedrooms: 2,
                 bathrooms: 2,
                 garage: 1,
@@ -223,12 +330,18 @@
             {
                 id: 4,
                 title: "Apartamento Residencial",
-                location: "Sabaneta",
+                location: "Envigado",
                 type: "Departamento",
                 status: "Alquiler",
                 price: 2800000,
                 currency: "COP / mes",
-                image: "img/destination-4.png",
+                images: [
+                    {src: "img/destination-4.png", label: "Sala"},
+                    {src: "img/destination-5.png", label: "Baños"},
+                    {src: "img/destination-6.png", label: "Habitaciones"},
+                    {src: "img/destination-1.png", label: "Balcón"},
+                    {src: "img/destination-2.png", label: "Patio"}
+                ],
                 bedrooms: 3,
                 bathrooms: 2,
                 garage: 1,
@@ -256,12 +369,18 @@
             {
                 id: 5,
                 title: "Casa Unifamiliar",
-                location: "Bello",
+                location: "Sabaneta",
                 type: "Casa",
-                status: "Alquiler",
+                status: "En Venta",
                 price: 1500000,
                 currency: "COP / mes",
-                image: "img/destination-5.png",
+                images: [
+                    {src: "img/destination-5.png", label: "Sala"},
+                    {src: "img/destination-6.png", label: "Baños"},
+                    {src: "img/destination-1.png", label: "Habitaciones"},
+                    {src: "img/destination-2.png", label: "Balcón"},
+                    {src: "img/destination-3.png", label: "Patio"}
+                ],
                 bedrooms: 3,
                 bathrooms: 2,
                 garage: 1,
@@ -289,12 +408,18 @@
             {
                 id: 6,
                 title: "Lote Comercial",
-                location: "Rionegro",
+                location: "Oriente Antioqueño",
                 type: "Terreno",
                 status: "Alquiler",
                 price: 800000,
                 currency: "COP / mes",
-                image: "img/destination-6.png",
+                images: [
+                    {src: "img/destination-6.png", label: "Vista General"},
+                    {src: "img/destination-1.png", label: "Acceso"},
+                    {src: "img/destination-2.png", label: "Zona Verde"},
+                    {src: "img/destination-3.png", label: "Servicios"},
+                    {src: "img/destination-4.png", label: "Entorno"}
+                ],
                 bedrooms: 0,
                 bathrooms: 0,
                 garage: 0,
@@ -324,7 +449,13 @@
                 status: "Alquiler",
                 price: 1800000,
                 currency: "COP / mes",
-                image: "img/destination-1.png",
+                images: [
+                    {src: "img/destination-1.png", label: "Sala"},
+                    {src: "img/destination-2.png", label: "Baño"},
+                    {src: "img/destination-3.png", label: "Habitaciones"},
+                    {src: "img/destination-4.png", label: "Balcón"},
+                    {src: "img/destination-5.png", label: "Entorno"}
+                ],
                 bedrooms: 2,
                 bathrooms: 1,
                 garage: 1,
@@ -357,7 +488,13 @@
                 status: "Alquiler",
                 price: 3200000,
                 currency: "COP / mes",
-                image: "img/destination-2.png",
+                images: [
+                    {src: "img/destination-2.png", label: "Sala"},
+                    {src: "img/destination-3.png", label: "Baños"},
+                    {src: "img/destination-4.png", label: "Habitaciones"},
+                    {src: "img/destination-5.png", label: "Balcón"},
+                    {src: "img/destination-6.png", label: "Patio"}
+                ],
                 bedrooms: 4,
                 bathrooms: 2,
                 garage: 2,
@@ -390,7 +527,13 @@
                 status: "Alquiler",
                 price: 900000,
                 currency: "COP / mes",
-                image: "img/destination-3.png",
+                images: [
+                    {src: "img/destination-3.png", label: "Vista General"},
+                    {src: "img/destination-4.png", label: "Acceso"},
+                    {src: "img/destination-5.png", label: "Zona Verde"},
+                    {src: "img/destination-6.png", label: "Servicios"},
+                    {src: "img/destination-1.png", label: "Entorno"}
+                ],
                 bedrooms: 0,
                 bathrooms: 0,
                 garage: 0,
@@ -417,25 +560,30 @@
         // Función para cargar la propiedad
         function loadProperty() {
             const urlParams = new URLSearchParams(window.location.search);
-            const propertyId = parseInt(urlParams.get('id'));
-            const property = properties.find(p => p.id === propertyId);
-
-            if (!property) {
-                document.getElementById('property-container').innerHTML = `
-                    <div class="alert alert-danger" role="alert">
-                        <h4 class="alert-heading">Propiedad no encontrada</h4>
-                        <p>Lo sentimos, la propiedad que buscas no existe. <a href="index.html" class="alert-link">Volver al inicio</a></p>
-                    </div>
-                `;
-                return;
+            let propertyId = parseInt(urlParams.get('id'), 10);
+            if (Number.isNaN(propertyId)) {
+                propertyId = undefined;
             }
+            const property = properties.find(p => p.id === propertyId) || properties[0];
 
             const html = `
                 <div class="row">
                     <div class="col-lg-8 mb-4">
-                        <!-- Imagen Principal -->
-                        <div class="mb-4">
-                            <img src="${property.image}" alt="${property.title}" class="img-fluid rounded-lg shadow-lg" style="max-height: 500px; object-fit: cover; width: 100%;">
+                        <!-- Galería de imágenes -->
+                        <div class="mb-4 property-gallery">
+                            <div class="gallery-image-wrapper rounded-lg shadow-lg overflow-hidden">
+                                <img id="gallery-main" src="${encodeURI(property.images[0].src)}" alt="${property.images[0].label}" class="img-fluid w-100" style="max-height: 500px; width: 100%; height: auto;">
+                                <button type="button" class="gallery-control gallery-prev"><i class="fa fa-chevron-left"></i></button>
+                                <button type="button" class="gallery-control gallery-next"><i class="fa fa-chevron-right"></i></button>
+                                <div id="gallery-caption" class="gallery-caption">${property.images[0].label}</div>
+                            </div>
+                            <div class="gallery-thumbs">
+                                ${property.images.map((img, index) => `
+                                    <button type="button" class="thumb-button ${index === 0 ? 'active' : ''}" data-index="${index}">
+                                        <img src="${encodeURI(img.src)}" alt="${img.label}">
+                                    </button>
+                                `).join('')}
+                            </div>
                         </div>
 
                         <!-- Información General -->
@@ -547,16 +695,38 @@
             `;
 
             document.getElementById('property-container').innerHTML = html;
+
+            let galleryIndex = 0;
+            const galleryMain = document.getElementById('gallery-main');
+            const galleryCaption = document.getElementById('gallery-caption');
+            const thumbButtons = Array.from(document.querySelectorAll('.thumb-button'));
+
+            const updateGallery = (newIndex) => {
+                galleryIndex = newIndex;
+                const image = property.images[galleryIndex];
+                galleryMain.src = encodeURI(image.src);
+                galleryMain.alt = image.label;
+                galleryCaption.textContent = image.label;
+                thumbButtons.forEach((button, index) => {
+                    button.classList.toggle('active', index === galleryIndex);
+                });
+            };
+
+            document.querySelector('.gallery-prev').addEventListener('click', () => {
+                updateGallery((galleryIndex - 1 + property.images.length) % property.images.length);
+            });
+
+            document.querySelector('.gallery-next').addEventListener('click', () => {
+                updateGallery((galleryIndex + 1) % property.images.length);
+            });
+
+            thumbButtons.forEach((button) => {
+                button.addEventListener('click', () => {
+                    updateGallery(Number(button.dataset.index));
+                });
+            });
         }
 
-        // Cargar la propiedad cuando se carga la página
         document.addEventListener('DOMContentLoaded', loadProperty);
     </script>
 
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-</body>
-
-</html>
