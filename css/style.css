@@ -9775,20 +9775,11 @@ h6,
   transition: width 0.3s ease;
   cursor: pointer;
   margin-right: 2rem; /* Separate from navigation */
-
 }
 .logo:active {
   transform: scale(1.3); /* Se agranda un 30% al hacer clic */
 }
-.logo:hover {
-  /* TamaÃ±o inicial (ajusta segÃºn necesites) */
-  width: 500px; 
-  
-  /* Esto hace que el cambio de tamaÃ±o sea suave y no de golpe */
-  transition: transform 0.3s ease;
-  width: 200px;
-  /* filter: brightness(1.2); (Lo hace un 20% mÃ¡s brillante) */
-}
+
 
 .logo:hover {
   /* Escala el logo. 1.2 significa un 20% mÃ¡s grande */
@@ -9796,10 +9787,14 @@ h6,
 }
 
 .logo img {
-  height: 130px;
+  height: 50px;
   width: auto;
 }
 
+.logo-container {
+  display: flex;
+  justify-content: center;
+}
 
 /* --- ESTILOS INMOBILIARIA PREMIUM (v3 - Nueva Paleta) --- */
 :root {
