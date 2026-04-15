@@ -34,13 +34,54 @@
         </div>
     </nav>
 
-    <!-- Hero (head)-->
-    <div id="inicio" class="hero-section position-relative vh-100 d-flex align-items-center">
-        <div class="hero-overlay"></div>
-        <div class="container position-relative text-center" style="z-index: 2; margin-top: 50px;">
-            <h1 class="display-3 text-white font-weight-bold mb-4 shadow-text">Encuentra tu hogar ideal</h1>
-            <p class="text-white mb-5 shadow-text lead w-75 mx-auto" style="font-size: 1.25rem;">Conectamos tus sueños con las mejores ubicaciones</p>
-            <a href="#destacadas" class="btn btn-primary rounded-pill py-3 px-5 font-weight-bold smooth-scroll text-white shadow-lg btn-cta">Explorar propiedades</a>
+    <!-- Hero (head) -->
+    <div id="inicio" class="hero-section position-relative vh-100">
+        <div id="bannerCarousel" class="carousel slide carousel-fade h-100" data-ride="carousel" data-interval="6000">
+            <ol class="carousel-indicators">
+                <li data-target="#bannerCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#bannerCarousel" data-slide-to="1"></li>
+                <li data-target="#bannerCarousel" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner h-100">
+                <div class="carousel-item active" style="background-image: url('img/carousel-1.jpg');">
+                    <div class="hero-overlay"></div>
+                    <div class="carousel-caption d-flex h-100 align-items-center justify-content-center text-center px-3">
+                        <div class="container" style="z-index: 2;">
+                            <h1 class="display-3 font-weight-bold mb-4 shadow-text">Encuentra tu hogar ideal</h1>
+                            <p class="mb-5 shadow-text lead w-75 mx-auto" style="font-size: 1.25rem;">Conectamos tus sueños con las mejores ubicaciones.</p>
+                            <a href="#destacadas" class="btn btn-primary rounded-pill py-3 px-5 font-weight-bold smooth-scroll btn-cta">Explorar propiedades</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item" style="background-image: url('img/carousel-2.jpg');">
+                    <div class="hero-overlay"></div>
+                    <div class="carousel-caption d-flex h-100 align-items-center justify-content-center text-center px-3">
+                        <div class="container" style="z-index: 2;">
+                            <h1 class="display-3 font-weight-bold mb-4 shadow-text">Haz de cada espacio un hogar</h1>
+                            <p class="mb-5 shadow-text lead w-75 mx-auto" style="font-size: 1.25rem;">Propiedades con ubicación, seguridad y estilo para cada familia.</p>
+                            <a href="service.html" class="btn btn-primary rounded-pill py-3 px-5 font-weight-bold btn-cta">Ver servicios</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item" style="background-image: url('img/BANNERV3.png');">
+                    <div class="hero-overlay"></div>
+                    <div class="carousel-caption d-flex h-100 align-items-center justify-content-center text-center px-3">
+                        <div class="container" style="z-index: 2;">
+                            <h1 class="display-3 font-weight-bold mb-4 shadow-text">Tu próxima inversión te está esperando</h1>
+                            <p class="mb-5 shadow-text lead w-75 mx-auto" style="font-size: 1.25rem;">Explora propiedades con alto potencial y asesoría local experta.</p>
+                            <a href="contact.html" class="btn btn-primary rounded-pill py-3 px-5 font-weight-bold btn-cta">Contáctanos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#bannerCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Anterior</span>
+            </a>
+            <a class="carousel-control-next" href="#bannerCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Siguiente</span>
+            </a>
         </div>
     </div>
 
