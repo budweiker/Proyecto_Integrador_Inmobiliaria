@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="logo-container">
+        <img src="img/LOGOV2.png" alt="Logo" class="logo">
+    </div>
+
+    <div id="profile-container" class="d-flex flex-column align-items-center justify-content-center vh-20">
+        <h1 class="mb-4">Inmobiliaria Manuela Bermúdez</h1>
+        <div id="profile-info" class="text-center mb-4">
+        </button>
+                <button class="btn btn-light" onclick="window.location.href='#'">Vendedor</button>
+                <button class="btn btn-light" onclick="window.location.href='#'">Comprador</button>
+        </button>
+    </div>
+
+
+    <form id="profile-form" class="d-flex flex-column align-items-center">
+        <div class="mb-3"> 
+            <label for="email"></label>
+            <input type="email" id="email" name="email" placeholder="Correo Electrónico" required>
+        </div>
+        <div class="mb-3">
+            <label for="password"></label>
+            <input type="password" id="password" name="password" placeholder="Contraseña" required>
+        </div>
+    </form>
+
+    <div class="login">
+        <p>Aún no tienes cuenta? <a href="login.html">Regístrate aquí</a></p>
+        <button class="btn btn-primary" onclick="window.location.href='#'">Iniciar Sesión</button>
+    </div>
+
+</body>
+</html>
