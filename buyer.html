@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Inmobiliaria Manuela - Encuentra tu hogar ideal</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"> 
+    <!-- Bootstrap -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container py-5">
+<nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm fixed-top py-3 py-lg-0 px-3 px-lg-5 transition-navbar">
+        <a href="home.html" class="navbar-brand d-flex align-items-center">
+            <img src="img/LOGOV2.png" alt="Inmobiliaria Manuela Logo" style="max-height: 55px;" class="mr-2">
+            <h1 class="m-0 text-primary font-weight-bold">Inmobiliaria Manuela</h1>
+        </a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+            <div class="navbar-nav ml-auto py-0">
+                <a href="home.html" class="nav-item nav-link animated-link">Inicio</a>
+                <a href="service.html" class="nav-item nav-link animated-link">Servicios</a>
+                <a href="about.html" class="nav-item nav-link animated-link">Nosotros</a>
+                <a href="contact.html" class="nav-item nav-link animated-link">Contacto</a>
+                
+            </div>
+            <a href="#contacto" class="btn btn-primary btn-cta rounded-pill py-2 px-4 d-none d-lg-block ml-3 font-weight-bold text-white smooth-scroll">Listar Propiedad</a>
+        </div>
+    </nav>
+
+    <!-- Hero (head)-->
+    <div id="inicio" class="hero-section position-relative vh-100 d-flex align-items-center">
+        <div class="hero-overlay"></div>
+        <div class="container position-relative text-center" style="z-index: 2; margin-top: 50px;">
+            <h1 class="display-3 text-white font-weight-bold mb-4 shadow-text">Encuentra tu hogar ideal</h1>
+            <p class="text-white mb-5 shadow-text lead w-75 mx-auto" style="font-size: 1.25rem;">Conectamos tus sueños con las mejores ubicaciones</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 mb-4">
+            <div class="card p-4 shadow-sm">
+                <h5 class="card-title mb-3">Publicar Nueva Casa</h5>
+                <form id="formCasa">
+                    <div class="mb-3">
+                        <label class="form-label">Dirección</label>
+                        <input type="text" id="direccion" class="form-control" placeholder="Ej: Calle 10 #45-20" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Ubicación (Ciudad/Sector)</label>
+                        <input type="text" id="ubicacion" class="form-control" placeholder="Ej: Medellín, Poblado" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Precio ($)</label>
+                        <input type="number" id="precio" class="form-control" placeholder="0.00" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Descripción</label>
+                        <textarea id="descripcion" class="form-control" rows="3" placeholder="Detalles de la casa..."></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Foto de la Propiedad</label>
+                        <input type="file" id="foto" class="form-control" accept="image/*" required>
+                    </div>
+                    <button type="submit" class="btn btn-dark w-100">Publicar Propiedad</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-lg-8">
+            <div id="listaCasas" class="row">
+                </div>
+        </div>
+    </div>
+</div>
+
+<footer class="real-estate-footer pt-5" id="contacto">
+        <div class="container pt-4 pb-3">
+            <div class="row">
+                <!-- COLUMNA 1: Logo y Descripción -->
+                <div class="col-lg-3 col-md-6 mb-5 pe-lg-4">
+                    <img src="img/LOGOV2.png" alt="Inmobiliaria Manuela Logo" style="max-height: 55px;" class="mr-2"></i>Inm. Manuela</h3>
+                    <p class="text-white-50" style="line-height: 1.8; font-size: 0.95rem;">Tu aliado estratégico en bienes raíces. Brindamos certeza jurídica y oportunidades únicas de inversión con un enfoque profesional y humano.</p>
+                </div>
+                
+                <!-- COLUMNA 2: Rápido Links -->
+                <div class="col-lg-2 col-md-6 mb-5">
+                    <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 1px; font-weight: 600; font-size: 1rem;">Links Rápidos</h5>
+                    <div class="d-flex flex-column justify-content-start footer-links list-unstyled">
+                        <a class="text-white-50 mb-3" href="#inicio">Inicio</a>
+                        <a class="text-white-50 mb-3" href="#destacadas">Ventas</a>
+                        <a class="text-white-50 mb-3" href="#destacadas">Alquiler</a>
+                        <a class="text-white-50 mb-3" href="#servicios">Servicios</a>
+                    </div>
+                </div>
+                
+                <!-- COLUMNA 3: Propiedad types -->
+                <div class="col-lg-2 col-md-6 mb-5">
+                    <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 1px; font-weight: 600; font-size: 1rem;">Propiedades</h5>
+                    <div class="d-flex flex-column justify-content-start footer-links list-unstyled">
+                        <a class="text-white-50 mb-3" href="#">Casas</a>
+                        <a class="text-white-50 mb-3" href="#">Departamentos</a>
+                        <a class="text-white-50 mb-3" href="#">Comercial</a>
+                        <a class="text-white-50" href="#">Terrenos</a>
+                    </div>
+                </div>
+                
+                <!-- COLUMNA 4: Legal -->
+                <div class="col-lg-2 col-md-6 mb-5">
+                    <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 1px; font-weight: 600; font-size: 1rem;">Legal</h5>
+                    <div class="d-flex flex-column justify-content-start footer-links list-unstyled">
+                        <a class="text-white-50 mb-3" href="#contacto">Contactos</a>
+                        <a class="text-white-50 mb-3" href="#servicios">Servicios</a>
+                        <a class="text-white-50 mb-3" href="#">Privacidad</a>
+                        <a class="text-white-50" href="#">Términos Uso</a>
+                    </div>
+                </div>
+                
+                <!-- COLUMNA 5 y 6: Contacto -->
+                <div class="col-lg-3 col-md-6 mb-5">
+                    <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 1px; font-weight: 600; font-size: 1rem;">Contactanos</h5>
+                    <p class="text-white-50 mb-3 d-flex align-items-center">
+                        <i class="fa fa-phone-alt text-primary mr-3"></i>
+                        +57 300 123 4567
+                    </p>
+                    <p class="text-white-50 mb-4 d-flex align-items-center">
+                        <i class="fa fa-envelope text-primary mr-3"></i>
+                        info@inmomanuela.com
+                    </p>
+                    
+                   
+                    <div class="d-flex w-100 footer-social">
+                        <a class="btn btn-outline-light btn-social mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-outline-light btn-social mr-2" href="#"><i class="fab fa-instagram"></i></a>
+                        <a class="btn btn-outline-light btn-social mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PARTE INFERIOR -->
+        <div class="container-fluid" style="background-color: #111111;">
+            <div class="row pt-4 pb-4">
+                <div class="col-12 text-center">
+                    <p class="m-0 text-white-50" style="font-size: 0.9rem;">&copy; <span class="text-white">Inmobiliaria Manuela</span>. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
