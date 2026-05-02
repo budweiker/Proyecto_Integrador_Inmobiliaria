@@ -2,12 +2,8 @@
 
   =>  ***Scrum Master***    : Sergio Saldarriaga
 
-  =>  BackEnd : Arianna Zambrano
-
   =>  Full stack  : Santiago Rodriguez
 
   =>  FrontEnd   : Sergio Perez
 
   =>  FrontEnd   : Weimar Tuberquia
-
-  =>  https://htmlcodex.com/free-travel-website-template
