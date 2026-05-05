@@ -6297,6 +6297,13 @@ button.bg-dark:focus {
   border-radius: 50rem !important;
 }
 
+.btn:not(.btn-square):not(.btn-lg-square):not(.btn-social),
+.btn-primary:not(.btn-square):not(.btn-lg-square):not(.btn-social),
+.btn-outline-primary:not(.btn-square):not(.btn-lg-square):not(.btn-social),
+.btn-light:not(.btn-square):not(.btn-lg-square):not(.btn-social) {
+  border-radius: 50rem !important;
+}
+
 .rounded-0 {
   border-radius: 0 !important;
 }
