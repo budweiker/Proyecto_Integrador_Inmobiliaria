@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="utf-8">
-    <title>Inmobiliaria Manuela - Encuentra tu hogar ideal</title>
+    <title>Manuela Bermudez - Encuentra tu hogar ideal</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -10,47 +10,127 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"> 
     <!-- Bootstrap -->
     <link href="css/style.css" rel="stylesheet">
-    <link href="css/style.ven.css" rel="stylesheet">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="css/buyer.css" rel="stylesheet">
+    <link  href="css/style.ven.css" rel="stylesheet">
 </head>
 <body>
 
 <div class="container py-5">
-<nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm fixed-top py-3 py-lg-0 px-3 px-lg-5 transition-navbar">
-        <a href="home.html" class="navbar-brand d-flex align-items-center">
-            <img src="img/LOGOV2.png" alt="Manuela Bermudez Logo" style="max-height: 55px;" class="mr-2">
-            <h1 class="m-0 text-primary font-weight-bold">Manuela Bermudez</h1>
-        </a>
-        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-            <div class="navbar-nav ml-auto py-0">
-                <a href="home.html" class="nav-item nav-link animated-link">Inicio</a>
-                <a href="service.html" class="nav-item nav-link animated-link">Servicios</a>
-                <a href="about.html" class="nav-item nav-link animated-link">Nosotros</a>
-                <a href="contact.html" class="nav-item nav-link animated-link">Contacto</a>
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm fixed-top py-3 py-lg-0 px-3 px-lg-5 transition-navbar">
+            <a href="home.html" class="navbar-brand d-flex align-items-center">
+                <img src="img/LOGOV2.png" alt="Manuela Bermudez Logo" style="max-height: 55px;" class="mr-2">
+                <h1 class="m-0 text-primary font-weight-bold">Manuela Bermudez</h1>
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                <div class="navbar-nav ml-auto py-0">
+                    <a href="home.html" class="nav-item nav-link animated-link">Inicio</a>
+                    <a href="service.html" class="nav-item nav-link animated-link">Servicios</a>
+                    <a href="about.html" class="nav-item nav-link animated-link">Nosotros</a>
+                    <a href="contact.html" class="nav-item nav-link animated-link">Contacto</a>
+                    
+                
+        </nav>
+
+         <header class="hero">
+        <p class="hero-subtitle">Configuración del Perfil</p>
+        <h1 class="hero-title">Configuración del Perfil</h1>
+        <p class="hero-subtitle">Personaliza y gestiona tu cuenta de usuario</p>
+        </header>
+
+        <main class="buyer-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="card profile-card">
+                <div class="avatar-upload">
+                    <i data-lucide="upload" size="32"></i>
+                    <div class="upload-icon-small">
+                        <i data-lucide="upload" size="14"></i>
+                    </div>
+                </div>
+                <h3>Foto de Perfil</h3>
             </div>
-            <a href="#contacto" class="btn btn-primary btn-cta rounded-pill py-2 px-4 d-none d-lg-block ml-3 font-weight-bold text-white smooth-scroll">Listar Propiedad</a>
-        </div>
-    </nav>
 
-    <!-- Hero (head)-->
-    <div id="inicio" class="hero-section position-relative vh-100 d-flex align-items-center">
-        <div class="hero-overlay"></div>
-        <div class="container position-relative text-center" style="z-index: 2; margin-top: 50px;">
-            <h1 class="display-3 text-white font-weight-bold mb-4 shadow-text">Encuentra tu hogar ideal</h1>
-            <p class="text-white mb-5 shadow-text lead w-75 mx-auto" style="font-size: 1.25rem;">Conectamos tus sueños con las mejores ubicaciones</p>
-        </div>
-    </div>
+            <div class="card sidebar-menu">
+                <a href="#" class="menu-item active">
+                    <i data-lucide="user"></i>
+                    Información Personal
+                </a>
+                <a href="#" class="menu-item">
+                    <i data-lucide="sliders-horizontal"></i>
+                    publicar Propiedad Nueva
+                </a>
+                <a href="#" class="menu-item">
+                    <i data-lucide="lock"></i>
+                    Contraseña y Seguridad
+                </a>
+                <a href="#" class="menu-item">
+                    <i data-lucide="building-2"></i>
+                    Mis Propiedades Listadas
+                </a>
+                <a href="#" class="menu-item">
+                    <i data-lucide="log-out"></i>
+                    Cerrar Sesión
+                </a>
+            </div>
+        </aside>
 
-    <div class="container mt-5 pt-5"> 
-        <div class="row">
-            <div class="col-lg-4 mb-4">
-                <div class="card card-publicar p-4 shadow-sm border-0">
-                    <h2 class="mb-4">Publicar Nueva Casa</h2>
-                    <form id="formCasa">
+        <!-- Main Forms -->
+        <div class="forms-area">
+            <!-- Personal Info Form -->
+            <div class="card form-card">
+                <h2 class="section-header">
+                    <i data-lucide="user"></i>
+                    Información Personal
+                </h2>
+
+                <form id="personal-form">
+                    <div class="form-group">
+                        <label class="form-label">Nombre Completo</label>
+                        <div class="input-with-icon">
+                            <i data-lucide="user" class="input-icon" size="18"></i>
+                            <input type="text" class="form-input" name="nombre" placeholder="Nombre Completo" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Teléfono</label>
+                        <div class="input-with-icon">
+                            <i data-lucide="phone" class="input-icon" size="18"></i>
+                            <input type="tel" class="form-input" name="telefono" placeholder="Teléfono" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Correo Electrónico</label>
+                        <div class="input-with-icon">
+                            <i data-lucide="mail" class="input-icon" size="18"></i>
+                            <input type="email" class="form-input" name="email" placeholder="Correo Electrónico" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Dirección de Contacto</label>
+                        <div class="input-with-icon">
+                            <i data-lucide="map-pin" class="input-icon" size="18" style="top: 20px; transform: none;"></i>
+                            <textarea class="form-input" name="direccion" placeholder="Dirección de Contacto"></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary btn-full">Actualizar Información</button>
+                </form>
+            </div>
+
+            <!-- Preferences Form -->
+            <div class="card form-card">
+                 <div class="container mt-5 pt-5"> 
+                  <div class="row">
+                    <div class="col-lg-4 mb-4">
+                      <div class="card card-publicar p-4 shadow-sm border-0">
+                        <h2 class="mb-4">Publicar Nueva Casa</h2>
+                        <form id="formCasa">
                         <div class="mb-3">
                             <label class="form-label">Dirección</label>
                             <input type="text" id="direccion" class="form-input" placeholder="Ej: Calle 10 #45-20" required>
@@ -72,19 +152,201 @@
                             <div class="form-input-file">
                                 <input type="file" id="foto" class="form-control-file" accept="image/*" required>
                             </div>
-                        </div>
-                        <button type="submit" class="btn-publicar">Publicar Propiedad</button>
-                    </form>
+                        </div>   
+                     </form>
                 </div>
+              </div>
+              <div class="col-lg-8">
+                 <h3 class="font-weight-bold mb-4" style="color: #0f172a;">Catálogo de Propiedades</h3>
+                 <div id="listaCasas" class="row"></div>
+              </div>
+              </div>
+              </div>
+             <button type="submit" class="btn-publicar">Publicar Propiedad</button>
+             </form>
             </div>
 
-            <div class="col-lg-8">
-                <h3 class="font-weight-bold mb-4" style="color: #0f172a;">Catálogo de Propiedades</h3>
-                <div id="listaCasas" class="row">
+            <!-- Security Form -->
+            <div class="card form-card">
+                <h2 class="section-header">
+                    <i data-lucide="lock"></i>
+                    Contraseña y Seguridad
+                </h2>
+
+                <!-- Cambio de Contraseña -->
+                <div class="security-section">
+                    <h3 class="security-title">
+                        <i data-lucide="key" size="20"></i>
+                        Cambio de Contraseña
+                    </h3>
+                    <form id="password-form" class="security-form">
+                        <div class="form-group">
+                            <label class="form-label">Contraseña Actual</label>
+                            <div class="input-with-icon">
+                                <i data-lucide="lock" class="input-icon" size="18"></i>
+                                <input type="password" class="form-input" name="currentPassword" placeholder="Contraseña actual" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Nueva Contraseña</label>
+                            <div class="input-with-icon">
+                                <i data-lucide="key" class="input-icon" size="18"></i>
+                                <input type="password" class="form-input" name="newPassword" placeholder="Nueva contraseña" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Confirmar Nueva Contraseña</label>
+                            <div class="input-with-icon">
+                                <i data-lucide="key" class="input-icon" size="18"></i>
+                                <input type="password" class="form-input" name="confirmPassword" placeholder="Confirmar nueva contraseña" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-primary">Cambiar Contraseña</button>
+                    </form>
+                </div>
+
+                <!-- Autenticación en Dos Pasos -->
+                <div class="security-section">
+                    <h3 class="security-title">
+                        <i data-lucide="shield" size="20"></i>
+                        Autenticación en Dos Pasos (2FA)
+                    </h3>
+                    <div class="security-content">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div>
+                                <h5 class="mb-1">Estado: <span id="2fa-status" class="text-danger">Desactivado</span></h5>
+                                <p class="text-muted small mb-0">Añade una capa extra de seguridad a tu cuenta</p>
+                            </div>
+                            <button id="toggle-2fa" class="btn btn-outline-primary">Activar 2FA</button>
+                        </div>
+                        <div id="2fa-setup" class="d-none">
+                            <div class="alert alert-info">
+                                <h6>Configurar Autenticación 2FA</h6>
+                                <p>Escanea el código QR con tu aplicación de autenticación:</p>
+                                <div id="qr-code" class="text-center my-3">
+                                    <!-- QR Code will be generated here -->
+                                </div>
+                                <div class="form-group">
+                                    <label>Código de Verificación</label>
+                                    <input type="text" class="form-input" id="2fa-code" placeholder="Ingresa el código de 6 dígitos">
+                                </div>
+                                <button id="verify-2fa" class="btn btn-primary">Verificar y Activar</button>
+                            </div>
+                        </div>
                     </div>
+                </div>
+
+                <!-- Inicio de Sesión Sin Contraseña -->
+                <div class="security-section">
+                    <h3 class="security-title">
+                        <i data-lucide="fingerprint" size="20"></i>
+                        Inicio de Sesión Sin Contraseña
+                    </h3>
+                    <div class="security-content">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div>
+                                <h5 class="mb-1">Biometría: <span id="biometric-status" class="text-danger">No configurado</span></h5>
+                                <p class="text-muted small mb-0">Usa huella dactilar o reconocimiento facial</p>
+                            </div>
+                            <button id="setup-biometric" class="btn btn-outline-primary">Configurar</button>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="mb-1">Passkeys: <span id="passkey-status" class="text-danger">No configurado</span></h5>
+                                <p class="text-muted small mb-0">Claves de acceso seguras para este dispositivo</p>
+                            </div>
+                            <button id="setup-passkey" class="btn btn-outline-primary">Crear Passkey</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cuentas Vinculadas -->
+                <div class="security-section">
+                    <h3 class="security-title">
+                        <i data-lucide="link" size="20"></i>
+                        Cuentas Vinculadas
+                    </h3>
+                    <div class="security-content">
+                        <p class="text-muted mb-3">Conecta tus cuentas sociales para un acceso más rápido</p>
+                        <div class="linked-accounts">
+                            <div class="account-item d-flex justify-content-between align-items-center mb-2">
+                                <div class="d-flex align-items-center">
+                                    <i data-lucide="facebook" size="20" class="text-primary mr-2"></i>
+                                    <span>Facebook</span>
+                                </div>
+                                <button class="btn btn-sm btn-outline-primary" id="link-facebook">Vincular</button>
+                            </div>
+                            <div class="account-item d-flex justify-content-between align-items-center mb-2">
+                                <div class="d-flex align-items-center">
+                                    <i data-lucide="twitter" size="20" class="text-primary mr-2"></i>
+                                    <span>Twitter</span>
+                                </div>
+                                <button class="btn btn-sm btn-outline-primary" id="link-twitter">Vincular</button>
+                            </div>
+                            <div class="account-item d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <i data-lucide="mail" size="20" class="text-primary mr-2"></i>
+                                    <span>Google</span>
+                                </div>
+                                <button class="btn btn-sm btn-outline-primary" id="link-google">Vincular</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sesiones Activas -->
+                <div class="security-section">
+                    <h3 class="security-title">
+                        <i data-lucide="monitor" size="20"></i>
+                        Sesiones Activas
+                    </h3>
+                    <div class="security-content">
+                        <p class="text-muted mb-3">Dispositivos donde has iniciado sesión recientemente</p>
+                        <div id="active-sessions" class="sessions-list">
+                            <!-- Sessions will be loaded here -->
+                        </div>
+                        <button id="revoke-all-sessions" class="btn btn-outline-danger mt-3">Cerrar Sesión en Todos los Dispositivos</button>
+                    </div>
+                </div>
+
+                <!-- Descarga de Datos -->
+                <div class="security-section">
+                    <h3 class="security-title">
+                        <i data-lucide="download" size="20"></i>
+                        Descarga de Datos
+                    </h3>
+                    <div class="security-content">
+                        <p class="text-muted mb-3">Descarga una copia de todos tus datos personales</p>
+                        <button id="download-data" class="btn btn-outline-primary">Descargar Mis Datos</button>
+                        <div class="mt-2 small text-muted">
+                            Los datos incluyen: información personal, preferencias, historial de búsquedas y actividad.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Eliminar Cuenta -->
+                <div class="security-section border-danger">
+                    <h3 class="security-title text-danger">
+                        <i data-lucide="alert-triangle" size="20"></i>
+                        Zona de Peligro
+                    </h3>
+                    <div class="security-content">
+                        <div class="alert alert-danger">
+                            <h5>Eliminar Cuenta</h5>
+                            <p class="mb-3">Esta acción no se puede deshacer. Se eliminarán permanentemente todos tus datos, propiedades listadas y actividad.</p>
+                            <button id="delete-account" class="btn btn-danger">Eliminar Mi Cuenta</button>
+                        </div>
+                    </div>
+                </div>
             </div>
+    </main>
+
+        <div class="col-lg-8">
+                <div id="listaCasas" class="row">
+                </div>
         </div>
     </div>
+</div>
 
 <footer class="real-estate-footer pt-5" id="contacto">
         <div class="container pt-4 pb-3">
@@ -160,8 +422,44 @@
             </div>
         </div>
     </footer>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        // Inicializar iconos de Lucide
+        lucide.createIcons();
+    </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
+    <script type="module" src="js/auth.js"></script>
+    <script src="js/buyer.js"></script>
+    <script type="module">
+        import { verificarEstadoSesion, obtenerUsuarioActual } from './js/auth.js';
+
+        const loginBtn = document.querySelector('.btn-cta');
+
+        verificarEstadoSesion(async (user) => {
+            if (user) {
+                // Usuario logueado: cambiar a "Administrar Cuenta"
+                loginBtn.textContent = 'Administrar Cuenta';
+                loginBtn.onclick = async (e) => {
+                    e.preventDefault();
+                    // Ya estamos en la página de cuenta
+                    // Opcional: recargar o algo
+                };
+            } else {
+                // No logueado: redirigir a login
+                loginBtn.textContent = 'Inicia sesión';
+                loginBtn.href = 'profiles.html';
+                loginBtn.onclick = null;
+            }
+        });
+    </script>
 </body>
 </html>
+
+
+
+
+
+
+
