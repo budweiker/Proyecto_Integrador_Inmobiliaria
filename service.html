@@ -3,10 +3,10 @@
 
 <head>
     <meta charset="utf-8">
-    <title>TRAVELER - Free Travel Website Template</title>
+    <title>Servicios Inmobiliarios Premium - Inmobiliaria Manuela Bermúdez</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Free HTML Templates" name="keywords">
-    <meta content="Free HTML Templates" name="description">
+    <meta content="inmobiliaria, servicios inmobiliarios, compra venta casas, asesoría legal, valoración de inmuebles" name="keywords">
+    <meta content="Ofrecemos servicios inmobiliarios de la más alta calidad: compra y venta de propiedades, trámites y legalizaciones, asesoría inmobiliaria y gestión experta de inmuebles." name="description">
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -24,6 +24,107 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <style>
+        /* Estilos Premium para la Página de Servicios */
+        .service-card {
+            background: #ffffff;
+            border-radius: 16px;
+            border: 1px solid #f1f5f9;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #0d6efd, #00d2ff);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(13, 110, 253, 0.08);
+            border-color: rgba(13, 110, 253, 0.15);
+        }
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+        .service-icon-wrap {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: rgba(13, 110, 253, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            transition: all 0.4s ease;
+        }
+        .service-card:hover .service-icon-wrap {
+            background: #0d6efd;
+        }
+        .service-card:hover .service-icon-wrap i {
+            color: #ffffff !important;
+            transform: scale(1.1);
+        }
+        .service-icon-wrap i {
+            color: #0d6efd !important;
+            transition: all 0.4s ease;
+        }
+        .service-card h5 {
+            color: #0f172a;
+            font-weight: 600;
+        }
+        .service-card p {
+            color: #64748b;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        /* Testimonios Estilo Premium */
+        .testimonial-card {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border: 1px solid #f1f5f9;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+        }
+        .star-icon {
+            font-size: 1.1rem;
+            margin-right: 2px;
+            color: #cbd5e1;
+            transition: color 0.2s ease;
+        }
+        .star-icon.active {
+            color: #ffc107;
+        }
+        
+        .testimonial-avatar-placeholder {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #0d6efd, #00d2ff);
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(13,110,253,0.15);
+        }
+    </style>
 </head>
 
 <body>
@@ -33,9 +134,9 @@
             <div class="row">
                 <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
                     <div class="d-inline-flex align-items-center">
-                        <p><i class="fa fa-envelope mr-2"></i>info@example.com</p>
+                        <p><i class="fa fa-envelope mr-2"></i>contacto@inmomanuela.com</p>
                         <p class="text-body px-3">|</p>
-                        <p><i class="fa fa-phone-alt mr-2"></i>+012 345 6789</p>
+                        <p><i class="fa fa-phone-alt mr-2"></i>+57 300 123 4567</p>
                     </div>
                 </div>
                 <div class="col-lg-6 text-center text-lg-right">
@@ -106,51 +207,64 @@
     <!-- Service Start -->
     <div class="container-fluid py-5">
         <div class="container pt-5 pb-3">
-            <div class="text-center mb-3 pb-3">
+            <div class="text-center mb-5 pb-3">
                 <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Servicios</h6>
-                <h1>Servicios Inmobiliarios</h1>
+                <h1 class="display-4 font-weight-bold" style="color: #0f172a;">Servicios Inmobiliarios Premium</h1>
+                <p class="text-muted col-md-8 mx-auto">Ofrecemos soluciones integrales y profesionales en el sector de bienes raíces con un enfoque transparente, moderno y orientado al cliente.</p>
             </div>
             <div class="row">
                 <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="service-item bg-white text-center mb-2 py-5 px-4">
-                        <i class="fa fa-2x fa-home mx-auto mb-4"></i>
-                        <h5 class="mb-2">Compra y Venta de Propiedades</h5>
-                        <p class="m-0">Te ayudamos a encontrar la propiedad perfecta o vender tu inmueble al mejor precio. Contamos con amplia experiencia y un portafolio diverso de propiedades.</p>
+                    <div class="service-card p-5 text-center">
+                        <div class="service-icon-wrap">
+                            <i class="fa fa-2x fa-home"></i>
+                        </div>
+                        <h5 class="mb-3">Compra y Venta de Propiedades</h5>
+                        <p class="m-0">Te ayudamos a encontrar la propiedad de tus sueños o vender tu inmueble al mejor precio del mercado. Contamos con una amplia cartera de clientes y propiedades exclusivas.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="service-item bg-white text-center mb-2 py-5 px-4">
-                        <i class="fa fa-2x fa-file-contract mx-auto mb-4"></i>
-                        <h5 class="mb-2">Tramitología y Legalizaciones</h5>
-                        <p class="m-0">Nos encargamos de toda la documentación, trámites legales y legalización de transacciones inmobiliarias con profesionales certificados.</p>
+                    <div class="service-card p-5 text-center">
+                        <div class="service-icon-wrap">
+                            <i class="fa fa-2x fa-file-contract"></i>
+                        </div>
+                        <h5 class="mb-3">Tramitología y Legalizaciones</h5>
+                        <p class="m-0">Nos encargamos de toda la documentación, contratos, escrituración y legalización de transacciones inmobiliarias con absoluta rigurosidad y transparencia legal.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="service-item bg-white text-center mb-2 py-5 px-4">
-                        <i class="fa fa-2x fa-building mx-auto mb-4"></i>
-                        <h5 class="mb-2">Valoración de Inmuebles</h5>
-                        <p class="m-0">Realizamos valoraciones técnicas y profesionales de propiedades con métodos actualizados. Obtenemos el valor real de tu inmueble en el mercado.</p>
+                    <div class="service-card p-5 text-center">
+                        <div class="service-icon-wrap">
+                            <i class="fa fa-2x fa-building"></i>
+                        </div>
+                        <h5 class="mb-3">Valoración de Inmuebles</h5>
+                        <p class="m-0">Realizamos avalúos técnicos y profesionales para obtener el valor real comercial de tu propiedad, asegurando decisiones de negocio altamente rentables.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="service-item bg-white text-center mb-2 py-5 px-4">
-                        <i class="fa fa-2x fa-handshake mx-auto mb-4"></i>
-                        <h5 class="mb-2">Asesoría Inmobiliaria</h5>
-                        <p class="m-0">Nuestros expertos te brindan asesoría completa en transacciones inmobiliarias, desde la búsqueda hasta la legalización del proceso.</p>
+                    <div class="service-card p-5 text-center">
+                        <div class="service-icon-wrap">
+                            <i class="fa fa-2x fa-handshake"></i>
+                        </div>
+                        <h5 class="mb-3">Asesoría Inmobiliaria</h5>
+                        <p class="m-0">Nuestros consultores expertos te brindan guía personalizada en inversiones, financiación y estructuración de proyectos residenciales o comerciales.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="service-item bg-white text-center mb-2 py-5 px-4">
-                        <i class="fa fa-2x fa-list-alt mx-auto mb-4"></i>
-                        <h5 class="mb-2">Gestión de Propiedades</h5>
-                        <p class="m-0">Nos encargamos de la administración completa de tus inmuebles, desde el mantenimiento hasta la recaudación de pagos.</p>
+                    <div class="service-card p-5 text-center">
+                        <div class="service-icon-wrap">
+                            <i class="fa fa-2x fa-list-alt"></i>
+                        </div>
+                        <h5 class="mb-3">Gestión de Propiedades</h5>
+                        <p class="m-0">Administramos tus inmuebles en alquiler, gestionando la relación con inquilinos, mantenimiento correctivo y cobro de rentas para tu tranquilidad.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="service-item bg-white text-center mb-2 py-5 px-4">
-                        <i class="fa fa-2x fa-search mx-auto mb-4"></i>
-                        <h5 class="mb-2">Búsqueda Personalizada</h5>
-                        <p class="m-0">Te ofrecemos búsqueda personalizada de propiedades según tus necesidades específicas, presupuesto y preferencias de ubicación.</p>
+                    <div class="service-card p-5 text-center">
+                        <div class="service-icon-wrap">
+                            <i class="fa fa-2x fa-search"></i>
+                        </div>
+                        <h5 class="mb-3">Búsqueda Personalizada</h5>
+                        <p class="m-0">Analizamos tus necesidades específicas y presupuesto para buscar de forma exclusiva y dedicada el inmueble ideal, optimizando al máximo tu tiempo.</p>
                     </div>
                 </div>
             </div>
@@ -160,53 +274,78 @@
 
 
     <!-- Testimonial Start -->
-    <div class="container-fluid py-5">
+    <div class="container-fluid py-5 bg-light">
         <div class="container py-5">
-            <div class="text-center mb-3 pb-3">
+            <div class="text-center mb-5 pb-3">
                 <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Testimonios</h6>
-                <h1>Qué Dicen Nuestros Clientes</h1>
+                <h1 class="display-4 font-weight-bold" style="color: #0f172a;">Qué Dicen Nuestros Clientes</h1>
+                <p class="text-muted col-md-8 mx-auto">Experiencias reales de clientes satisfechos que han logrado sus objetivos de la mano de nuestro equipo.</p>
             </div>
-            <div class="owl-carousel testimonial-carousel">
-                <div class="text-center pb-4">
-                    <img class="img-fluid mx-auto" src="img/testimonial-1.jpg" style="width: 100px; height: 100px;" >
-                    <div class="testimonial-text bg-white p-4 mt-n5">
-                        <p class="mt-5">Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
-                        </p>
-                        <h5 class="text-truncate">Client Name</h5>
-                        <span>Profession</span>
-                    </div>
-                </div>
-                <div class="text-center">
-                    <img class="img-fluid mx-auto" src="img/testimonial-2.jpg" style="width: 100px; height: 100px;" >
-                    <div class="testimonial-text bg-white p-4 mt-n5">
-                        <p class="mt-5">Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
-                        </p>
-                        <h5 class="text-truncate">Client Name</h5>
-                        <span>Profession</span>
-                    </div>
-                </div>
-                <div class="text-center">
-                    <img class="img-fluid mx-auto" src="img/testimonial-3.jpg" style="width: 100px; height: 100px;" >
-                    <div class="testimonial-text bg-white p-4 mt-n5">
-                        <p class="mt-5">Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
-                        </p>
-                        <h5 class="text-truncate">Client Name</h5>
-                        <span>Profession</span>
-                    </div>
-                </div>
-                <div class="text-center">
-                    <img class="img-fluid mx-auto" src="img/testimonial-4.jpg" style="width: 100px; height: 100px;" >
-                    <div class="testimonial-text bg-white p-4 mt-n5">
-                        <p class="mt-5">Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
-                        </p>
-                        <h5 class="text-truncate">Client Name</h5>
-                        <span>Profession</span>
-                    </div>
-                </div>
+            
+            <div id="testimonialsList" class="row">
+                <!-- Los testimonios se cargarán aquí dinámicamente -->
+            </div>
+            
+            <div id="testimonialPager" class="testimonial-pagination d-flex flex-column flex-md-row justify-content-between align-items-center mt-4"></div>
+            
+            <div id="noTestimonials" class="text-center text-muted d-none py-5">
+                <i class="far fa-comments fa-3x mb-3 text-primary"></i>
+                <p class="lead">Aún no hay testimonios registrados. ¡Sé el primero en escribir uno!</p>
+            </div>
+
+            <!-- Botón para abrir modal de testimonio -->
+            <div class="text-center mt-5">
+                <button class="btn btn-primary rounded-pill py-3 px-5 font-weight-bold" data-toggle="modal" data-target="#modalTestimonio">
+                    <i class="fa fa-pen mr-2"></i> Escribir un Testimonio
+                </button>
             </div>
         </div>
     </div>
     <!-- Testimonial End -->
+
+    <!-- Modal Testimonio -->
+    <div class="modal fade" id="modalTestimonio" tabindex="-1" role="dialog" aria-labelledby="modalTestimonioLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content border-0 shadow-lg" style="border-radius: 16px;">
+                <div class="modal-header bg-primary text-white border-0 py-3" style="border-top-left-radius: 16px; border-top-right-radius: 16px;">
+                    <h5 class="modal-title font-weight-bold text-white" id="modalTestimonioLabel">Comparte tu Experiencia</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="testimonialForm">
+                        <div class="form-group mb-3">
+                            <label class="font-weight-bold text-dark">Nombre Completo</label>
+                            <input type="text" class="form-control border-light p-3" id="testimonialName" placeholder="Tu nombre" required style="border-radius: 8px;">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="font-weight-bold text-dark">Ocupación / Profesión</label>
+                            <input type="text" class="form-control border-light p-3" id="testimonialProfession" placeholder="Ej: Ingeniero, Empresario..." required style="border-radius: 8px;">
+                        </div>
+                        <div id="testimonialMessage" class="mb-3"></div>
+                        <div class="form-group mb-3">
+                            <label class="font-weight-bold text-dark">Calificación</label>
+                            <div id="starRating" class="d-flex mb-2">
+                                <i class="fa fa-star star-icon text-muted" data-rating="1" style="cursor: pointer; font-size: 1.8rem; margin-right: 5px;"></i>
+                                <i class="fa fa-star star-icon text-muted" data-rating="2" style="cursor: pointer; font-size: 1.8rem; margin-right: 5px;"></i>
+                                <i class="fa fa-star star-icon text-muted" data-rating="3" style="cursor: pointer; font-size: 1.8rem; margin-right: 5px;"></i>
+                                <i class="fa fa-star star-icon text-muted" data-rating="4" style="cursor: pointer; font-size: 1.8rem; margin-right: 5px;"></i>
+                                <i class="fa fa-star star-icon text-muted" data-rating="5" style="cursor: pointer; font-size: 1.8rem; margin-right: 5px;"></i>
+                            </div>
+                            <div id="ratingValueLabel" class="small text-muted mb-2">Selecciona tu calificación</div>
+                            <input type="hidden" id="testimonialRating" value="0">
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="font-weight-bold text-dark">Tu Testimonio</label>
+                            <textarea class="form-control border-light p-3" id="testimonialText" rows="4" placeholder="Cuéntanos tu experiencia trabajando con nosotros..." required style="border-radius: 8px;"></textarea>
+                        </div>
+                        <button type="submit" id="submitTestimonioBtn" class="btn btn-primary btn-block py-3 font-weight-bold rounded-pill">Enviar Testimonio</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <!-- Footer empieza -->
@@ -215,7 +354,8 @@
             <div class="row">
                 <!-- COLUMNA 1: Logo y Descripción -->
                 <div class="col-lg-3 col-md-6 mb-5 pe-lg-4">
-                    <img src="img/LOGOV2.png" alt="Inmobiliaria Manuela Logo" style="max-height: 55px;" class="mr-2"></i>Inm. Manuela</h3>
+                    <img src="img/LOGOV2.png" alt="Inmobiliaria Manuela Logo" style="max-height: 55px;" class="mr-2">
+                    <h5 class="text-white font-weight-bold mb-3">Inm. Manuela</h5>
                     <p class="text-white-50" style="line-height: 1.8; font-size: 0.95rem;">Tu aliado estratégico en bienes raíces. Brindamos certeza jurídica y oportunidades únicas de inversión con un enfoque profesional y humano.</p>
                 </div>
                 
@@ -300,9 +440,8 @@
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-    <!-- Contact Javascript File -->
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
+    <!-- Testimonial Module -->
+    <script type="module" src="js/service.js"></script>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>

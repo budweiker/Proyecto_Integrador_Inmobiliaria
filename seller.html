@@ -11,7 +11,8 @@
     <!-- Bootstrap -->
     <link href="css/style.css" rel="stylesheet">
     <link href="css/buyer.css" rel="stylesheet">
-    <link  href="css/style.ven.css" rel="stylesheet">
+    <link href="css/style.ven.css" rel="stylesheet">
+    <link href="css/seller.css" rel="stylesheet">
 </head>
 <body>
 
@@ -34,43 +35,47 @@
                 
         </nav>
 
-         <header class="hero">
+    <header class="hero">
         <p class="hero-subtitle">Configuración del Perfil</p>
         <h1 class="hero-title">Configuración del Perfil</h1>
         <p class="hero-subtitle">Personaliza y gestiona tu cuenta de usuario</p>
-        </header>
+    </header>
 
-        <main class="buyer-container">
+    <main class="buyer-container">
         <!-- Sidebar -->
         <aside class="sidebar">
-            <div class="card profile-card">
-                <div class="avatar-upload">
-                    <i data-lucide="upload" size="32"></i>
-                    <div class="upload-icon-small">
-                        <i data-lucide="upload" size="14"></i>
+            <div class="card profile-card text-center p-3">
+                <div class="profile-avatar-wrap mb-2">
+                    <img id="profileAvatar" src="img/placeholder-avatar.png" alt="Avatar" class="profile-avatar">
+                </div>
+                <h3 id="profileName">Usuario</h3>
+                <div id="profileEmail" class="small-muted">usuario@ejemplo.com</div>
+                <div class="profile-stats d-flex justify-content-center mt-3">
+                    <div class="mx-2 text-center">
+                        <div id="propCount" class="h5 mb-0">0</div>
+                        <div class="small-muted">Propiedades</div>
                     </div>
                 </div>
-                <h3>Foto de Perfil</h3>
             </div>
 
             <div class="card sidebar-menu">
-                <a href="#" class="menu-item active">
+                <a href="#personal" class="menu-item active">
                     <i data-lucide="user"></i>
                     Información Personal
                 </a>
-                <a href="#" class="menu-item">
+                <a href="#publicar" class="menu-item">
                     <i data-lucide="sliders-horizontal"></i>
-                    publicar Propiedad Nueva
+                    Publicar Propiedad
                 </a>
-                <a href="#" class="menu-item">
+                <a href="#seguridad" class="menu-item">
                     <i data-lucide="lock"></i>
                     Contraseña y Seguridad
                 </a>
-                <a href="#" class="menu-item">
+                <a href="#mispropiedades" class="menu-item">
                     <i data-lucide="building-2"></i>
-                    Mis Propiedades Listadas
+                    Mis Propiedades
                 </a>
-                <a href="#" class="menu-item">
+                <a href="#" id="logoutBtn" class="menu-item text-danger">
                     <i data-lucide="log-out"></i>
                     Cerrar Sesión
                 </a>
@@ -80,7 +85,7 @@
         <!-- Main Forms -->
         <div class="forms-area">
             <!-- Personal Info Form -->
-            <div class="card form-card">
+            <div id="personal" class="card form-card">
                 <h2 class="section-header">
                     <i data-lucide="user"></i>
                     Información Personal
@@ -123,51 +128,97 @@
                 </form>
             </div>
 
-            <!-- Preferences Form -->
-            <div class="card form-card">
-                 <div class="container mt-5 pt-5"> 
-                  <div class="row">
-                    <div class="col-lg-4 mb-4">
-                      <div class="card card-publicar p-4 shadow-sm border-0">
-                        <h2 class="mb-4">Publicar Nueva Casa</h2>
-                        <form id="formCasa">
-                        <div class="mb-3">
-                            <label class="form-label">Dirección</label>
-                            <input type="text" id="direccion" class="form-input" placeholder="Ej: Calle 10 #45-20" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Ubicación (Ciudad/Sector)</label>
-                            <input type="text" id="ubicacion" class="form-input" placeholder="Ej: Medellín, Poblado" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Precio ($)</label>
-                            <input type="number" id="precio" class="form-input" placeholder="0.00" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Descripción</label>
-                            <textarea id="descripcion" class="form-input" rows="3" placeholder="Detalles de la casa..."></textarea>
-                        </div>
-                        <div class="mb-4">
-                            <label class="form-label">Foto de la Propiedad</label>
-                            <div class="form-input-file">
-                                <input type="file" id="foto" class="form-control-file" accept="image/*" required>
+            <!-- Publicar Propiedad Form -->
+            <div id="publicar" class="card form-card">
+                <h2 class="section-header">
+                    <i data-lucide="sliders-horizontal"></i>
+                    Publicar Nueva Propiedad
+                </h2>
+                
+                <form id="formCasa" class="p-3">
+                    <input type="hidden" id="propId">
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label class="form-label">Título del Inmueble</label>
+                            <div class="input-with-icon">
+                                <i data-lucide="type" class="input-icon" size="18"></i>
+                                <input type="text" id="titulo" class="form-input" placeholder="Ej: Casa campestre con piscina" required>
                             </div>
-                        </div>   
-                     </form>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label class="form-label">Ubicación (Ciudad / Sector)</label>
+                            <div class="input-with-icon">
+                                <i data-lucide="map-pin" class="input-icon" size="18"></i>
+                                <input type="text" id="ubicacion" class="form-input" placeholder="Ej: Medellín, El Poblado" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row align-items-center">
+                        <div class="col-md-6 form-group">
+                            <label class="form-label">Precio (COP $)</label>
+                            <div class="input-with-icon">
+                                <span class="input-icon font-weight-bold" style="top: 13px; font-size: 1.1rem; color: #0d6efd; font-family: sans-serif; left: 15px;">$</span>
+                                <input type="number" id="precio" class="form-input" style="padding-left: 32px;" placeholder="Ej: 350000000" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label class="form-label">Imagen de la Propiedad</label>
+                            <div id="foto-drag-drop" class="drag-drop-zone">
+                                <div class="drag-drop-msg">
+                                    <i data-lucide="image" class="drag-drop-icon"></i>
+                                    <p class="mb-1 text-sm font-weight-bold">Arrastra tu imagen aquí o haz clic</p>
+                                    <span class="text-muted small" style="font-size: 0.75rem;">JPG, PNG, WEBP (Máx. 5MB)</span>
+                                </div>
+                                <div id="foto-preview-container" class="drag-drop-preview d-none">
+                                    <img id="foto-preview" src="" alt="Vista previa">
+                                    <button type="button" id="btn-remove-foto" class="btn-remove-img">
+                                        <i data-lucide="x"></i>
+                                    </button>
+                                </div>
+                                <input type="file" id="foto" class="d-none" accept="image/*">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Descripción Detallada</label>
+                        <div class="input-with-icon">
+                            <i data-lucide="align-left" class="input-icon" size="18" style="top: 20px; transform: none;"></i>
+                            <textarea id="descripcion" class="form-input" rows="4" placeholder="Describe los detalles del inmueble (habitaciones, baños, parqueaderos, áreas comunes)..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <button type="submit" id="submitPropBtn" class="btn btn-primary py-3 px-5 font-weight-bold rounded-pill w-100">Publicar propiedad</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Mis Propiedades Section -->
+            <div id="mispropiedades" class="card form-card">
+                <h2 class="section-header d-flex justify-content-between align-items-center flex-wrap">
+                    <span class="d-flex align-items-center">
+                        <i data-lucide="building-2" class="mr-2"></i>
+                        Mis Propiedades
+                    </span>
+                    <div class="search-wrapper mt-2 mt-md-0" style="min-width: 250px;">
+                        <div class="input-with-icon">
+                            <i data-lucide="search" class="input-icon" size="18" style="top: 13px;"></i>
+                            <input type="text" id="buscarPropiedad" class="form-input py-1" style="padding-left: 40px;" placeholder="Buscar propiedad...">
+                        </div>
+                    </div>
+                </h2>
+                
+                <div class="container-fluid mt-3">
+                    <div id="listaCasas" class="row">
+                        <!-- Las propiedades se cargarán aquí dinámicamente -->
+                    </div>
                 </div>
-              </div>
-              <div class="col-lg-8">
-                 <h3 class="font-weight-bold mb-4" style="color: #0f172a;">Catálogo de Propiedades</h3>
-                 <div id="listaCasas" class="row"></div>
-              </div>
-              </div>
-              </div>
-             <button type="submit" class="btn-publicar">Publicar Propiedad</button>
-             </form>
             </div>
 
             <!-- Security Form -->
-            <div class="card form-card">
+            <div id="seguridad" class="card form-card">
                 <h2 class="section-header">
                     <i data-lucide="lock"></i>
                     Contraseña y Seguridad
@@ -338,15 +389,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> <!-- Closes #seguridad -->
+        </div> <!-- Closes forms-area -->
     </main>
-
-        <div class="col-lg-8">
-                <div id="listaCasas" class="row">
-                </div>
-        </div>
-    </div>
-</div>
+</div> <!-- Closes container py-5 -->
 
 <footer class="real-estate-footer pt-5" id="contacto">
         <div class="container pt-4 pb-3">
@@ -432,28 +478,8 @@
     <script src="js/main.js"></script>
     <script type="module" src="js/auth.js"></script>
     <script src="js/buyer.js"></script>
-    <script type="module">
-        import { verificarEstadoSesion, obtenerUsuarioActual } from './js/auth.js';
-
-        const loginBtn = document.querySelector('.btn-cta');
-
-        verificarEstadoSesion(async (user) => {
-            if (user) {
-                // Usuario logueado: cambiar a "Administrar Cuenta"
-                loginBtn.textContent = 'Administrar Cuenta';
-                loginBtn.onclick = async (e) => {
-                    e.preventDefault();
-                    // Ya estamos en la página de cuenta
-                    // Opcional: recargar o algo
-                };
-            } else {
-                // No logueado: redirigir a login
-                loginBtn.textContent = 'Inicia sesión';
-                loginBtn.href = 'profiles.html';
-                loginBtn.onclick = null;
-            }
-        });
-    </script>
+    <script type="module" src="js/props.js"></script>
+    <script type="module" src="js/seller.js"></script>
 </body>
 </html>
 

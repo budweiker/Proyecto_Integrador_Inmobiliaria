@@ -3,10 +3,10 @@
 
 <head>
     <meta charset="utf-8">
-    <title>TRAVELER - Free Travel Website Template</title>
+    <title>Contacto - Inmobiliaria Manuela Bermúdez</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Free HTML Templates" name="keywords">
-    <meta content="Free HTML Templates" name="description">
+    <meta content="inmobiliaria, contacto, agendar cita, manuela bermudez, comprar casa, vender casa, soporte inmobiliario" name="keywords">
+    <meta content="Contáctanos para agendar una asesoría personalizada sobre la compra, venta o avalúo de tus inmuebles. Estamos aquí para ayudarte en tu inversión." name="description">
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -24,6 +24,69 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <style>
+        /* Estilos Premium para la Página de Contacto */
+        .contact-info-card {
+            background: #ffffff;
+            border-radius: 16px;
+            border: 1px solid #f1f5f9;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(13, 110, 253, 0.06);
+            border-color: rgba(13, 110, 253, 0.15);
+        }
+        .contact-icon-wrap {
+            width: 55px;
+            height: 55px;
+            border-radius: 12px;
+            background: rgba(13, 110, 253, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+        }
+        .contact-info-card:hover .contact-icon-wrap {
+            background: #0d6efd;
+        }
+        .contact-info-card:hover .contact-icon-wrap i {
+            color: #ffffff !important;
+            transform: scale(1.1);
+        }
+        .contact-icon-wrap i {
+            color: #0d6efd !important;
+            font-size: 1.3rem;
+            transition: all 0.4s ease;
+        }
+        
+        .contact-form-card {
+            background: #ffffff;
+            border-radius: 20px;
+            border: 1px solid #f1f5f9;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+            padding: 2.5rem;
+        }
+        
+        .premium-input {
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 15px 20px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background-color: #f8fafc;
+            height: auto;
+        }
+        .premium-input:focus {
+            background-color: #ffffff;
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.1);
+            outline: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -33,9 +96,9 @@
             <div class="row">
                 <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
                     <div class="d-inline-flex align-items-center">
-                        <p><i class="fa fa-envelope mr-2"></i>info@example.com</p>
+                        <p><i class="fa fa-envelope mr-2"></i>contacto@inmomanuela.com</p>
                         <p class="text-body px-3">|</p>
-                        <p><i class="fa fa-phone-alt mr-2"></i>+012 345 6789</p>
+                        <p><i class="fa fa-phone-alt mr-2"></i>+57 300 123 4567</p>
                     </div>
                 </div>
                 <div class="col-lg-6 text-center text-lg-right">
@@ -105,40 +168,94 @@
     <!-- Contact Start -->
     <div class="container-fluid py-5">
         <div class="container py-5">
-            <div class="text-center mb-3 pb-3">
+            <div class="text-center mb-5 pb-3">
                 <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Contacto</h6>
-                <h1>Contacto Para Cualquier Consulta</h1>
+                <h1 class="display-4 font-weight-bold" style="color: #0f172a;">¿Tienes alguna consulta?</h1>
+                <p class="text-muted col-md-8 mx-auto">Completa el formulario o contáctanos directamente a través de nuestros canales oficiales. Estamos aquí para guiarte en tu inversión.</p>
             </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="contact-form bg-white" style="padding: 30px;">
-                        <div id="success"></div>
-                        <form name="sentMessage" id="contactForm" novalidate="novalidate">
+            
+            <div class="row">
+                <!-- Columna Izquierda: Información de contacto -->
+                <div class="col-lg-5 mb-5 mb-lg-0">
+                    <div class="d-flex flex-column h-100 justify-content-between">
+                        
+                        <!-- Teléfono -->
+                        <div class="contact-info-card p-4 mb-3 d-flex align-items-center">
+                            <div class="contact-icon-wrap mr-4">
+                                <i class="fa fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h6 class="font-weight-bold mb-1" style="color: #0f172a;">Llámanos</h6>
+                                <p class="mb-0 text-muted">+57 300 123 4567</p>
+                                <small class="text-primary">Atención telefónica y WhatsApp</small>
+                            </div>
+                        </div>
+                        
+                        <!-- Correo Electrónico -->
+                        <div class="contact-info-card p-4 mb-3 d-flex align-items-center">
+                            <div class="contact-icon-wrap mr-4">
+                                <i class="fa fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h6 class="font-weight-bold mb-1" style="color: #0f172a;">Escríbenos</h6>
+                                <p class="mb-0 text-muted">contacto@inmomanuela.com</p>
+                                <small class="text-primary">Respuesta en menos de 24 horas</small>
+                            </div>
+                        </div>
+                        
+                        <!-- Ubicación -->
+                        <div class="contact-info-card p-4 mb-3 d-flex align-items-center">
+                            <div class="contact-icon-wrap mr-4">
+                                <i class="fa fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h6 class="font-weight-bold mb-1" style="color: #0f172a;">Visítanos</h6>
+                                <p class="mb-0 text-muted">Calle Principal 123, Medellín, Colombia</p>
+                                <small class="text-primary">Oficinas Corporativas</small>
+                            </div>
+                        </div>
+
+                        <!-- Horarios -->
+                        <div class="contact-info-card p-4 mb-3 d-flex align-items-center">
+                            <div class="contact-icon-wrap mr-4">
+                                <i class="fa fa-clock"></i>
+                            </div>
+                            <div>
+                                <h6 class="font-weight-bold mb-1" style="color: #0f172a;">Horarios de Atención</h6>
+                                <p class="mb-0 text-muted">Lunes a Viernes: 8:00 AM - 6:00 PM</p>
+                                <p class="mb-0 text-muted">Sábados: 9:00 AM - 1:00 PM</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                
+                <!-- Columna Derecha: Formulario de contacto -->
+                <div class="col-lg-7">
+                    <div class="contact-form-card">
+                        <form id="contactForm" novalidate="novalidate">
                             <div class="form-row">
-                                <div class="control-group col-sm-6">
-                                    <input type="text" class="form-control p-4" id="name" placeholder="Tu Nombre"
-                                        required="required" data-validation-required-message="Por favor ingresa tu nombre" />
-                                    <p class="help-block text-danger"></p>
+                                <div class="form-group col-sm-6 mb-4">
+                                    <label class="font-weight-bold text-dark mb-2" for="name">Nombre Completo</label>
+                                    <input type="text" class="form-control premium-input" id="name" placeholder="Tu Nombre" required />
                                 </div>
-                                <div class="control-group col-sm-6">
-                                    <input type="email" class="form-control p-4" id="email" placeholder="Tu Correo Electrónico"
-                                        required="required" data-validation-required-message="Por favor ingresa tu correo electrónico" />
-                                    <p class="help-block text-danger"></p>
+                                <div class="form-group col-sm-6 mb-4">
+                                    <label class="font-weight-bold text-dark mb-2" for="email">Correo Electrónico</label>
+                                    <input type="email" class="form-control premium-input" id="email" placeholder="ejemplo@correo.com" required />
                                 </div>
                             </div>
-                            <div class="control-group">
-                                <input type="text" class="form-control p-4" id="subject" placeholder="Asunto"
-                                    required="required" data-validation-required-message="Por favor ingresa un asunto" />
-                                <p class="help-block text-danger"></p>
+                            <div class="form-group mb-4">
+                                <label class="font-weight-bold text-dark mb-2" for="subject">Asunto de la Consulta</label>
+                                <input type="text" class="form-control premium-input" id="subject" placeholder="¿En qué podemos ayudarte?" required />
                             </div>
-                            <div class="control-group">
-                                <textarea class="form-control py-3 px-4" rows="5" id="message" placeholder="Mensaje"
-                                    required="required"
-                                    data-validation-required-message="Por favor ingresa tu mensaje"></textarea>
-                                <p class="help-block text-danger"></p>
+                            <div class="form-group mb-4">
+                                <label class="font-weight-bold text-dark mb-2" for="message">Mensaje</label>
+                                <textarea class="form-control premium-input" rows="5" id="message" placeholder="Escribe tu mensaje aquí..." required></textarea>
                             </div>
-                            <div class="text-center">
-                                <button class="btn btn-primary py-3 px-4" type="submit" id="sendMessageButton">Enviar Mensaje</button>
+                            <div class="text-right">
+                                <button class="btn btn-primary rounded-pill py-3 px-5 font-weight-bold text-white shadow-sm" type="submit" id="sendMessageButton" style="transition: all 0.3s ease;">
+                                    Enviar Mensaje <i class="fas fa-paper-plane ml-2"></i>
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -155,7 +272,8 @@
             <div class="row">
                 <!-- COLUMNA 1: Logo y Descripción -->
                 <div class="col-lg-3 col-md-6 mb-5 pe-lg-4">
-                    <img src="img/LOGOV2.png" alt="Inmobiliaria Manuela Logo" style="max-height: 55px;" class="mr-2"></i>Inm. Manuela</h3>
+                    <img src="img/LOGOV2.png" alt="Inmobiliaria Manuela Logo" style="max-height: 55px;" class="mr-2">
+                    <h5 class="text-white font-weight-bold mb-3">Inm. Manuela</h5>
                     <p class="text-white-50" style="line-height: 1.8; font-size: 0.95rem;">Tu aliado estratégico en bienes raíces. Brindamos certeza jurídica y oportunidades únicas de inversión con un enfoque profesional y humano.</p>
                 </div>
                 
@@ -241,8 +359,7 @@
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
     <!-- Contact Javascript File -->
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
+    <script type="module" src="js/contact.js"></script>
     <script type="module">
         import { verificarEstadoSesion, obtenerUsuarioActual } from './js/auth.js';
 
