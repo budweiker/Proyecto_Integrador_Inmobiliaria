@@ -18,11 +18,13 @@ const renderizarTabla = (usuarios) => {
         if (roleText.toLowerCase() === 'comprador') roleClass = 'comprador';
         else if (roleText.toLowerCase() === 'vendedor') roleClass = 'vendedor';
 
+        // SE AGREGÓ LA QUINTA CELDA <td> CON LA FECHA DE REGISTRO
         row.innerHTML = `
             <td><strong>${user.cedula || 'N/A'}</strong></td>
             <td><span style="font-weight:600; color:#0f172a;">${user.nombre || 'N/A'}</span></td>
             <td><span style="color:#64748b; font-size:0.9rem;">${user.email || 'N/A'}</span></td>
             <td>${user.fechaNacimiento || 'N/A'}</td>
+            <td><span style="color:#475569;">${user.fechaRegistro || '2026-05-21'}</span></td>
             <td><span class="badge ${roleClass}">${roleText}</span></td>
             <td style="text-align:center;">
                 <span class="badge-estado ${esActivo ? 'activo' : 'inactivo'}">
@@ -95,6 +97,44 @@ document.addEventListener('DOMContentLoaded', () => {
             searchInput.focus();
         });
     }
+
+    // --- NUEVO: ESCUCHAS PARA EL MÓDULO DE FILTRO DE FECHAS ---
+    const btnFiltrar = document.getElementById('btn-filtrar');
+    const btnLimpiar = document.getElementById('btn-limpiar');
+    const fechaDesdeInput = document.getElementById('fecha-desde');
+    const fechaHastaInput = document.getElementById('fecha-hasta');
+
+    if (btnFiltrar) {
+        btnFiltrar.addEventListener('click', () => {
+            const desde = fechaDesdeInput.value; // Formato YYYY-MM-DD
+            const hasta = fechaHastaInput.value; // Formato YYYY-MM-DD
+
+            if (!desde && !hasta) {
+                alert("Por favor selecciona al menos un rango de fecha.");
+                return;
+            }
+
+            const filtradosPorFecha = todosLosUsuarios.filter(user => {
+                // Si el usuario no tiene fecha de registro, le asignamos la de hoy por defecto para no romper el filtro
+                const fechaRegUser = user.fechaRegistro || '2026-05-21'; 
+
+                if (desde && fechaRegUser < desde) return false;
+                if (hasta && fechaRegUser > hasta) return false;
+                return true;
+            });
+
+            renderizarTabla(filtradosPorFecha);
+        });
+    }
+
+    if (btnLimpiar) {
+        btnLimpiar.addEventListener('click', () => {
+            if (fechaDesdeInput) fechaDesdeInput.value = '';
+            if (fechaHastaInput) fechaHastaInput.value = '';
+            renderizarTabla(todosLosUsuarios); // Restablece la tabla completa
+        });
+    }
+    // ---------------------------------------------------------
 
     // Delegación de eventos en la tabla
     document.getElementById('users-table-body').addEventListener('click', async (e) => {
