@@ -11,7 +11,7 @@ import {
     signOut,
     onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
-import { getFirestore, doc, setDoc, collection, getDocs, deleteDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+import { getFirestore, doc, setDoc, collection, getDocs, deleteDoc, getDoc, updateDoc, query, where } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyC_R9dW12aW4-1-FsOeuwXmKOqccWGl7M8",
@@ -31,23 +31,55 @@ export const registrarUsuarioCompleto = async (email, pass, datosExtra) => {
     const user = userCredential.user;
 
     // Guarda los datos extra en la colección "usuarios"
+    // activo: true por defecto al registrar
     await setDoc(doc(db, "usuarios", user.uid), {
         nombre: datosExtra.nombre,
         cedula: datosExtra.cedula,
         fechaNacimiento: datosExtra.fecha,
         email: email,
-        rol: datosExtra.rol || 'No especificado'
+        rol: datosExtra.rol || 'No especificado',
+        activo: true
     });
     return user;
 };
 
-export const iniciarSesion = (email, pass) => {
+export const iniciarSesion = async (email, pass) => {
+    // Verificar si la cuenta está activa antes de permitir login
+    const snapshot = await getDocs(query(collection(db, "usuarios"), where("email", "==", email)));
+    if (!snapshot.empty) {
+        const userData = snapshot.docs[0].data();
+        if (userData.activo === false) {
+            throw new Error("CUENTA_DESACTIVADA");
+        }
+    }
     return signInWithEmailAndPassword(auth, email, pass);
 };
 
 export const obtenerUsuarios = async () => {
     const querySnapshot = await getDocs(collection(db, "usuarios"));
     return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+};
+
+// Búsqueda de usuarios por email, nombre o cédula
+export const buscarUsuarios = async (termino) => {
+    if (!termino || termino.trim() === '') {
+        return await obtenerUsuarios();
+    }
+    const terminoLower = termino.toLowerCase().trim();
+    const todos = await obtenerUsuarios();
+    return todos.filter(user => {
+        const nombre = (user.nombre || '').toLowerCase();
+        const email = (user.email || '').toLowerCase();
+        const cedula = (user.cedula || '').toLowerCase();
+        return nombre.includes(terminoLower) || email.includes(terminoLower) || cedula.includes(terminoLower);
+    });
+};
+
+// Activar o desactivar una cuenta de usuario
+export const toggleEstadoUsuario = async (userId, nuevoEstado) => {
+    await updateDoc(doc(db, "usuarios", userId), {
+        activo: nuevoEstado
+    });
 };
 
 export const verificarEstadoSesion = (callback) => {
@@ -67,8 +99,6 @@ export const obtenerUsuarioActual = async () => {
     return null;
 };
 
-
-
 export const eliminarUsuario = async (userId) => {
     await deleteDoc(doc(db, "usuarios", userId));
 };
@@ -85,11 +115,8 @@ export const cambiarPassword = async (currentPassword, newPassword) => {
     const user = auth.currentUser;
     if (!user) throw new Error('Usuario no autenticado');
 
-    // Reautenticar
     const credential = EmailAuthProvider.credential(user.email, currentPassword);
     await reauthenticateWithCredential(user, credential);
-
-    // Cambiar contraseña
     await updatePassword(user, newPassword);
 };
 
@@ -98,10 +125,7 @@ export const eliminarCuentaUsuario = async () => {
     const user = auth.currentUser;
     if (!user) throw new Error('Usuario no autenticado');
 
-    // Eliminar datos del usuario de Firestore
     await deleteDoc(doc(db, "usuarios", user.uid));
-
-    // Eliminar cuenta de Firebase Auth
     await deleteUser(user);
 };
 
