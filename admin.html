@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin Dashboard - Inmobiliaria</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="css/admin.css">
     <style>
@@ -108,30 +109,113 @@
     </style>
 </head>
 <body>
-    <div class="dashboard-container">
-        <div class="header">
-            <h2><i class="fas fa-users-cog" style="color: #64b5f6; margin-right: 12px;"></i> Panel de Usuarios</h2>
-            <a href="home.html" class="btn-home"><i class="fas fa-arrow-left"></i> Volver</a>
+    <div class="dashboard-container container-fluid p-4">
+        
+        <div class="header d-flex justify-content-between align-items-center mb-4">
+            <h2><i class="fas fa-users-cog" style="color: #64b5f6; margin-right: 12px;"></i> Panel de Administración</h2>
+            <a href="home.html" class="btn-home text-decoration-none"><i class="fas fa-arrow-left"></i> Volver</a>
         </div>
         
-        <div style="overflow-x: auto;">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Cédula</th>
-                        <th>Nombre</th>
-                        <th>Correo</th>
-                        <th>Fecha de Nac.</th>
-                        <th>Rol</th>
-                        <th style="text-align: center;">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="users-table-body">
-                    <tr><td colspan="5" class="loading"><i class="fas fa-spinner fa-spin"></i> Cargando usuarios...</td></tr>
-                </tbody>
-            </table>
+        <!-- TARJETAS DE STATS -->
+        <div class="row g-4 mb-5">
+            <div class="col-12 col-md-3">
+                <div class="card h-100 border-0 shadow-sm p-3" style="border-left: 5px solid #2563eb !important;">
+                    <div class="card-body d-flex align-items-center justify-content-between">
+                        <div>
+                            <h6 class="text-muted text-uppercase small fw-bold">Inmuebles Activos</h6>
+                            <h3 class="fw-bold text-dark m-0">24</h3>
+                        </div>
+                        <div class="bg-primary bg-opacity-10 p-3 rounded-circle">
+                            <i class="fas fa-home fa-2x text-primary"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-3">
+                <div class="card h-100 border-0 shadow-sm p-3" style="border-left: 5px solid #22c55e !important;">
+                    <div class="card-body d-flex align-items-center justify-content-between">
+                        <div>
+                            <h6 class="text-muted text-uppercase small fw-bold">Interesados (WhatsApp)</h6>
+                            <h3 class="fw-bold text-dark m-0">142</h3>
+                        </div>
+                        <div class="bg-success bg-opacity-10 p-3 rounded-circle">
+                            <i class="fab fa-whatsapp fa-2x text-success"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-3">
+                <div class="card h-100 border-0 shadow-sm p-3" style="border-left: 5px solid #eab308 !important;">
+                    <div class="card-body d-flex align-items-center justify-content-between">
+                        <div>
+                            <h6 class="text-muted text-uppercase small fw-bold">Visitas del Mes</h6>
+                            <h3 class="fw-bold text-dark m-0">3,840</h3>
+                        </div>
+                        <div class="bg-warning bg-opacity-10 p-3 rounded-circle">
+                            <i class="fas fa-eye fa-2x text-warning"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-3">
+                <div class="card h-100 border-0 shadow-sm p-3" style="border-left: 5px solid #8b5cf6 !important;">
+                    <div class="card-body d-flex align-items-center justify-content-between">
+                        <div>
+                            <h6 class="text-muted text-uppercase small fw-bold">Total Usuarios</h6>
+                            <h3 class="fw-bold text-dark m-0" id="total-usuarios">—</h3>
+                        </div>
+                        <div class="p-3 rounded-circle" style="background: rgba(139,92,246,0.1);">
+                            <i class="fas fa-users fa-2x" style="color:#8b5cf6;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+
+        <!-- TABLA DE USUARIOS -->
+        <div class="card border-0 shadow-sm p-4">
+
+            <!-- Header de la tabla con buscador -->
+            <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-3">
+                <h5 class="fw-bold text-secondary m-0">
+                    <i class="fas fa-list me-2"></i> Lista de Usuarios Registrados
+                </h5>
+                <div class="search-wrapper">
+                    <i class="fas fa-search search-icon"></i>
+                    <input 
+                        type="text" 
+                        id="search-input" 
+                        placeholder="Buscar por correo"
+                        autocomplete="off"
+                    />
+                    <button id="btn-clear-search" title="Limpiar búsqueda">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div style="overflow-x: auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Cédula</th>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th>Fecha de Nac.</th>
+                            <th>Rol</th>
+                            <th style="text-align:center;">Estado</th>
+                            <th style="text-align: center;">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="users-table-body">
+                        <tr><td colspan="7" class="loading"><i class="fas fa-spinner fa-spin"></i> Cargando usuarios...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
     </div>
 
