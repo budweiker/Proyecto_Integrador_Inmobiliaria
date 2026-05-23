@@ -1,4 +1,4 @@
-import { obtenerUsuarios, eliminarUsuario, toggleEstadoUsuario, buscarUsuarios } from './auth.js';
+import { obtenerUsuarios, eliminarUsuario, toggleEstadoUsuario, buscarUsuarios, verificarEstadoSesion, obtenerUsuarioActual } from './auth.js';
 
 let todosLosUsuarios = [];
 
@@ -67,7 +67,27 @@ const actualizarContadorUsuarios = (total) => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-    cargarUsuarios();
+    // Verificar que el usuario esté autenticado y tenga rol de administrador
+    verificarEstadoSesion(async (user) => {
+        if (!user) {
+            window.location.href = 'profiles.html';
+            return;
+        }
+        try {
+            const usuario = await obtenerUsuarioActual();
+            const rol = (usuario && (usuario.rol || '')).toString().toLowerCase();
+            if (rol !== 'admin' && rol !== 'administrador') {
+                alert('Acceso restringido: se requieren permisos de administrador.');
+                window.location.href = 'home.html';
+                return;
+            }
+            // Usuario autorizado
+            cargarUsuarios();
+        } catch (err) {
+            console.error('Error comprobando rol de usuario:', err);
+            window.location.href = 'profiles.html';
+        }
+    });
 
     // Búsqueda en tiempo real
     const searchInput = document.getElementById('search-input');
