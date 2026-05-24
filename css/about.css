@@ -1,0 +1,21 @@
+.about-card {
+    background: #ffffff;
+    border: 1px solid #eef2f6;
+    border-radius: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.about-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 35px rgba(15, 23, 42, 0.08);
+}
+.about-highlight-card {
+    border-left: 4px solid rgba(255, 255, 255, 0.22);
+}
+.about-value-card {
+    border: 1px solid #e5e7eb;
+}
+.about-card p,
+.about-value-card p {
+    font-size: 0.95rem;
+    line-height: 1.75;
+}

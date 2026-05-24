@@ -155,34 +155,6 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
-    <script type="module">
-        import { verificarEstadoSesion, obtenerUsuarioActual } from './js/auth.js';
-
-        const cuentaBtn = document.querySelector('.btn-cta');
-
-        verificarEstadoSesion(async (user) => {
-            if (user) {
-                // Usuario logueado: "Cuenta" con opciones
-                cuentaBtn.textContent = 'Cuenta';
-                cuentaBtn.onclick = (e) => {
-                    e.preventDefault();
-                    // Mostrar menú simple o redirigir
-                    if (confirm('¿Quieres cerrar sesión?')) {
-                        import('https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js').then(({ getAuth, signOut }) => {
-                            const auth = getAuth();
-                            signOut(auth).then(() => {
-                                window.location.href = 'home.html';
-                            });
-                        });
-                    }
-                };
-            } else {
-                // No logueado: redirigir a login
-                cuentaBtn.textContent = 'Inicia sesión';
-                cuentaBtn.href = 'profiles.html';
-                cuentaBtn.onclick = null;
-            }
-        });
-    </script>
+    <script type="module" src="js/vandedorr.js"></script>
 </body>
 </html>

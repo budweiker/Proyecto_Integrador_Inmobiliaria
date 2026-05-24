@@ -24,107 +24,7 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-    <style>
-        /* Estilos Premium para la Página de Servicios */
-        .service-card {
-            background: #ffffff;
-            border-radius: 16px;
-            border: 1px solid #f1f5f9;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-            height: 100%;
-        }
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, #0d6efd, #00d2ff);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
-        }
-        .service-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(13, 110, 253, 0.08);
-            border-color: rgba(13, 110, 253, 0.15);
-        }
-        .service-card:hover::before {
-            transform: scaleX(1);
-        }
-        .service-icon-wrap {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            background: rgba(13, 110, 253, 0.05);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            transition: all 0.4s ease;
-        }
-        .service-card:hover .service-icon-wrap {
-            background: #0d6efd;
-        }
-        .service-card:hover .service-icon-wrap i {
-            color: #ffffff !important;
-            transform: scale(1.1);
-        }
-        .service-icon-wrap i {
-            color: #0d6efd !important;
-            transition: all 0.4s ease;
-        }
-        .service-card h5 {
-            color: #0f172a;
-            font-weight: 600;
-        }
-        .service-card p {
-            color: #64748b;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-        
-        /* Testimonios Estilo Premium */
-        .testimonial-card {
-            background: #ffffff;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-            border: 1px solid #f1f5f9;
-            transition: all 0.3s ease;
-            height: 100%;
-        }
-        .testimonial-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.06);
-        }
-        .star-icon {
-            font-size: 1.1rem;
-            margin-right: 2px;
-            color: #cbd5e1;
-            transition: color 0.2s ease;
-        }
-        .star-icon.active {
-            color: #ffc107;
-        }
-        
-        .testimonial-avatar-placeholder {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #0d6efd, #00d2ff);
-            color: white;
-            font-weight: bold;
-            font-size: 1.2rem;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 10px rgba(13,110,253,0.15);
-        }
-    </style>
+    <link href="css/service.css" rel="stylesheet">
 </head>
 
 <body>
@@ -273,79 +173,51 @@
     <!-- Service End -->
 
 
-    <!-- Testimonial Start -->
-    <div class="container-fluid py-5 bg-light">
-        <div class="container py-5">
-            <div class="text-center mb-5 pb-3">
-                <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Testimonios</h6>
-                <h1 class="display-4 font-weight-bold" style="color: #0f172a;">Qué Dicen Nuestros Clientes</h1>
-                <p class="text-muted col-md-8 mx-auto">Experiencias reales de clientes satisfechos que han logrado sus objetivos de la mano de nuestro equipo.</p>
-            </div>
-            
-            <div id="testimonialsList" class="row">
-                <!-- Los testimonios se cargarán aquí dinámicamente -->
-            </div>
-            
-            <div id="testimonialPager" class="testimonial-pagination d-flex flex-column flex-md-row justify-content-between align-items-center mt-4"></div>
-            
-            <div id="noTestimonials" class="text-center text-muted d-none py-5">
-                <i class="far fa-comments fa-3x mb-3 text-primary"></i>
-                <p class="lead">Aún no hay testimonios registrados. ¡Sé el primero en escribir uno!</p>
-            </div>
+    <!-- Testimonios -->
+    <section id="testimonios">
+        <div class="container">
+            <h2 class="testimonios-titulo">Lo que dicen nuestros clientes</h2>
+            <p class="testimonios-subtitulo">Experiencias reales de personas que confiaron en nosotros</p>
 
-            <!-- Botón para abrir modal de testimonio -->
-            <div class="text-center mt-5">
-                <button class="btn btn-primary rounded-pill py-3 px-5 font-weight-bold" data-toggle="modal" data-target="#modalTestimonio">
-                    <i class="fa fa-pen mr-2"></i> Escribir un Testimonio
-                </button>
+            <!-- Grid dinámico de testimonios -->
+            <div id="testimonios-grid" class="testimonios-grid"></div>
+
+            <!-- Formulario para agregar testimonio -->
+            <div class="testimonio-form-container">
+                <p class="testimonio-form-titulo">Comparte tu experiencia</p>
+
+                <div style="margin-bottom: 20px;">
+                    <label class="form-field-label" for="input-nombre-test">Tu nombre</label>
+                    <input type="text" id="input-nombre-test" class="form-input-styled" placeholder="Ej: María González">
+                    <span class="form-error" id="error-nombre-test">El nombre debe tener mínimo 2 caracteres.</span>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label class="form-field-label" for="input-texto-test">Tu experiencia</label>
+                    <textarea id="input-texto-test" class="form-input-styled" placeholder="Cuéntanos cómo fue trabajar con nosotros..."></textarea>
+                    <span class="form-error" id="error-texto-test">El testimonio debe tener mínimo 20 caracteres.</span>
+                </div>
+
+                <div style="margin-bottom: 24px;">
+                    <label class="form-field-label">Tu calificación</label>
+                    <div class="rating-stars-container" id="rating-stars-container">
+                        <button type="button" class="rating-star-btn" data-val="1" aria-label="1 estrella">★</button>
+                        <button type="button" class="rating-star-btn" data-val="2" aria-label="2 estrellas">★</button>
+                        <button type="button" class="rating-star-btn" data-val="3" aria-label="3 estrellas">★</button>
+                        <button type="button" class="rating-star-btn" data-val="4" aria-label="4 estrellas">★</button>
+                        <button type="button" class="rating-star-btn" data-val="5" aria-label="5 estrellas">★</button>
+                    </div>
+                    <span class="form-error" id="error-rating-test">Por favor selecciona una calificación.</span>
+                </div>
+
+                <button type="button" id="btn-publicar-test" class="btn-publicar">Publicar testimonio</button>
             </div>
         </div>
-    </div>
-    <!-- Testimonial End -->
+    </section>
+    <!-- Testimonios End -->
 
-    <!-- Modal Testimonio -->
-    <div class="modal fade" id="modalTestimonio" tabindex="-1" role="dialog" aria-labelledby="modalTestimonioLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content border-0 shadow-lg" style="border-radius: 16px;">
-                <div class="modal-header bg-primary text-white border-0 py-3" style="border-top-left-radius: 16px; border-top-right-radius: 16px;">
-                    <h5 class="modal-title font-weight-bold text-white" id="modalTestimonioLabel">Comparte tu Experiencia</h5>
-                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body p-4">
-                    <form id="testimonialForm">
-                        <div class="form-group mb-3">
-                            <label class="font-weight-bold text-dark">Nombre Completo</label>
-                            <input type="text" class="form-control border-light p-3" id="testimonialName" placeholder="Tu nombre" required style="border-radius: 8px;">
-                        </div>
-                        <div class="form-group mb-3">
-                            <label class="font-weight-bold text-dark">Ocupación / Profesión</label>
-                            <input type="text" class="form-control border-light p-3" id="testimonialProfession" placeholder="Ej: Ingeniero, Empresario..." required style="border-radius: 8px;">
-                        </div>
-                        <div id="testimonialMessage" class="mb-3"></div>
-                        <div class="form-group mb-3">
-                            <label class="font-weight-bold text-dark">Calificación</label>
-                            <div id="starRating" class="d-flex mb-2">
-                                <i class="fa fa-star star-icon text-muted" data-rating="1" style="cursor: pointer; font-size: 1.8rem; margin-right: 5px;"></i>
-                                <i class="fa fa-star star-icon text-muted" data-rating="2" style="cursor: pointer; font-size: 1.8rem; margin-right: 5px;"></i>
-                                <i class="fa fa-star star-icon text-muted" data-rating="3" style="cursor: pointer; font-size: 1.8rem; margin-right: 5px;"></i>
-                                <i class="fa fa-star star-icon text-muted" data-rating="4" style="cursor: pointer; font-size: 1.8rem; margin-right: 5px;"></i>
-                                <i class="fa fa-star star-icon text-muted" data-rating="5" style="cursor: pointer; font-size: 1.8rem; margin-right: 5px;"></i>
-                            </div>
-                            <div id="ratingValueLabel" class="small text-muted mb-2">Selecciona tu calificación</div>
-                            <input type="hidden" id="testimonialRating" value="0">
-                        </div>
-                        <div class="form-group mb-4">
-                            <label class="font-weight-bold text-dark">Tu Testimonio</label>
-                            <textarea class="form-control border-light p-3" id="testimonialText" rows="4" placeholder="Cuéntanos tu experiencia trabajando con nosotros..." required style="border-radius: 8px;"></textarea>
-                        </div>
-                        <button type="submit" id="submitTestimonioBtn" class="btn btn-primary btn-block py-3 font-weight-bold rounded-pill">Enviar Testimonio</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Toast de éxito -->
+    <div id="toast-testimonio">¡Testimonio publicado! Gracias por tu opinión 🎉</div>
 
 
     <!-- Footer empieza -->
@@ -440,39 +312,12 @@
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-    <!-- Testimonial Module -->
+    <!-- Módulo de Testimonios -->
+    <script type="module" src="js/testimonios.js"></script>
     <script type="module" src="js/service.js"></script>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-    <script type="module">
-        import { verificarEstadoSesion, obtenerUsuarioActual } from './js/auth.js';
-
-        const loginBtn = document.querySelector('.btn-cta');
-
-        verificarEstadoSesion(async (user) => {
-            if (user) {
-                // Usuario logueado: cambiar a "Administrar Cuenta"
-                loginBtn.textContent = 'Administrar Cuenta';
-                loginBtn.onclick = async (e) => {
-                    e.preventDefault();
-                    const userData = await obtenerUsuarioActual();
-                    if (userData && userData.rol === 'Comprador') {
-                        window.location.href = 'buyer.html';
-                    } else if (userData && userData.rol === 'Vendedor') {
-                        window.location.href = 'seller.html';
-                    } else {
-                        window.location.href = 'profiles.html'; // fallback
-                    }
-                };
-            } else {
-                // No logueado: mantener "Inicia sesión"
-                loginBtn.textContent = 'Inicia sesión';
-                loginBtn.href = 'profiles.html';
-                loginBtn.onclick = null; // remove onclick
-            }
-        });
-    </script>
 </body>
 
 </html>

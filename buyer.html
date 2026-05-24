@@ -454,36 +454,11 @@
         </div>
     </footer>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <script>
-        // Inicializar iconos de Lucide
-        lucide.createIcons();
-    </script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
     <script type="module" src="js/auth.js"></script>
     <script src="js/buyer.js"></script>
-    <script type="module">
-        import { verificarEstadoSesion, obtenerUsuarioActual } from './js/auth.js';
-
-        const loginBtn = document.querySelector('.btn-cta');
-
-        verificarEstadoSesion(async (user) => {
-            if (user) {
-                // Usuario logueado: cambiar a "Administrar Cuenta"
-                loginBtn.textContent = 'Administrar Cuenta';
-                loginBtn.onclick = async (e) => {
-                    e.preventDefault();
-                    // Ya estamos en la página de cuenta
-                    // Opcional: recargar o algo
-                };
-            } else {
-                // No logueado: redirigir a login
-                loginBtn.textContent = 'Inicia sesión';
-                loginBtn.href = 'profiles.html';
-                loginBtn.onclick = null;
-            }
-        });
-    </script>
+    <script type="module" src="js/buyer-auth.js"></script>
 </body>
 </html>
