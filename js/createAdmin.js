@@ -1,8 +1,7 @@
-// js/createAdmin.js — EJECUTAR UNA SOLA VEZ, luego eliminar el import
-// ⚠️ ADVERTENCIA: Este script crea el usuario administrador en Firebase.
-// Eliminalo de admin.html después de ejecutarlo exitosamente.
+// <!-- No descomentar este archivo porfavor att Santiago -->
 
-import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+
+/* import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
 import {
     getAuth,
     createUserWithEmailAndPassword,
