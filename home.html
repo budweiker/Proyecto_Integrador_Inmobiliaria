@@ -805,65 +805,105 @@
         </div>
     </div>
 
-    <!-- Testimonios Start -->
-    <div class="container-fluid py-5 bg-light">
-        <div class="container py-5">
-            <div class="text-center mb-5 pb-3">
-                <h6 class="text-primary text-uppercase font-weight-bold" style="letter-spacing: 2px;">Opiniones</h6>
-                <h2 class="display-4 font-weight-bold text-dark">Qué Dicen Nuestros Clientes</h2>
-            </div>
-
-            <!-- Formulario para agregar testimonio -->
-            <div class="row justify-content-center mb-5">
-                <div class="col-lg-8">
-                    <div class="bg-white p-5 rounded-lg shadow-sm">
-                        <h4 class="font-weight-bold mb-4 text-primary">¡Comparte tu experiencia!</h4>
-                        <form id="testimonialForm">
-                            <div class="form-group">
-                                <label class="font-weight-bold text-dark">Nombre Completo</label>
-                                <input type="text" class="form-control border-0 bg-light py-3" id="testimonialName" placeholder="Tu nombre" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="font-weight-bold text-dark">Ocupación / Profesión</label>
-                                <input type="text" class="form-control border-0 bg-light py-3" id="testimonialProfession" placeholder="Ej: Ingeniero, Empresario..." required>
-                            </div>
-                            <div id="testimonialMessage" class="mb-3"></div>
-                            <div class="form-group">
-                                <label class="font-weight-bold text-dark">Tu testimonio</label>
-                                <textarea class="form-control border-0 bg-light py-3" id="testimonialText" rows="4" placeholder="Cuéntanos tu experiencia trabajando con nosotros..." required></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label class="font-weight-bold text-dark">Calificación</label>
-                                <div id="starRating" class="mb-3">
-                                    <i class="fa fa-star star-icon" data-rating="1" style="cursor: pointer; font-size: 2rem; color: #ddd; margin: 5px;"></i>
-                                    <i class="fa fa-star star-icon" data-rating="2" style="cursor: pointer; font-size: 2rem; color: #ddd; margin: 5px;"></i>
-                                    <i class="fa fa-star star-icon" data-rating="3" style="cursor: pointer; font-size: 2rem; color: #ddd; margin: 5px;"></i>
-                                    <i class="fa fa-star star-icon" data-rating="4" style="cursor: pointer; font-size: 2rem; color: #ddd; margin: 5px;"></i>
-                                    <i class="fa fa-star star-icon" data-rating="5" style="cursor: pointer; font-size: 2rem; color: #ddd; margin: 5px;"></i>
-                                </div>
-                                <div id="ratingValueLabel" class="small text-muted mb-2">Selecciona tu calificación</div>
-                                <input type="hidden" id="testimonialRating" value="0">
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block py-3 font-weight-bold rounded">Publicar Testimonio</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Sección de testimonios mostrados -->
-            <div class="row" id="testimonialsList">
-                <!-- Los testimonios se cargarán aquí dinámicamente -->
-            </div>
-
-            <div id="testimonialPager" class="testimonial-pagination d-flex flex-column flex-md-row justify-content-between align-items-center mt-4"></div>
-
-            <!-- Mensaje cuando no hay testimonios -->
-            <div id="noTestimonials" class="text-center text-muted">
-                <p>Aún no hay testimonios. ¡Sé el primero en compartir tu experiencia!</p>
-            </div>
+    <!-- Testimonios CTA -->
+    <div id="testimonios-cta">
+        <style>
+            #testimonios-cta {
+                background: linear-gradient(135deg, #f0f4ff 0%, #f8fafc 100%);
+                padding: 80px 0;
+            }
+            #testimonios-cta .cta-inner {
+                max-width: 700px;
+                margin: 0 auto;
+                text-align: center;
+                padding: 0 20px;
+            }
+            #testimonios-cta .cta-icon {
+                font-size: 2.5rem;
+                color: #2563eb;
+                opacity: 0.4;
+                display: block;
+                margin-bottom: 16px;
+            }
+            #testimonios-cta .cta-title {
+                font-family: 'Poppins', sans-serif;
+                font-weight: 700;
+                font-size: clamp(1.8rem, 4vw, 2.4rem);
+                color: #0f172a;
+                margin-bottom: 12px;
+                line-height: 1.2;
+            }
+            #testimonios-cta .cta-subtitle {
+                font-family: 'Poppins', sans-serif;
+                font-weight: 300;
+                color: #64748b;
+                font-size: 1.1rem;
+                max-width: 500px;
+                margin: 0 auto 28px;
+                line-height: 1.7;
+            }
+            #testimonios-cta .cta-chips {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+                margin-bottom: 32px;
+            }
+            #testimonios-cta .cta-chip {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                background: #ffffff;
+                border-radius: 50px;
+                padding: 8px 20px;
+                font-family: 'Poppins', sans-serif;
+                font-size: 0.85rem;
+                font-weight: 500;
+                color: #475569;
+                box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+                white-space: nowrap;
+            }
+            #testimonios-cta .chip-sep {
+                color: #cbd5e1;
+                margin: 0 2px;
+            }
+            #testimonios-cta .cta-btn {
+                display: inline-block;
+                background: #2563eb;
+                color: #ffffff;
+                text-decoration: none;
+                border-radius: 50px;
+                padding: 16px 40px;
+                font-family: 'Poppins', sans-serif;
+                font-weight: 700;
+                font-size: 1rem;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 16px rgba(37,99,235,0.20);
+            }
+            #testimonios-cta .cta-btn:hover {
+                background: #1d4ed8;
+                transform: translateY(-2px);
+                box-shadow: 0 8px 24px rgba(37,99,235,0.30);
+                color: #ffffff;
+                text-decoration: none;
+            }
+            #testimonios-cta .cta-disclaimer {
+                font-family: 'Poppins', sans-serif;
+                font-weight: 300;
+                font-size: 0.8rem;
+                color: #94a3b8;
+                margin-top: 16px;
+            }
+        </style>
+        <div class="cta-inner">
+            <i class="fas fa-quote-left cta-icon"></i>
+            <h2 class="cta-title">Lo que dicen nuestros clientes</h2>
+            
+            <a href="service.html#testimonios" class="cta-btn">Ver todos los testimonios →</a>
+            <p class="cta-disclaimer">Sin costo · Sin registro · Solo experiencias reales</p>
         </div>
     </div>
-    <!-- Testimonios End -->
+    <!-- Testimonios CTA End -->
 
     <!-- Footer-->
     <footer class="real-estate-footer pt-5" id="contacto">
@@ -1271,42 +1311,46 @@
 
         verificarEstadoSesion(async (user) => {
             if (user) {
-                // Usuario logueado: cambiar a "Administrar Cuenta"
+                // Obtener datos de usuario una sola vez
+                let userData = null;
+                try {
+                    userData = await obtenerUsuarioActual();
+                } catch (e) {
+                    console.error('Error al obtener usuario actual:', e);
+                }
+
+                const rol = ((userData && userData.rol) || '').toLowerCase();
+
+                // Cambiar botón de sesión a "Administrar Cuenta"
                 loginBtn.textContent = 'Administrar Cuenta';
-                loginBtn.onclick = async (e) => {
+                loginBtn.onclick = (e) => {
                     e.preventDefault();
-                    const userData = await obtenerUsuarioActual();
-                    if (userData && userData.rol === 'Comprador') {
+                    if (rol === 'comprador') {
                         window.location.href = 'buyer.html';
-                    } else if (userData && userData.rol === 'Vendedor') {
+                    } else if (rol === 'vendedor') {
                         window.location.href = 'seller.html';
+                    } else if (rol === 'admin' || rol === 'administrador') {
+                        window.location.href = 'admin.html';
                     } else {
-                        window.location.href = 'profiles.html'; // fallback
+                        window.location.href = 'profiles.html';
                     }
                 };
 
-                // Verificar rol de Administrador
-                try {
-                    const userData = await obtenerUsuarioActual();
-                    const rol = ((userData && userData.rol) || '').toLowerCase();
+                // Mostrar botón "Panel Admin" solo para administradores
+                if (adminBtn) {
                     if (rol === 'admin' || rol === 'administrador') {
-                        if (adminBtn) {
-                            adminBtn.style.display = 'inline-flex';
-                            adminBtn.style.alignItems = 'center';
-                            adminBtn.style.gap = '6px';
-                        }
+                        adminBtn.style.display = 'inline-flex';
+                        adminBtn.style.alignItems = 'center';
+                        adminBtn.style.gap = '6px';
                     } else {
-                        if (adminBtn) adminBtn.style.display = 'none';
+                        adminBtn.style.display = 'none';
                     }
-                } catch (error) {
-                    console.error('Error al comprobar permisos de administrador:', error);
-                    if (adminBtn) adminBtn.style.display = 'none';
                 }
             } else {
                 // No logueado: mantener "Inicia sesión"
                 loginBtn.textContent = 'Inicia sesión';
                 loginBtn.href = 'profiles.html';
-                loginBtn.onclick = null; // remove onclick
+                loginBtn.onclick = null;
                 if (adminBtn) adminBtn.style.display = 'none';
             }
         });
