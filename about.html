@@ -24,29 +24,7 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-    <style>
-        .about-card {
-            background: #ffffff;
-            border: 1px solid #eef2f6;
-            border-radius: 20px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .about-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 35px rgba(15, 23, 42, 0.08);
-        }
-        .about-highlight-card {
-            border-left: 4px solid rgba(255, 255, 255, 0.22);
-        }
-        .about-value-card {
-            border: 1px solid #e5e7eb;
-        }
-        .about-card p,
-        .about-value-card p {
-            font-size: 0.95rem;
-            line-height: 1.75;
-        }
-    </style>
+    <link href="css/about.css" rel="stylesheet">
 </head>
 
 <body>
@@ -56,9 +34,9 @@
             <div class="row">
                 <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
                     <div class="d-inline-flex align-items-center">
-                        <p><i class="fa fa-envelope mr-2"></i>contacto@inmomanuela.com</p>
+                        <p><i class="fa fa-envelope mr-2"></i>manuelabermudezrealestate@gmail.com</p>
                         <p class="text-body px-3">|</p>
-                        <p><i class="fa fa-phone-alt mr-2"></i>+57 300 123 4567</p>
+                        <p><i class="fa fa-phone-alt mr-2"></i>+57 304 2548683</p>
                     </div>
                 </div>
                 <div class="col-lg-6 text-center text-lg-right">
@@ -245,19 +223,16 @@
                     <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 1px; font-weight: 600; font-size: 1rem;">Contactanos</h5>
                     <p class="text-white-50 mb-3 d-flex align-items-center">
                         <i class="fa fa-phone-alt text-primary mr-3"></i>
-                        +57 300 123 4567
+                        +57 304 2548683
                     </p>
                     <p class="text-white-50 mb-4 d-flex align-items-center">
                         <i class="fa fa-envelope text-primary mr-3"></i>
-                        info@inmomanuela.com
+                        manuelabermudezrealestate@gmail.com
                     </p>
                     
                    
                     <div class="d-flex w-100 footer-social">
-                        <a class="btn btn-outline-light btn-social mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-light btn-social mr-2" href="#"><i class="fab fa-instagram"></i></a>
-                        <a class="btn btn-outline-light btn-social mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a class="btn btn-outline-light btn-social" href="#"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-outline-light btn-social mr-2" href="https://www.instagram.com/manubermu_realtor?igsh=dXUxcTJ4bXZua2w0"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -294,34 +269,7 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-    <script type="module">
-        import { verificarEstadoSesion, obtenerUsuarioActual } from './js/auth.js';
-
-        const loginBtn = document.querySelector('.btn-cta');
-
-        verificarEstadoSesion(async (user) => {
-            if (user) {
-                // Usuario logueado: cambiar a "Administrar Cuenta"
-                loginBtn.textContent = 'Administrar Cuenta';
-                loginBtn.onclick = async (e) => {
-                    e.preventDefault();
-                    const userData = await obtenerUsuarioActual();
-                    if (userData && userData.rol === 'Comprador') {
-                        window.location.href = 'buyer.html';
-                    } else if (userData && userData.rol === 'Vendedor') {
-                        window.location.href = 'seller.html';
-                    } else {
-                        window.location.href = 'profiles.html'; // fallback
-                    }
-                };
-            } else {
-                // No logueado: mantener "Inicia sesión"
-                loginBtn.textContent = 'Inicia sesión';
-                loginBtn.href = 'profiles.html';
-                loginBtn.onclick = null; // remove onclick
-            }
-        });
-    </script>
+    <script src="js/auth.js"></script>
 </body>
 
 </html>
