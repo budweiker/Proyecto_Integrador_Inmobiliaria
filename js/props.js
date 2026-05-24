@@ -1,33 +1,47 @@
-// Módulo para CRUD de propiedades en Firestore
-import { getFirestore, collection, addDoc, updateDoc, deleteDoc, getDocs, doc, query, where, getDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
-import { getStorage, ref as storageRef, uploadBytes, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-storage.js";
+/*
+  ============================================================
+  SISTEMA DE PROPIEDADES — localStorage + Firestore
+  ============================================================
 
-const db = getFirestore();
-const storage = getStorage();
+  Las propiedades se guardan en localStorage (rápido para el
+  panel vendedor) y también en Firestore (para el catálogo
+  público en home.html).
 
-function comprimirImagen(file, maxWidth = 1200, quality = 0.8) {
-    return new Promise((resolve, reject) => {
-        if (typeof file === 'string' && file.startsWith('data:')) {
-            const img = new Image();
-            img.onload = () => {
-                try {
-                    const canvas = document.createElement('canvas');
-                    const scale = Math.min(maxWidth / img.width, 1);
-                    canvas.width = img.width * scale;
-                    canvas.height = img.height * scale;
-                    const ctx = canvas.getContext('2d');
-                    if (!ctx) return resolve(file);
-                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                    canvas.toBlob(blob => resolve(blob || file), 'image/jpeg', quality);
-                } catch (e) {
-                    resolve(file);
-                }
-            };
-            img.onerror = () => resolve(file);
-            img.src = file;
-            return;
-        }
-        if (!file || !file.type.startsWith('image/')) return resolve(file);
+  Las imágenes se almacenan como Base64 directamente en
+  Firestore (campo imageBase64) porque Storage no está
+  activado. Límite por documento: 1MB.
+
+  Cuando Storage esté activado:
+  1. Reemplazar imageBase64 por subida a Storage
+  2. Guardar la URL de descarga en imageUrl
+  3. Eliminar imageBase64 de los documentos
+  ============================================================
+*/
+
+import { collection, doc, setDoc, updateDoc, deleteDoc, getDocs, getDoc, query, where }
+  from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+import { db } from './auth.js';
+
+// ===== HELPERS INTERNOS =====
+
+const generarId = () => `prop_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+
+const obtenerPropiedades = (ownerId) => {
+    try {
+        const raw = localStorage.getItem(`propiedades_${ownerId}`);
+        return raw ? JSON.parse(raw) : [];
+    } catch {
+        return [];
+    }
+};
+
+const guardarPropiedades = (ownerId, props) => {
+    localStorage.setItem(`propiedades_${ownerId}`, JSON.stringify(props));
+};
+
+function comprimirBase64(file, maxWidth = 800, quality = 0.7) {
+    return new Promise((resolve) => {
+        if (!file || !file.type.startsWith('image/')) return resolve(null);
         const reader = new FileReader();
         reader.onload = (e) => {
             const img = new Image();
@@ -38,114 +52,231 @@ function comprimirImagen(file, maxWidth = 1200, quality = 0.8) {
                     canvas.width = img.width * scale;
                     canvas.height = img.height * scale;
                     const ctx = canvas.getContext('2d');
-                    if (!ctx) return resolve(file);
+                    if (!ctx) return resolve(e.target.result);
                     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                    canvas.toBlob(blob => resolve(blob || file), 'image/jpeg', quality);
-                } catch (e) {
-                    resolve(file);
+                    canvas.toBlob((blob) => {
+                        if (!blob) return resolve(e.target.result);
+                        const fr = new FileReader();
+                        fr.onload = () => resolve(fr.result);
+                        fr.readAsDataURL(blob);
+                    }, 'image/jpeg', quality);
+                } catch {
+                    resolve(e.target.result);
                 }
             };
-            img.onerror = () => resolve(file);
+            img.onerror = () => resolve(null);
             img.src = e.target.result;
         };
-        reader.onerror = () => resolve(file);
+        reader.onerror = () => resolve(null);
         reader.readAsDataURL(file);
     });
 }
 
-async function uploadImage(ownerId, file) {
-    if (!file) return null;
-    console.log('[props] comprimiendo imagen...', file.name, (file.size / 1024).toFixed(1) + 'KB');
-    const compressed = await comprimirImagen(file);
-    const compressedSize = compressed.size ? (compressed.size / 1024).toFixed(1) + 'KB' : 'N/A';
-    console.log('[props] imagen comprimida:', compressedSize);
-    const timestamp = Date.now();
-    const safeName = (file.name || 'imagen.jpg').replace(/[^a-zA-Z0-9.-_]/g, '_');
-    const path = `propiedades/${ownerId}/${timestamp}_${safeName}`;
-    const ref = storageRef(storage, path);
-    let toUpload = compressed;
-    if (typeof compressed === 'string' && compressed.startsWith('data:')) {
-        const res = await fetch(compressed);
-        toUpload = await res.blob();
+const guardarImagen = async (propId, file) => {
+    if (!file) return { marker: null, base64: null };
+    console.log('[props] comprimiendo imagen...', file.name || 'imagen', (file.size / 1024).toFixed(1) + 'KB');
+    const base64 = await comprimirBase64(file);
+    if (!base64) return { marker: null, base64: null };
+    const kb = ((base64.length * 3 / 4) / 1024).toFixed(1);
+    console.log('[props] imagen comprimida:', kb + 'KB');
+    try {
+        localStorage.setItem(`prop_img_${propId}`, base64);
+        console.log(`[props] imagen guardada en localStorage: prop_img_${propId}`);
+    } catch (e) {
+        console.warn('[props] localStorage lleno, imagen solo en Firestore');
     }
-    console.log('[props] subiendo a Storage...');
-    await uploadBytes(ref, toUpload);
-    console.log('[props] subida completa, obteniendo URL...');
-    const url = await getDownloadURL(ref);
-    console.log('[props] URL obtenida:', url ? 'OK' : 'sin URL');
-    return url;
-}
+    return { marker: `__local__${propId}`, base64 };
+};
+
+const resolverImagenUrl = (imageUrl, imageBase64) => {
+    if (imageUrl && imageUrl.startsWith('__local__')) {
+        const propId = imageUrl.replace('__local__', '');
+        const local = localStorage.getItem(`prop_img_${propId}`);
+        if (local) return local;
+    }
+    if (imageBase64) return imageBase64;
+    if (imageUrl && !imageUrl.startsWith('__local__')) return imageUrl;
+    return 'img/placeholder.png';
+};
+
+// ===== FIRESTORE HELPERS =====
+
+const guardarEnFirestore = async (data) => {
+    try {
+        await setDoc(doc(db, 'propiedades', data.id), data);
+        console.log('[props] guardado en Firestore:', data.id);
+    } catch (e) {
+        console.warn('[props] error al guardar en Firestore:', e.message);
+    }
+};
+
+const actualizarEnFirestore = async (id, data) => {
+    try {
+        await updateDoc(doc(db, 'propiedades', id), data);
+        console.log('[props] actualizado en Firestore:', id);
+    } catch (e) {
+        console.warn('[props] error al actualizar en Firestore:', e.message);
+    }
+};
+
+const eliminarDeFirestore = async (id) => {
+    try {
+        await deleteDoc(doc(db, 'propiedades', id));
+        console.log('[props] eliminado de Firestore:', id);
+    } catch (e) {
+        console.warn('[props] error al eliminar de Firestore:', e.message);
+    }
+};
+
+// ===== FUNCIONES EXPORTADAS =====
 
 export const addProperty = async (ownerId, property) => {
-    const data = { ownerId, createdAt: new Date() };
-    try {
-        if (property.file) {
-            console.log('[props] subiendo imagen...');
-            const url = await uploadImage(ownerId, property.file);
-            if (url) data.imageUrl = url;
-            console.log('[props] imagen subida:', url ? 'OK' : 'sin url');
-        } else if (property.image) {
-            const url = await uploadImage(ownerId, property.image);
-            if (url) data.imageUrl = url;
-        }
-    } catch (e) {
-        console.error('[props] error al subir imagen:', e);
-        throw new Error('Error al subir la imagen: ' + (e.message || 'desconocido'));
-    }
-    data.title = property.title || property.titulo || '';
-    data.location = property.location || property.ubicacion || '';
-    data.price = property.price || property.precio || 0;
-    data.type = property.type || property.tipo || '';
-    data.description = property.description || property.descripcion || '';
+    const id = generarId();
+    let imageUrl = null;
+    let imageBase64 = null;
 
-    console.log('[props] guardando en Firestore...', data);
-    const ref = await addDoc(collection(db, 'propiedades'), data);
-    console.log('[props] documento creado:', ref.id);
-    return ref.id;
+    if (property.file) {
+        const result = await guardarImagen(id, property.file);
+        imageUrl = result.marker;
+        imageBase64 = result.base64;
+    } else if (property.image) {
+        const result = await guardarImagen(id, property.image);
+        imageUrl = result.marker;
+        imageBase64 = result.base64;
+    }
+
+    const nuevaPropiedad = {
+        id,
+        ownerId,
+        title: property.title || property.titulo || '',
+        location: property.location || property.ubicacion || '',
+        price: Number(property.price || property.precio || 0),
+        type: property.type || property.tipo || '',
+        description: property.description || property.descripcion || '',
+        imageUrl,
+        imageBase64,
+        createdAt: new Date().toISOString(),
+        fechaRegistro: new Date().toISOString().split('T')[0]
+    };
+
+    const props = obtenerPropiedades(ownerId);
+    props.push(nuevaPropiedad);
+    guardarPropiedades(ownerId, props);
+
+    await guardarEnFirestore(nuevaPropiedad);
+
+    console.log('[props] propiedad creada:', id);
+    return id;
 };
 
 export const updateProperty = async (id, updates) => {
-    const docRef = doc(db, 'propiedades', id);
-    const payload = { updatedAt: new Date() };
-    if (updates.file) {
-        const url = await uploadImage(updates.ownerId || 'unknown', updates.file);
-        if (url) payload.imageUrl = url;
-    } else if (updates.image) {
-        const url = await uploadImage(updates.ownerId || 'unknown', updates.image);
-        if (url) payload.imageUrl = url;
-    }
-    if (updates.title !== undefined) payload.title = updates.title;
-    if (updates.location !== undefined) payload.location = updates.location;
-    if (updates.price !== undefined) payload.price = updates.price;
-    if (updates.type !== undefined) payload.type = updates.type;
-    if (updates.description !== undefined) payload.description = updates.description;
+    let ownerId = updates.ownerId;
 
-    await updateDoc(docRef, payload);
-};
-
-export const deleteProperty = async (id) => {
-    const docRef = doc(db, 'propiedades', id);
-    try {
-        const snap = await getDoc(docRef);
-        if (snap.exists()) {
-            const data = snap.data();
-            if (data && data.imageUrl) {
-                try {
-                    const imgRef = storageRef(storage, data.imageUrl);
-                    await deleteObject(imgRef);
-                } catch (err) {
-                    console.warn('No se pudo eliminar imagen en Storage:', err);
+    if (!ownerId) {
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (key && key.startsWith('propiedades_')) {
+                const arr = JSON.parse(localStorage.getItem(key) || '[]');
+                if (arr.some(p => p.id === id)) {
+                    ownerId = key.replace('propiedades_', '');
+                    break;
                 }
             }
         }
-    } catch (e) {
-        console.warn('Error leyendo documento antes de borrar:', e);
     }
-    await deleteDoc(docRef);
+
+    if (!ownerId) {
+        console.warn('[props] updateProperty: no se encontró ownerId para', id);
+        return;
+    }
+
+    const props = obtenerPropiedades(ownerId);
+    const idx = props.findIndex(p => p.id === id);
+    if (idx === -1) {
+        console.warn('[props] updateProperty: propiedad no encontrada', id);
+        return;
+    }
+
+    const fbUpdates = {};
+
+    if (updates.file) {
+        localStorage.removeItem(`prop_img_${id}`);
+        const result = await guardarImagen(id, updates.file);
+        if (result.marker) {
+            props[idx].imageUrl = result.marker;
+            props[idx].imageBase64 = result.base64;
+            fbUpdates.imageUrl = result.marker;
+            fbUpdates.imageBase64 = result.base64;
+        }
+    } else if (updates.image) {
+        localStorage.removeItem(`prop_img_${id}`);
+        const result = await guardarImagen(id, updates.image);
+        if (result.marker) {
+            props[idx].imageUrl = result.marker;
+            props[idx].imageBase64 = result.base64;
+            fbUpdates.imageUrl = result.marker;
+            fbUpdates.imageBase64 = result.base64;
+        }
+    }
+
+    if (updates.title !== undefined) { props[idx].title = updates.title; fbUpdates.title = updates.title; }
+    if (updates.location !== undefined) { props[idx].location = updates.location; fbUpdates.location = updates.location; }
+    if (updates.price !== undefined) { props[idx].price = Number(updates.price); fbUpdates.price = Number(updates.price); }
+    if (updates.type !== undefined) { props[idx].type = updates.type; fbUpdates.type = updates.type; }
+    if (updates.description !== undefined) { props[idx].description = updates.description; fbUpdates.description = updates.description; }
+
+    props[idx].updatedAt = new Date().toISOString();
+    fbUpdates.updatedAt = props[idx].updatedAt;
+    guardarPropiedades(ownerId, props);
+
+    await actualizarEnFirestore(id, fbUpdates);
+    console.log('[props] propiedad actualizada:', id);
+};
+
+export const deleteProperty = async (id) => {
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key && key.startsWith('propiedades_')) {
+            const arr = JSON.parse(localStorage.getItem(key) || '[]');
+            const propIdx = arr.findIndex(p => p.id === id);
+            if (propIdx !== -1) {
+                const ownerId = key.replace('propiedades_', '');
+                arr.splice(propIdx, 1);
+                guardarPropiedades(ownerId, arr);
+                break;
+            }
+        }
+    }
+
+    localStorage.removeItem(`prop_img_${id}`);
+    await eliminarDeFirestore(id);
+    console.log('[props] propiedad eliminada:', id);
 };
 
 export const listPropertiesByUser = async (ownerId) => {
-    const q = query(collection(db, 'propiedades'), where('ownerId', '==', ownerId));
-    const snap = await getDocs(q);
-    return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    const props = obtenerPropiedades(ownerId);
+    console.log(`[props] ${props.length} props en localStorage para owner: ${ownerId}`);
+    return props.map(p => ({
+        ...p,
+        imageUrl: resolverImagenUrl(p.imageUrl, p.imageBase64)
+    }));
+};
+
+export const listAllProperties = async () => {
+    try {
+        const q = query(collection(db, 'propiedades'));
+        const snap = await getDocs(q);
+        const results = snap.docs.map(d => {
+            const data = d.data();
+            return {
+                ...data,
+                imageUrl: resolverImagenUrl(data.imageUrl, data.imageBase64)
+            };
+        });
+        console.log(`[props] ${results.length} propiedades obtenidas de Firestore`);
+        return results;
+    } catch (e) {
+        console.warn('[props] error al leer de Firestore:', e.message);
+        return [];
+    }
 };

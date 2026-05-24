@@ -155,48 +155,69 @@ function validarFormulario(form) {
 // ============================================
 function inicializarAvatarUpload() {
     const avatarCard = document.querySelector('.avatar-upload');
+    if (!avatarCard) return;
 
-    if (avatarCard) {
-        // Crear input file oculto
-        const fileInput = document.createElement('input');
-        fileInput.type = 'file';
-        fileInput.accept = 'image/*';
-        fileInput.style.display = 'none';
-        avatarCard.appendChild(fileInput);
+    let userId = null;
 
-        // Hacer clickeable el avatar
-        avatarCard.style.cursor = 'pointer';
-        avatarCard.addEventListener('click', () => fileInput.click());
-
-        // Procesar archivo seleccionado
-        fileInput.addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file && file.type.startsWith('image/')) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    // Guardar en localStorage
-                    localStorage.setItem('avatarImage', event.target.result);
-                    
-                    // Actualizar vista previa
-                    avatarCard.style.backgroundImage = `url(${event.target.result})`;
-                    avatarCard.style.backgroundSize = 'cover';
-                    avatarCard.style.backgroundPosition = 'center';
-                    
-                    mostrarToast('Foto de perfil actualizada', 'success');
-                };
-                reader.readAsDataURL(file);
-            } else {
-                mostrarToast('Por favor selecciona una imagen válida', 'error');
-            }
-        });
-
-        // Cargar avatar guardado
-        const savedAvatar = localStorage.getItem('avatarImage');
-        if (savedAvatar) {
-            avatarCard.style.backgroundImage = `url(${savedAvatar})`;
-            avatarCard.style.backgroundSize = 'cover';
+    (async () => {
+        try {
+            const m = await import('./auth.js');
+            const user = await m.obtenerUsuarioActual();
+            if (user) userId = user.id;
+        } catch (e) {
+            console.warn('[avatar] no se pudo obtener usuario:', e);
         }
-    }
+
+        if (userId) {
+            const saved = localStorage.getItem('avatarImage_' + userId);
+            if (saved) {
+                aplicarAvatar(avatarCard, saved);
+            }
+        }
+    })();
+
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = 'image/*';
+    fileInput.style.display = 'none';
+    avatarCard.appendChild(fileInput);
+
+    avatarCard.style.cursor = 'pointer';
+    avatarCard.addEventListener('click', () => fileInput.click());
+
+    fileInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (!file || !file.type.startsWith('image/')) {
+            mostrarToast('Por favor selecciona una imagen v&aacute;lida', 'error');
+            return;
+        }
+        const reader = new FileReader();
+        reader.onload = async function(event) {
+            const base64 = event.target.result;
+
+            if (userId) {
+                localStorage.setItem('avatarImage_' + userId, base64);
+                try {
+                    const m = await import('./auth.js');
+                    await m.actualizarUsuario(userId, { avatar: base64 });
+                } catch (e) {
+                    console.warn('[avatar] no se pudo guardar en Firestore:', e);
+                }
+            }
+
+            aplicarAvatar(avatarCard, base64);
+            mostrarToast('Foto de perfil actualizada', 'success');
+        };
+        reader.readAsDataURL(file);
+    });
+}
+
+function aplicarAvatar(container, base64) {
+    container.style.backgroundImage = `url(${base64})`;
+    container.style.backgroundSize = 'cover';
+    container.style.backgroundPosition = 'center';
+    const img = container.querySelector('img');
+    if (img) img.src = base64;
 }
 
 // ============================================
