@@ -129,6 +129,12 @@ export const eliminarCuentaUsuario = async () => {
     await deleteUser(user);
 };
 
+// Función para actualizar datos del usuario en Firestore
+export const actualizarUsuario = async (userId, datos) => {
+    if (!userId) throw new Error('ID de usuario requerido');
+    await updateDoc(doc(db, "usuarios", userId), datos);
+};
+
 // Función para cerrar sesión
 export const cerrarSesion = async () => {
     await signOut(auth);
