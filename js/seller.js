@@ -33,9 +33,12 @@ verificarEstadoSesion(async (user) => {
     const pn = document.getElementById('profileName');
     const pe = document.getElementById('profileEmail');
     const pa = document.getElementById('profileAvatar');
+    const wn = document.getElementById('welcomeName');
     if (currentUser) {
-        pn.textContent = currentUser.nombre || currentUser.displayName || (currentUser.email || 'Usuario');
+        const displayName = currentUser.nombre || currentUser.displayName || (currentUser.email || 'Usuario');
+        pn.textContent = displayName;
         pe.textContent = currentUser.email || '';
+        if (wn) wn.textContent = displayName.split(' ')[0];
         if (currentUser.avatar) pa.src = currentUser.avatar;
     }
     
@@ -127,6 +130,8 @@ async function refreshList() {
     filterAndRenderProps();
     const pc = document.getElementById('propCount');
     if (pc) pc.textContent = String(loadedProperties.length);
+    const st = document.getElementById('statPropCount');
+    if (st) st.textContent = String(loadedProperties.length);
 }
 
 function filterAndRenderProps() {
@@ -159,9 +164,9 @@ function renderProps(props) {
                         </span>
                     </div>
                     <h5 class="font-weight-bold text-dark mb-1 text-truncate">${escapeHtml(p.title || p.titulo || '')}</h5>
-                    <div class="small-muted mb-2 d-flex align-items-center">
-                        <i data-lucide="map-pin" class="mr-1 text-primary" size="14"></i>
-                        ${escapeHtml(p.location || p.ubicacion || '')}
+                    <div class="small-muted mb-2 d-flex align-items-center" style="gap: 8px; flex-wrap: wrap;">
+                        <span><i data-lucide="map-pin" style="width:14px;height:14px;vertical-align:middle;" class="text-primary"></i> ${escapeHtml(p.location || p.ubicacion || '')}</span>
+                        ${p.type ? `<span class="badge badge-light" style="background:#eff6ff;color:#2563eb;font-size:0.7rem;padding:2px 10px;border-radius:20px;">${escapeHtml(p.type)}</span>` : ''}
                     </div>
                     <p class="text-muted small text-clamp-3">${escapeHtml(p.description || p.descripcion || '')}</p>
                 </div>
@@ -209,6 +214,7 @@ async function onEdit(e) {
     document.getElementById('titulo').value = p.title || p.titulo || '';
     document.getElementById('ubicacion').value = p.location || p.ubicacion || '';
     document.getElementById('precio').value = p.price || p.precio || '';
+    document.getElementById('tipo').value = p.type || p.tipo || '';
     document.getElementById('descripcion').value = p.description || p.descripcion || '';
     
     // Cargar imagen en la vista previa del dropzone si existe
@@ -233,24 +239,38 @@ async function onEdit(e) {
 
 form.addEventListener('submit', async (ev) => {
     ev.preventDefault();
-    if (!currentUser) return mostrarNotificacion('Usuario no autenticado', 'error');
+    console.log('[seller] submit disparado');
+    if (!currentUser) {
+        mostrarNotificacion('Usuario no autenticado. Inicia sesión de nuevo.', 'error');
+        return;
+    }
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<i class="fa fa-spinner fa-spin mr-1"></i> Guardando...';
 
     const id = document.getElementById('propId').value || null;
     const title = document.getElementById('titulo').value.trim();
     const ubicacion = document.getElementById('ubicacion').value.trim();
-    const precio = document.getElementById('precio').value;
+    const precio = Number(document.getElementById('precio').value) || 0;
     const descripcion = document.getElementById('descripcion').value.trim();
+    const tipo = document.getElementById('tipo').value;
+
+    if (!title || !ubicacion || !precio) {
+        mostrarNotificacion('Completa título, ubicación y precio', 'error');
+        submitBtn.disabled = false;
+        submitBtn.textContent = id ? 'Guardar cambios' : 'Publicar propiedad';
+        return;
+    }
 
     const payload = {
         title,
         location: ubicacion,
         price: precio,
+        type: tipo,
         description: descripcion,
         file: selectedFile || null
     };
     payload.ownerId = currentUser.id;
+    console.log('[seller] payload preparado', { title, ubicacion, precio, tipo, file: !!selectedFile });
 
     try {
         if (id) {
@@ -266,7 +286,6 @@ form.addEventListener('submit', async (ev) => {
         resetDropZone();
         submitBtn.textContent = 'Publicar propiedad';
         
-        // Redirigir a "Mis Propiedades" para que el usuario vea el cambio
         const propsTabLink = document.querySelector('.sidebar-menu a[href="#mispropiedades"]');
         if (propsTabLink) {
             propsTabLink.click();
@@ -274,8 +293,9 @@ form.addEventListener('submit', async (ev) => {
         
         await refreshList();
     } catch (err) {
-        console.error(err);
-        mostrarNotificacion('Error al guardar la propiedad', 'error');
+        console.error('[seller] error al guardar:', err);
+        const msg = err.message || err.code || 'Error desconocido';
+        mostrarNotificacion('Error: ' + msg, 'error');
     } finally {
         submitBtn.disabled = false;
     }

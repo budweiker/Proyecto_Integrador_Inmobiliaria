@@ -65,6 +65,7 @@ function inicializarFormularios() {
     const forms = document.querySelectorAll('form');
 
     forms.forEach((form, index) => {
+        if (form.dataset.handled === 'true') return;
         const inputs = form.querySelectorAll('input, textarea, select');
 
         // Limpiar placeholders al focus

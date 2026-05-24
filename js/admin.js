@@ -100,7 +100,7 @@ const renderizarTabla = (usuarios) => {
     
     usuarios.forEach(user => {
         const row = document.createElement('tr');
-        const esActivo = user.activo !== false; // true by default if not set
+        const esActivo = user.activo !== false; 
 
         let roleClass = 'default';
         let roleText = user.rol || 'No especificado';
@@ -367,4 +367,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-});
+});
