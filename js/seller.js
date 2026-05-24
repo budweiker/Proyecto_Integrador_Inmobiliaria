@@ -1,6 +1,8 @@
 import { verificarEstadoSesion, obtenerUsuarioActual, cerrarSesion } from './auth.js';
 import { addProperty, updateProperty, deleteProperty, listPropertiesByUser } from './props.js';
 
+lucide.createIcons();
+
 const form = document.getElementById('formCasa');
 const lista = document.getElementById('listaCasas');
 const submitBtn = document.getElementById('submitPropBtn');

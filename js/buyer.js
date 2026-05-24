@@ -2,6 +2,8 @@
 // FUNCIONALIDAD PÁGINA BUYER/PERFIL
 // ============================================
 
+lucide.createIcons();
+
 document.addEventListener('DOMContentLoaded', function() {
     // Inicializar todas las funcionalidades
     inicializarMenuSidebar();

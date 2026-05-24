@@ -24,29 +24,7 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-    <style>
-        .about-card {
-            background: #ffffff;
-            border: 1px solid #eef2f6;
-            border-radius: 20px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .about-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 35px rgba(15, 23, 42, 0.08);
-        }
-        .about-highlight-card {
-            border-left: 4px solid rgba(255, 255, 255, 0.22);
-        }
-        .about-value-card {
-            border: 1px solid #e5e7eb;
-        }
-        .about-card p,
-        .about-value-card p {
-            font-size: 0.95rem;
-            line-height: 1.75;
-        }
-    </style>
+    <link href="css/about.css" rel="stylesheet">
 </head>
 
 <body>
@@ -294,34 +272,7 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-    <script type="module">
-        import { verificarEstadoSesion, obtenerUsuarioActual } from './js/auth.js';
-
-        const loginBtn = document.querySelector('.btn-cta');
-
-        verificarEstadoSesion(async (user) => {
-            if (user) {
-                // Usuario logueado: cambiar a "Administrar Cuenta"
-                loginBtn.textContent = 'Administrar Cuenta';
-                loginBtn.onclick = async (e) => {
-                    e.preventDefault();
-                    const userData = await obtenerUsuarioActual();
-                    if (userData && userData.rol === 'Comprador') {
-                        window.location.href = 'buyer.html';
-                    } else if (userData && userData.rol === 'Vendedor') {
-                        window.location.href = 'seller.html';
-                    } else {
-                        window.location.href = 'profiles.html'; // fallback
-                    }
-                };
-            } else {
-                // No logueado: mantener "Inicia sesión"
-                loginBtn.textContent = 'Inicia sesión';
-                loginBtn.href = 'profiles.html';
-                loginBtn.onclick = null; // remove onclick
-            }
-        });
-    </script>
+    <script type="module" src="js/about.js"></script>
 </body>
 
 </html>

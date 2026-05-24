@@ -43,13 +43,6 @@
     </style>
 </head>
 <body>
-    <div class="box">
-        <h1>⚙️ Setup Administrador</h1>
-        <p>Este script crea el usuario admin en Firebase Auth y Firestore.<br>
-           Abre la consola (F12 → Console) para ver los logs detallados.</p>
-        <div class="log" id="logBox">Iniciando...</div>
-        <p class="warn">⚠️ Elimina este archivo (setup.html) una vez creado el admin.</p>
-    </div>
 
     <script type="module">
         const log = (msg) => {
@@ -119,7 +112,7 @@
 
                     const snap = await getDoc(doc(db, 'usuarios', uid));
                     if (snap.exists()) {
-                        log('\n✅ YA EXISTE en Auth Y Firestore.');
+                        log('\n YA EXISTE en Auth Y Firestore.');
                         log('Rol: ' + snap.data().rol);
                         log('\nNo necesitas hacer nada más.');
                         log('Elimina setup.html y prueba el login.');
@@ -147,7 +140,7 @@
             if (e.message === 'DONE') {
                 // ya logueado arriba
             } else {
-                log('\n❌ ERROR: ' + (e.code || e.message));
+                log('\n ERROR: ' + (e.code || e.message));
                 console.error(e);
             }
         }

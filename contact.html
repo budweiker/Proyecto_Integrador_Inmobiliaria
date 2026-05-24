@@ -24,69 +24,7 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-    <style>
-        /* Estilos Premium para la Página de Contacto */
-        .contact-info-card {
-            background: #ffffff;
-            border-radius: 16px;
-            border: 1px solid #f1f5f9;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-        .contact-info-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(13, 110, 253, 0.06);
-            border-color: rgba(13, 110, 253, 0.15);
-        }
-        .contact-icon-wrap {
-            width: 55px;
-            height: 55px;
-            border-radius: 12px;
-            background: rgba(13, 110, 253, 0.06);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.4s ease;
-        }
-        .contact-info-card:hover .contact-icon-wrap {
-            background: #0d6efd;
-        }
-        .contact-info-card:hover .contact-icon-wrap i {
-            color: #ffffff !important;
-            transform: scale(1.1);
-        }
-        .contact-icon-wrap i {
-            color: #0d6efd !important;
-            font-size: 1.3rem;
-            transition: all 0.4s ease;
-        }
-        
-        .contact-form-card {
-            background: #ffffff;
-            border-radius: 20px;
-            border: 1px solid #f1f5f9;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
-            padding: 2.5rem;
-        }
-        
-        .premium-input {
-            border: 1px solid #e2e8f0;
-            border-radius: 10px;
-            padding: 15px 20px;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            background-color: #f8fafc;
-            height: auto;
-        }
-        .premium-input:focus {
-            background-color: #ffffff;
-            border-color: #0d6efd;
-            box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.1);
-            outline: none;
-        }
-    </style>
+    <link href="css/contact.css" rel="stylesheet">
 </head>
 
 <body>
@@ -154,7 +92,7 @@
                 <h3 class="display-4 text-white text-uppercase">Contacto</h3>
                 <div class="d-inline-flex text-white">
                    
-                 
+                  
                     
                 </div>
             </div>
@@ -198,8 +136,8 @@
                             </div>
                             <div>
                                 <h6 class="font-weight-bold mb-1" style="color: #0f172a;">Escríbenos</h6>
-                                <p class="mb-0 text-muted">contacto@inmomanuela.com</p>
-                                <small class="text-primary">Respuesta en menos de 24 horas</small>
+                                <p class="mb-0 text-muted">manuela@inmomanuela.com</p>
+                                <small class="text-primary">Respuesta en menos de 2 horas</small>
                             </div>
                         </div>
                         
@@ -210,8 +148,8 @@
                             </div>
                             <div>
                                 <h6 class="font-weight-bold mb-1" style="color: #0f172a;">Visítanos</h6>
-                                <p class="mb-0 text-muted">Calle Principal 123, Medellín, Colombia</p>
-                                <small class="text-primary">Oficinas Corporativas</small>
+                                <p class="mb-0 text-muted">Sabaneta..?</p>
+                                <small class="text-primary">casa de manuela?</small>
                             </div>
                         </div>
 
@@ -222,8 +160,7 @@
                             </div>
                             <div>
                                 <h6 class="font-weight-bold mb-1" style="color: #0f172a;">Horarios de Atención</h6>
-                                <p class="mb-0 text-muted">Lunes a Viernes: 8:00 AM - 6:00 PM</p>
-                                <p class="mb-0 text-muted">Sábados: 9:00 AM - 1:00 PM</p>
+                                <p class="mb-0 text-muted">24/7 via WhatsApp</p>
                             </div>
                         </div>
 
@@ -360,34 +297,6 @@
 
     <!-- Contact Javascript File -->
     <script type="module" src="js/contact.js"></script>
-    <script type="module">
-        import { verificarEstadoSesion, obtenerUsuarioActual } from './js/auth.js';
-
-        const loginBtn = document.querySelector('.btn-cta');
-
-        verificarEstadoSesion(async (user) => {
-            if (user) {
-                // Usuario logueado: cambiar a "Administrar Cuenta"
-                loginBtn.textContent = 'Administrar Cuenta';
-                loginBtn.onclick = async (e) => {
-                    e.preventDefault();
-                    const userData = await obtenerUsuarioActual();
-                    if (userData && userData.rol === 'Comprador') {
-                        window.location.href = 'buyer.html';
-                    } else if (userData && userData.rol === 'Vendedor') {
-                        window.location.href = 'seller.html';
-                    } else {
-                        window.location.href = 'profiles.html'; // fallback
-                    }
-                };
-            } else {
-                // No logueado: mantener "Inicia sesión"
-                loginBtn.textContent = 'Inicia sesión';
-                loginBtn.href = 'profiles.html';
-                loginBtn.onclick = null; // remove onclick
-            }
-        });
-    </script>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
