@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Setup Admin — Solo usar una vez</title>
+    <style>
+        body {
+            font-family: monospace;
+            background: #0f172a;
+            color: #94a3b8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 24px;
+            box-sizing: border-box;
+        }
+        .box {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 32px 40px;
+            max-width: 520px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 { color: #f1f5f9; font-size: 1.2rem; margin: 0 0 8px; }
+        p  { font-size: 0.85rem; line-height: 1.7; margin: 0 0 16px; }
+        .log {
+            background: #0f172a;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: left;
+            font-size: 0.8rem;
+            min-height: 80px;
+            color: #38bdf8;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+        .warn { color: #f59e0b; margin-top: 16px; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+
+    <script type="module">
+        const log = (msg) => {
+            const box = document.getElementById('logBox');
+            box.textContent += '\n' + msg;
+            console.log(msg);
+        };
+
+        import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import {
+            getAuth,
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword,
+            signOut
+        } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+        import {
+            getFirestore,
+            doc,
+            setDoc,
+            getDoc
+        } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyC_R9dW12aW4-1-FsOeuwXmKOqccWGl7M8",
+            authDomain: "registrologininmobiliaria.firebaseapp.com",
+            projectId: "registrologininmobiliaria",
+            storageBucket: "registrologininmobiliaria.firebasestorage.app",
+            messagingSenderId: "19537440445",
+            appId: "1:19537440445:web:632de5e06471d8dfe1fd14"
+        };
+
+        const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+        const auth = getAuth(app);
+        const db   = getFirestore(app);
+
+        const ADMIN_EMAIL = 'lajuveeselpapadelinter@gmail.com';
+        const ADMIN_PASS  = 'me_gustan_los_salchicones';
+
+        const adminData = {
+            nombre: 'Administrador Principal',
+            cedula: '0000000000',
+            fechaNacimiento: '1990-01-01',
+            email: ADMIN_EMAIL,
+            rol: 'Admin',
+            activo: true,
+            fechaRegistro: new Date().toISOString().split('T')[0]
+        };
+
+        try {
+            log('1. Cerrando sesión activa...');
+            await signOut(auth);
+            log('   ✓ Sesión cerrada.');
+
+            let uid = null;
+
+            try {
+                log('2. Creando usuario en Firebase Auth...');
+                const cred = await createUserWithEmailAndPassword(auth, ADMIN_EMAIL, ADMIN_PASS);
+                uid = cred.user.uid;
+                log('   ✓ Usuario Auth creado. UID: ' + uid);
+            } catch (authErr) {
+                if (authErr.code === 'auth/email-already-in-use') {
+                    log('   ! Email ya existe en Auth. Obteniendo UID...');
+                    const existCred = await signInWithEmailAndPassword(auth, ADMIN_EMAIL, ADMIN_PASS);
+                    uid = existCred.user.uid;
+                    log('   ✓ UID obtenido: ' + uid);
+
+                    const snap = await getDoc(doc(db, 'usuarios', uid));
+                    if (snap.exists()) {
+                        log('\n YA EXISTE en Auth Y Firestore.');
+                        log('Rol: ' + snap.data().rol);
+                        log('\nNo necesitas hacer nada más.');
+                        log('Elimina setup.html y prueba el login.');
+                        throw new Error('DONE');
+                    }
+                    log('   ! No existe en Firestore. Creando documento...');
+                } else {
+                    throw authErr;
+                }
+            }
+
+            log('3. Guardando documento en Firestore...');
+            await setDoc(doc(db, 'usuarios', uid), adminData);
+            log('   ✓ Documento guardado.');
+
+            log('\n ADMIN CREADO EXITOSAMENTE');
+            log('Email: ' + ADMIN_EMAIL);
+            log('UID:   ' + uid);
+            log('\nPróximos pasos:');
+            log('  1. Elimina setup.html del proyecto');
+            log('  2. Elimina el script de createAdmin.js en admin.html');
+            log('  3. Inicia sesión con el email y contraseña');
+
+        } catch (e) {
+            if (e.message === 'DONE') {
+                // ya logueado arriba
+            } else {
+                log('\n ERROR: ' + (e.code || e.message));
+                console.error(e);
+            }
+        }
+    </script>
+</body>
+</html>
