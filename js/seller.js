@@ -1,7 +1,7 @@
-import { verificarEstadoSesion, obtenerUsuarioActual, cerrarSesion } from './auth.js';
+import { verificarEstadoSesion, obtenerUsuarioActual, actualizarUsuario, cerrarSesion } from './auth.js';
 import { addProperty, updateProperty, deleteProperty, listPropertiesByUser } from './props.js';
 
-lucide.createIcons();
+try { lucide.createIcons(); } catch (e) { console.warn('[seller] lucide no disponible'); }
 
 const form = document.getElementById('formCasa');
 const lista = document.getElementById('listaCasas');
@@ -40,6 +40,16 @@ verificarEstadoSesion(async (user) => {
         pe.textContent = currentUser.email || '';
         if (wn) wn.textContent = displayName.split(' ')[0];
         if (currentUser.avatar) pa.src = currentUser.avatar;
+        
+        // Pre-llenar campos del perfil
+        const inpNombre = document.getElementById('perNombre');
+        const inpTelefono = document.getElementById('perTelefono');
+        const inpEmail = document.getElementById('perEmail');
+        const inpDireccion = document.getElementById('perDireccion');
+        if (inpNombre) inpNombre.value = currentUser.nombre || '';
+        if (inpTelefono) inpTelefono.value = currentUser.telefono || '';
+        if (inpEmail) inpEmail.value = currentUser.email || '';
+        if (inpDireccion) inpDireccion.value = currentUser.direccion || '';
     }
     
     const logout = document.getElementById('logoutBtn');
@@ -237,11 +247,14 @@ async function onEdit(e) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-form.addEventListener('submit', async (ev) => {
-    ev.preventDefault();
-    console.log('[seller] submit disparado');
+async function publicarPropiedad() {
+    console.log('[seller] publicarPropiedad iniciado');
     if (!currentUser) {
         mostrarNotificacion('Usuario no autenticado. Inicia sesión de nuevo.', 'error');
+        return;
+    }
+    if (!form) {
+        mostrarNotificacion('Error: formulario no encontrado', 'error');
         return;
     }
     submitBtn.disabled = true;
@@ -299,7 +312,22 @@ form.addEventListener('submit', async (ev) => {
     } finally {
         submitBtn.disabled = false;
     }
-});
+}
+
+// Doble enganche: submit del formulario + click directo por si alguno falla
+if (form) {
+    form.addEventListener('submit', (ev) => {
+        ev.preventDefault();
+        publicarPropiedad();
+    });
+}
+if (submitBtn) {
+    submitBtn.addEventListener('click', (ev) => {
+        // Evitar doble disparo si el submit ya se encargó
+        if (ev.defaultPrevented) return;
+        publicarPropiedad();
+    });
+}
 
 // Función auxiliar para notificaciones rápidas
 function mostrarNotificacion(mensaje, tipo) {
@@ -309,3 +337,40 @@ function mostrarNotificacion(mensaje, tipo) {
         alert(`${tipo.toUpperCase()}: ${mensaje}`);
     }
 }
+
+// ============================================
+// GUARDADO INDIVIDUAL DE CAMPOS DEL PERFIL
+// ============================================
+document.querySelectorAll('.btn-save-field').forEach(btn => {
+    btn.addEventListener('click', async () => {
+        if (!currentUser) {
+            mostrarNotificacion('Usuario no autenticado', 'error');
+            return;
+        }
+        const field = btn.dataset.field;
+        const inputId = { nombre: 'perNombre', telefono: 'perTelefono', direccion: 'perDireccion' }[field];
+        const input = document.getElementById(inputId);
+        if (!input) return;
+
+        const valor = input.value.trim();
+        if (!valor && field === 'nombre') {
+            mostrarNotificacion('El nombre no puede estar vacío', 'error');
+            return;
+        }
+
+        btn.disabled = true;
+        btn.textContent = 'Guardando...';
+
+        try {
+            await actualizarUsuario(currentUser.id, { [field]: valor });
+            currentUser[field] = valor;
+            mostrarNotificacion(`${field === 'nombre' ? 'Nombre' : field === 'telefono' ? 'Teléfono' : 'Dirección'} actualizado`, 'success');
+        } catch (err) {
+            console.error('[seller] error al actualizar campo:', err);
+            mostrarNotificacion('Error al guardar: ' + (err.message || 'desconocido'), 'error');
+        } finally {
+            btn.disabled = false;
+            btn.textContent = 'Guardar';
+        }
+    });
+});

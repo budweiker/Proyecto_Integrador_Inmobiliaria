@@ -101,42 +101,56 @@
                     <i data-lucide="user"></i>
                     <h2>Informaci&oacute;n Personal</h2>
                 </div>
-                <p class="section-subtitle">Actualiza tus datos de contacto</p>
+                <p class="section-subtitle">Actualiza tus datos de contacto &mdash; cada campo se guarda por separado</p>
                 <hr class="section-divider">
 
                 <div class="form-card-inner">
-                    <form id="personal-form">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label class="form-label">Nombre Completo</label>
-                                <div class="input-with-icon">
+                    <form id="personal-form" data-handled="true">
+
+                        <div class="field-group">
+                            <label class="form-label">Nombre Completo</label>
+                            <div class="field-row">
+                                <div class="input-with-icon flex-grow-1">
                                     <i data-lucide="user" class="input-icon" size="18"></i>
-                                    <input type="text" class="form-input" name="nombre" placeholder="Nombre Completo" required>
+                                    <input type="text" id="perNombre" class="form-input" placeholder="Nombre Completo">
                                 </div>
+                                <button type="button" class="btn-save-field" data-field="nombre">Guardar</button>
                             </div>
-                            <div class="form-group">
-                                <label class="form-label">Tel&eacute;fono</label>
-                                <div class="input-with-icon">
+                        </div>
+
+                        <div class="field-group">
+                            <label class="form-label">Tel&eacute;fono <span class="field-optional">(opcional)</span></label>
+                            <div class="field-row">
+                                <div class="input-with-icon flex-grow-1">
                                     <i data-lucide="phone" class="input-icon" size="18"></i>
-                                    <input type="tel" class="form-input" name="telefono" placeholder="Tel&eacute;fono" required>
+                                    <input type="tel" id="perTelefono" class="form-input" placeholder="Ej: +57 300 123 4567">
                                 </div>
+                                <button type="button" class="btn-save-field" data-field="telefono">Guardar</button>
                             </div>
                         </div>
-                        <div class="form-group">
+
+                        <div class="field-group">
                             <label class="form-label">Correo Electr&oacute;nico</label>
-                            <div class="input-with-icon">
-                                <i data-lucide="mail" class="input-icon" size="18"></i>
-                                <input type="email" class="form-input" name="email" placeholder="Correo Electr&oacute;nico" required>
+                            <div class="field-row">
+                                <div class="input-with-icon flex-grow-1">
+                                    <i data-lucide="mail" class="input-icon" size="18"></i>
+                                    <input type="email" id="perEmail" class="form-input" placeholder="Correo Electr&oacute;nico" readonly style="background:#f8fafc;cursor:not-allowed;">
+                                </div>
+                                <span class="field-readonly-tag">Vinculado a la cuenta</span>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="form-label">Direcci&oacute;n de Contacto</label>
-                            <div class="input-with-icon">
-                                <i data-lucide="map-pin" class="input-icon" size="18"></i>
-                                <textarea class="form-input" name="direccion" placeholder="Direcci&oacute;n de Contacto"></textarea>
+
+                        <div class="field-group">
+                            <label class="form-label">Agregar direcci&oacute;n de contacto</label>
+                            <div class="field-row">
+                                <div class="input-with-icon flex-grow-1">
+                                    <i data-lucide="map-pin" class="input-icon" size="18"></i>
+                                    <input type="text" id="perDireccion" class="form-input" placeholder="Ej: Calle 123 #45-67, Medell&iacute;n">
+                                </div>
+                                <button type="button" class="btn-save-field" data-field="direccion">Guardar</button>
                             </div>
                         </div>
-                        <button type="submit" class="btn-primary">Actualizar Informaci&oacute;n</button>
+
                     </form>
                 </div>
             </div>

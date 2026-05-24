@@ -86,6 +86,10 @@ a { text-decoration: none; }
 .profile-card {
   text-align: center;
   padding-bottom: 16px;
+  transition: transform 0.3s ease;
+}
+.profile-card:hover {
+  transform: translateY(-2px);
 }
 .profile-avatar-wrap {
   display: flex;
@@ -188,18 +192,23 @@ a { text-decoration: none; }
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
   font-size: 0.9rem;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
   text-decoration: none;
+  position: relative;
 }
 .sidebar-menu .menu-item svg {
   width: 18px;
   height: 18px;
   flex-shrink: 0;
-  transition: color 0.2s;
+  transition: all 0.25s ease;
 }
 .sidebar-menu .menu-item:hover {
   background: #f1f5f9;
   color: #2563eb;
+  transform: translateX(4px);
+}
+.sidebar-menu .menu-item:hover svg {
+  transform: scale(1.1);
 }
 .sidebar-menu .menu-item.active {
   background: #eff6ff;
@@ -257,6 +266,71 @@ a { text-decoration: none; }
   border-radius: 16px;
   padding: 28px 32px;
   border: 1px solid #e2e8f0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.form-card-inner:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+  border-color: #d1d9e6;
+}
+
+/* Field groups (individual save) */
+.field-group {
+  margin-bottom: 18px;
+}
+.field-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.field-row .flex-grow-1 {
+  flex: 1;
+}
+.btn-save-field {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.btn-save-field:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+.btn-save-field:active {
+  transform: scale(0.97);
+}
+.btn-save-field:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+  transform: none;
+}
+.field-optional {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+.field-readonly-tag {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.75rem;
+  color: #64748b;
+  background: #f1f5f9;
+  padding: 6px 14px;
+  border-radius: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+@media (max-width: 576px) {
+  .field-row { flex-direction: column; align-items: stretch; }
+  .btn-save-field { width: 100%; text-align: center; }
 }
 
 /* Welcome banner */
@@ -271,6 +345,11 @@ a { text-decoration: none; }
   justify-content: space-between;
   gap: 20px;
   flex-wrap: wrap;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.welcome-banner:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(37, 99, 235, 0.20);
 }
 .welcome-banner h2 {
   font-family: 'Poppins', sans-serif;
@@ -369,17 +448,24 @@ select.form-input {
   cursor: pointer;
 }
 .btn-primary {
-  width: 100%;
+  font-family: 'Poppins', sans-serif;
   background: #2563eb;
   color: #ffffff;
   border: none;
   border-radius: 10px;
-  padding: 13px;
-  font-family: 'Poppins', sans-serif;
+  padding: 11px 26px;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   cursor: pointer;
-  transition: background 0.2s, transform 0.2s;
+  transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+.btn-primary:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.30);
+}
+.btn-primary:active {
+  transform: scale(0.97);
 }
 .btn-primary:hover {
   background: #1d4ed8;
@@ -510,16 +596,31 @@ select.form-input {
   background: #ffffff;
   border-radius: 14px;
   border: 1px solid #e2e8f0;
-  overflow: hidden;
-  transition: all 0.25s ease;
+  position: relative;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 16px;
 }
+.card-clean::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #2563eb, #1d4ed8);
+  border-radius: 14px 14px 0 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
 .card-clean:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  transform: translateY(-8px);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.10);
+  border-color: #bfdbfe;
+}
+.card-clean:hover::before {
+  transform: scaleX(1);
 }
 .prop-img {
   width: 100%;
