@@ -283,7 +283,7 @@ async function publicarPropiedad() {
         file: selectedFile || null
     };
     payload.ownerId = currentUser.id;
-    console.log('[seller] payload preparado', { title, ubicacion, precio, tipo, file: !!selectedFile });
+    console.log('[seller] payload preparado', { title, ubicacion, precio, tipo, file: !!selectedFile, ownerId: currentUser.id });
 
     try {
         if (id) {
@@ -298,20 +298,26 @@ async function publicarPropiedad() {
         document.getElementById('propId').value = '';
         resetDropZone();
         submitBtn.textContent = 'Publicar propiedad';
-        
-        const propsTabLink = document.querySelector('.sidebar-menu a[href="#mispropiedades"]');
-        if (propsTabLink) {
-            propsTabLink.click();
-        }
-        
-        await refreshList();
     } catch (err) {
         console.error('[seller] error al guardar:', err);
         const msg = err.message || err.code || 'Error desconocido';
         mostrarNotificacion('Error: ' + msg, 'error');
-    } finally {
         submitBtn.disabled = false;
+        return;
     }
+    
+    const propsTabLink = document.querySelector('.sidebar-menu a[href="#mispropiedades"]');
+    if (propsTabLink) {
+        propsTabLink.click();
+    }
+    
+    try {
+        await refreshList();
+    } catch (e) {
+        console.error('[seller] error al refrescar lista:', e);
+    }
+    
+    submitBtn.disabled = false;
 }
 
 // Doble enganche: submit del formulario + click directo por si alguno falla

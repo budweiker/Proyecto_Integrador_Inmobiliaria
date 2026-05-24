@@ -50,7 +50,7 @@ $(document).ready(function() {
     }
 
     // 3. Manejo funcional del Formulario (Búsqueda en Vivo)
-    function filterProperties() {
+    window.filterProperties = function() {
         var ubicacion = $('#ubicacionInput').val().toLowerCase().trim();
         var tipo = $('#tipo').val();
         var hab = $('#habitaciones').val();
@@ -60,10 +60,10 @@ $(document).ready(function() {
 
         $('.property-item').each(function() {
             var item = $(this);
-            var itemUbicacion = item.data('ubicacion').toString().toLowerCase();
-            var itemTipo = item.data('tipo').toString();
-            var itemHabitaciones = parseInt(item.data('habitaciones'));
-            var itemPrecio = parseInt(item.data('precio'));
+            var itemUbicacion = String(item.attr('data-ubicacion') || '').toLowerCase();
+            var itemTipo = String(item.attr('data-tipo') || '');
+            var itemHabitaciones = parseInt(item.attr('data-habitaciones')) || 0;
+            var itemPrecio = parseInt(item.attr('data-precio')) || 0;
 
             var isMatch = true;
 
@@ -104,7 +104,8 @@ $(document).ready(function() {
         } else {
             $feedback.addClass('alert alert-info d-block').html('No encontramos propiedades. Intenta cambiar los filtros.');
         }
-    }
+    };
+    var filterProperties = window.filterProperties;
 
     // Escuchar eventos de teclado y cambios en el form
     $('#ubicacionInput').on('input', filterProperties);
