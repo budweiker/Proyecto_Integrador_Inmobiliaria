@@ -762,44 +762,6 @@ select.form-input {
 .seller-toast-success { background: #22c55e; color: white; }
 .seller-toast-error { background: #ef4444; color: white; }
 
-/* === FOOTER === */
-.seller-footer {
-  background: #0f172a;
-  color: #94a3b8;
-  padding: 40px 32px 20px;
-  font-family: 'Poppins', sans-serif;
-}
-.seller-footer .footer-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 32px;
-}
-.seller-footer h5 {
-  color: #ffffff;
-  font-weight: 600;
-  font-size: 0.95rem;
-  margin: 0 0 16px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-.seller-footer a {
-  color: #94a3b8;
-  font-size: 0.85rem;
-  display: block;
-  margin-bottom: 10px;
-  transition: color 0.2s;
-}
-.seller-footer a:hover { color: #ffffff; }
-.seller-footer .footer-bottom {
-  border-top: 1px solid #1e293b;
-  margin-top: 32px;
-  padding-top: 20px;
-  text-align: center;
-  font-size: 0.8rem;
-}
-
 /* === ANIMATION === */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
@@ -849,9 +811,6 @@ select.form-input {
   .form-card-inner { padding: 20px; }
   .welcome-banner { flex-direction: column; text-align: center; padding: 24px 20px; }
   .welcome-banner-stats { gap: 16px; flex-wrap: wrap; justify-content: center; }
-  .seller-footer .footer-inner {
-    grid-template-columns: 1fr 1fr;
-  }
 }
 
 @media (max-width: 576px) {
@@ -860,7 +819,6 @@ select.form-input {
   .section-header h2 { font-size: 1.2rem; }
   .seller-navbar { padding: 0 16px; }
   .seller-navbar .navbar-brand h1 { font-size: 0.9rem; }
-  .seller-footer .footer-inner { grid-template-columns: 1fr; }
   .props-toolbar { flex-direction: column; align-items: stretch; }
   .search-wrapper { min-width: 0; }
 }
