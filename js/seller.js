@@ -239,7 +239,11 @@ async function onEdit(e) {
 
 form.addEventListener('submit', async (ev) => {
     ev.preventDefault();
-    if (!currentUser) return mostrarNotificacion('Usuario no autenticado', 'error');
+    console.log('[seller] submit disparado');
+    if (!currentUser) {
+        mostrarNotificacion('Usuario no autenticado. Inicia sesión de nuevo.', 'error');
+        return;
+    }
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<i class="fa fa-spinner fa-spin mr-1"></i> Guardando...';
 
@@ -250,6 +254,13 @@ form.addEventListener('submit', async (ev) => {
     const descripcion = document.getElementById('descripcion').value.trim();
     const tipo = document.getElementById('tipo').value;
 
+    if (!title || !ubicacion || !precio) {
+        mostrarNotificacion('Completa título, ubicación y precio', 'error');
+        submitBtn.disabled = false;
+        submitBtn.textContent = id ? 'Guardar cambios' : 'Publicar propiedad';
+        return;
+    }
+
     const payload = {
         title,
         location: ubicacion,
@@ -259,6 +270,7 @@ form.addEventListener('submit', async (ev) => {
         file: selectedFile || null
     };
     payload.ownerId = currentUser.id;
+    console.log('[seller] payload preparado', { title, ubicacion, precio, tipo, file: !!selectedFile });
 
     try {
         if (id) {
@@ -274,7 +286,6 @@ form.addEventListener('submit', async (ev) => {
         resetDropZone();
         submitBtn.textContent = 'Publicar propiedad';
         
-        // Redirigir a "Mis Propiedades" para que el usuario vea el cambio
         const propsTabLink = document.querySelector('.sidebar-menu a[href="#mispropiedades"]');
         if (propsTabLink) {
             propsTabLink.click();
@@ -282,8 +293,9 @@ form.addEventListener('submit', async (ev) => {
         
         await refreshList();
     } catch (err) {
-        console.error(err);
-        mostrarNotificacion('Error al guardar la propiedad', 'error');
+        console.error('[seller] error al guardar:', err);
+        const msg = err.message || err.code || 'Error desconocido';
+        mostrarNotificacion('Error: ' + msg, 'error');
     } finally {
         submitBtn.disabled = false;
     }
