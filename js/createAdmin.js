@@ -84,15 +84,15 @@ const crearAdmin = async () => {
                 // Si existe en Auth pero NO en Firestore, continuamos a crear el doc
                 console.log('[createAdmin] Doc NO existe en Firestore. Creando documento...');
             } else if (authError.code === 'auth/network-request-failed') {
-                alert('❌ Error de red. Asegúrate de usar Live Server, no file://\n\nURL debe empezar con http://localhost:...');
+                alert(' Error de red. Asegúrate de usar Live Server, no file://\n\nURL debe empezar con http://localhost:...');
                 console.error('[createAdmin] Error de red:', authError);
                 return;
             } else if (authError.code === 'auth/configuration-not-found') {
-                alert('❌ Firebase no está configurado. Verifica la config en el script.');
+                alert(' Firebase no está configurado. Verifica la config en el script.');
                 console.error('[createAdmin] Config error:', authError);
                 return;
             } else {
-                alert('❌ Error de Auth:\nCódigo: ' + authError.code + '\nMensaje: ' + authError.message);
+                alert(' Error de Auth:\nCódigo: ' + authError.code + '\nMensaje: ' + authError.message);
                 console.error('[createAdmin] Error desconocido en Auth:', authError);
                 return;
             }
@@ -101,19 +101,19 @@ const crearAdmin = async () => {
         // Paso 3: Guardar documento en Firestore
         console.log('[createAdmin] Guardando documento en Firestore...');
         await setDoc(doc(db, 'usuarios', uid), adminData);
-        console.log('[createAdmin] ✅ Admin creado exitosamente. UID:', uid);
+        console.log('[createAdmin]  Admin creado exitosamente. UID:', uid);
 
         alert(
-            '✅ Admin creado exitosamente!\n\n' +
+            ' Admin creado exitosamente!\n\n' +
             'UID: ' + uid + '\n' +
             'Email: ' + ADMIN_EMAIL + '\n' +
             'Rol: Admin\n\n' +
-            '⚠️ IMPORTANTE: Elimina el <script type="module" src="js/createAdmin.js"></script> de admin.html ahora.'
+            ' IMPORTANTE: Elimina el <script type="module" src="js/createAdmin.js"></script> de admin.html ahora.'
         );
 
     } catch (e) {
-        console.error('[createAdmin] ❌ Error inesperado:', e);
-        alert('❌ Error inesperado:\nCódigo: ' + (e.code || 'N/A') + '\nMensaje: ' + e.message);
+        console.error('[createAdmin]  Error inesperado:', e);
+        alert(' Error inesperado:\nCódigo: ' + (e.code || 'N/A') + '\nMensaje: ' + e.message);
     }
 };
 
