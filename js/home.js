@@ -40,8 +40,9 @@ function renderProperties(properties) {
         const typeLabel = p.type || 'Propiedad';
 
         const tipoLower = (p.type || '').toLowerCase();
+        const tipoSearch = tipoLower === 'oficina comercial' ? 'oficina' : tipoLower;
         return `
-            <div class="col-lg-4 col-md-6 mb-4 property-item" data-ubicacion="${escapeHtml(p.location)}" data-tipo="${escapeHtml(tipoLower)}" data-habitaciones="99" data-precio="${Number(p.price || 0)}">
+            <div class="col-lg-4 col-md-6 mb-4 property-item" data-ubicacion="${escapeHtml(p.location)}" data-tipo="${escapeHtml(tipoSearch)}" data-habitaciones="99" data-precio="${Number(p.price || 0)}">
                 <div class="property-card bg-white rounded-lg shadow-sm overflow-hidden h-100 d-flex flex-column">
                     <div class="position-relative overflow-hidden property-img" style="height: 250px;">
                         <img class="img-fluid w-100 h-100" src="${escapeHtml(imgSrc)}" alt="${escapeHtml(p.title)}" style="object-fit:cover;" loading="lazy">
@@ -105,5 +106,12 @@ verificarEstadoSesion(async (user) => {
         if (adminBtn) adminBtn.style.display = 'none';
     }
 
-    listAllProperties().then(renderProperties);
+    listAllProperties().then(props => {
+        renderProperties(props);
+        setTimeout(function() {
+            if (typeof window.filterProperties === 'function') {
+                window.filterProperties();
+            }
+        }, 50);
+    });
 });

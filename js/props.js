@@ -263,6 +263,7 @@ export const listPropertiesByUser = async (ownerId) => {
 };
 
 export const listAllProperties = async () => {
+    // Intentar desde Firestore primero
     try {
         const q = query(collection(db, 'propiedades'));
         const snap = await getDocs(q);
@@ -273,10 +274,28 @@ export const listAllProperties = async () => {
                 imageUrl: resolverImagenUrl(data.imageUrl, data.imageBase64)
             };
         });
-        console.log(`[props] ${results.length} propiedades obtenidas de Firestore`);
-        return results;
+        if (results.length > 0) {
+            console.log(`[props] ${results.length} propiedades obtenidas de Firestore`);
+            return results;
+        }
     } catch (e) {
-        console.warn('[props] error al leer de Firestore:', e.message);
-        return [];
+        console.warn('[props] Firestore no disponible:', e.message);
     }
+
+    // Fallback: leer de todos los localStorage si Firestore no tiene datos
+    const all = [];
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key && key.startsWith('propiedades_')) {
+            try {
+                const arr = JSON.parse(localStorage.getItem(key) || '[]');
+                arr.forEach(p => all.push({
+                    ...p,
+                    imageUrl: resolverImagenUrl(p.imageUrl, p.imageBase64)
+                }));
+            } catch (e) { /* ignorar */ }
+        }
+    }
+    console.log(`[props] ${all.length} propiedades obtenidas de localStorage (fallback)`);
+    return all;
 };
