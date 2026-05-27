@@ -24,7 +24,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const db = getFirestore(app);
+export const db = getFirestore(app);
 
 export const registrarUsuarioCompleto = async (email, pass, datosExtra) => {
     const userCredential = await createUserWithEmailAndPassword(auth, email, pass);
@@ -127,6 +127,12 @@ export const eliminarCuentaUsuario = async () => {
 
     await deleteDoc(doc(db, "usuarios", user.uid));
     await deleteUser(user);
+};
+
+// Función para actualizar datos del usuario en Firestore
+export const actualizarUsuario = async (userId, datos) => {
+    if (!userId) throw new Error('ID de usuario requerido');
+    await updateDoc(doc(db, "usuarios", userId), datos);
 };
 
 // Función para cerrar sesión

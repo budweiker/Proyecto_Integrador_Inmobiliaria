@@ -2,88 +2,334 @@
 <html lang="es">
 <head>
     <meta charset="utf-8">
-    <title>Inmobiliaria Manuela - Encuentra tu hogar ideal</title>
+    <title>Panel de Vendedor - Inmobiliaria Manuela</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"> 
-    <!-- Bootstrap -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="css/seller.css" rel="stylesheet">
 </head>
 <body>
 
-<div class="container py-5">
-<nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm fixed-top py-3 py-lg-0 px-3 px-lg-5 transition-navbar">
-        <a href="home.html" class="navbar-brand d-flex align-items-center">
-            <img src="img/LOGOV2.png" alt="Inmobiliaria Manuela Logo" style="max-height: 55px;" class="mr-2">
-            <h1 class="m-0 text-primary font-weight-bold">Inmobiliaria Manuela</h1>
+    <!-- NAVBAR -->
+    <nav class="seller-navbar">
+        <a href="home.html" class="navbar-brand">
+            <img src="img/LOGOV2.png" alt="Manuela Bermudez Logo">
+            <h1>Manuela Bermudez Realtor</h1>
         </a>
-        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-            <div class="navbar-nav ml-auto py-0">
-                <a href="home.html" class="nav-item nav-link animated-link">Inicio</a>
-                <a href="service.html" class="nav-item nav-link animated-link">Servicios</a>
-                <a href="about.html" class="nav-item nav-link animated-link">Nosotros</a>
-                <a href="contact.html" class="nav-item nav-link animated-link">Contacto</a>
-            </div>
-            <a href="#contacto" class="btn btn-primary btn-cta rounded-pill py-2 px-4 d-none d-lg-block ml-3 font-weight-bold text-white smooth-scroll">Cuenta</a>
+        <div class="navbar-links">
+            <a href="home.html">Inicio</a>
+            <a href="service.html">Servicios</a>
+            <a href="about.html">Nosotros</a>
+            <a href="contact.html">Contacto</a>
+            <button class="btn-account">Mi Cuenta</button>
         </div>
     </nav>
 
-    <!-- Hero (head)-->
-    <div id="inicio" class="hero-section position-relative vh-100 d-flex align-items-center">
-        <div class="hero-overlay"></div>
-        <div class="container position-relative text-center" style="z-index: 2; margin-top: 50px;">
-            <h1 class="display-3 text-white font-weight-bold mb-4 shadow-text">Encuentra tu hogar ideal</h1>
-            <p class="text-white mb-5 shadow-text lead w-75 mx-auto" style="font-size: 1.25rem;">Conectamos tus sueños con las mejores ubicaciones</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-4 mb-4">
-            <div class="card p-4 shadow-sm">
-                <h5 class="card-title mb-3">Publicar Nueva Casa</h5>
-                <form id="formCasa">
-                    <div class="mb-3">
-                        <label class="form-label">Dirección</label>
-                        <input type="text" id="direccion" class="form-control" placeholder="Ej: Calle 10 #45-20" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Ubicación (Ciudad/Sector)</label>
-                        <input type="text" id="ubicacion" class="form-control" placeholder="Ej: Medellín, Poblado" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Precio ($)</label>
-                        <input type="number" id="precio" class="form-control" placeholder="0.00" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Descripción</label>
-                        <textarea id="descripcion" class="form-control" rows="3" placeholder="Detalles de la casa..."></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Foto de la Propiedad</label>
-                        <input type="file" id="foto" class="form-control" accept="image/*" required>
-                    </div>
-                    <button type="submit" class="btn btn-dark w-100">Publicar Propiedad</button>
-                </form>
-            </div>
-        </div>
+    <!-- DASHBOARD -->
+    <div class="seller-dashboard">
 
-        <div class="col-lg-8">
-            <div id="listaCasas" class="row">
+        <!-- SIDEBAR -->
+        <aside class="seller-sidebar">
+            <div class="profile-card">
+                <div class="profile-avatar-wrap">
+                    <div class="avatar-upload">
+                        <img id="profileAvatar" src="img/placeholder-avatar.png" alt="Avatar" class="profile-avatar">
+                        <div class="avatar-upload-overlay">
+                            <i data-lucide="camera"></i>
+                        </div>
+                    </div>
                 </div>
-        </div>
-    </div>
-</div>
+                <h3 id="profileName" class="profile-name">Usuario</h3>
+                <div id="profileEmail" class="profile-email">usuario@ejemplo.com</div>
+                <span class="profile-stat-pill"><span id="propCount">0</span> propiedades publicadas</span>
+            </div>
 
-<footer class="real-estate-footer pt-5" id="contacto">
+            <hr class="sidebar-divider">
+
+            <div class="sidebar-menu">
+                <a href="#personal" class="menu-item active">
+                    <i data-lucide="user"></i>
+                    Informaci&oacute;n Personal
+                </a>
+                <a href="#publicar" class="menu-item">
+                    <i data-lucide="plus-circle"></i>
+                    Publicar Propiedad
+                </a>
+                <a href="#mispropiedades" class="menu-item">
+                    <i data-lucide="building-2"></i>
+                    Mis Propiedades
+                </a>
+                <a href="#seguridad" class="menu-item">
+                    <i data-lucide="shield"></i>
+                    Seguridad
+                </a>
+                <a href="#" id="logoutBtn" class="menu-item text-danger">
+                    <i data-lucide="log-out"></i>
+                    Cerrar Sesi&oacute;n
+                </a>
+            </div>
+        </aside>
+
+        <!-- MAIN -->
+        <main class="seller-main">
+
+            <!-- WELCOME BANNER -->
+            <div class="welcome-banner">
+                <div class="welcome-banner-text">
+                    <h2>Bienvenido de vuelta, <span id="welcomeName">Usuario</span></h2>
+                    <p>Administra tus propiedades, actualiza tu perfil y gestiona tu cuenta</p>
+                </div>
+                <div class="welcome-banner-stats">
+                    <div class="stat-item">
+                        <strong id="statPropCount">0</strong>
+                        <span>Propiedades</span>
+                    </div>
+                    <div class="stat-item">
+                        <strong>--</strong>
+                        <span>Vistas hoy</span>
+                    </div>
+                    <div class="stat-item">
+                        <strong>--</strong>
+                        <span>Contactos</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INFORMACIÓN PERSONAL -->
+            <div id="personal" class="form-card">
+                <div class="section-header">
+                    <i data-lucide="user"></i>
+                    <h2>Informaci&oacute;n Personal</h2>
+                </div>
+                <p class="section-subtitle">Actualiza tus datos de contacto &mdash; cada campo se guarda por separado</p>
+                <hr class="section-divider">
+
+                <div class="form-card-inner">
+                    <form id="personal-form" data-handled="true">
+
+                        <div class="field-group">
+                            <label class="form-label">Nombre Completo</label>
+                            <div class="field-row">
+                                <div class="input-with-icon flex-grow-1">
+                                    <i data-lucide="user" class="input-icon" size="18"></i>
+                                    <input type="text" id="perNombre" class="form-input" placeholder="Nombre Completo">
+                                </div>
+                                <button type="button" class="btn-save-field" data-field="nombre">Guardar</button>
+                            </div>
+                        </div>
+
+                        <div class="field-group">
+                            <label class="form-label">Tel&eacute;fono <span class="field-optional">(opcional)</span></label>
+                            <div class="field-row">
+                                <div class="input-with-icon flex-grow-1">
+                                    <i data-lucide="phone" class="input-icon" size="18"></i>
+                                    <input type="tel" id="perTelefono" class="form-input" placeholder="Ej: +57 300 123 4567">
+                                </div>
+                                <button type="button" class="btn-save-field" data-field="telefono">Guardar</button>
+                            </div>
+                        </div>
+
+                        <div class="field-group">
+                            <label class="form-label">Correo Electr&oacute;nico</label>
+                            <div class="field-row">
+                                <div class="input-with-icon flex-grow-1">
+                                    <i data-lucide="mail" class="input-icon" size="18"></i>
+                                    <input type="email" id="perEmail" class="form-input" placeholder="Correo Electr&oacute;nico" readonly style="background:#f8fafc;cursor:not-allowed;">
+                                </div>
+                                <span class="field-readonly-tag">Vinculado a la cuenta</span>
+                            </div>
+                        </div>
+
+                        <div class="field-group">
+                            <label class="form-label">Agregar direcci&oacute;n de contacto</label>
+                            <div class="field-row">
+                                <div class="input-with-icon flex-grow-1">
+                                    <i data-lucide="map-pin" class="input-icon" size="18"></i>
+                                    <input type="text" id="perDireccion" class="form-input" placeholder="Ej: Calle 123 #45-67, Medell&iacute;n">
+                                </div>
+                                <button type="button" class="btn-save-field" data-field="direccion">Guardar</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+            <!-- PUBLICAR PROPIEDAD -->
+            <div id="publicar" class="form-card">
+                <div class="section-header">
+                    <i data-lucide="plus-circle"></i>
+                    <h2>Publicar Nueva Propiedad</h2>
+                </div>
+                <p class="section-subtitle">Completa los datos del inmueble para publicarlo</p>
+                <hr class="section-divider">
+
+                <div class="form-card-inner">
+                    <form id="formCasa" data-handled="true">
+                        <input type="hidden" id="propId">
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">T&iacute;tulo del Inmueble</label>
+                                <div class="input-with-icon">
+                                    <i data-lucide="type" class="input-icon" size="18"></i>
+                                    <input type="text" id="titulo" class="form-input" placeholder="Ej: Casa campestre con piscina" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Ubicaci&oacute;n (Ciudad / Sector)</label>
+                                <div class="input-with-icon">
+                                    <i data-lucide="map-pin" class="input-icon" size="18"></i>
+                                    <input type="text" id="ubicacion" class="form-input" placeholder="Ej: Medell&iacute;n, El Poblado" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Precio (COP $)</label>
+                                <div class="input-with-icon">
+                                    <span class="input-icon" style="font-weight: 600; font-size: 1rem; color: #64748b; font-family: Poppins, sans-serif;">$</span>
+                                    <input type="number" id="precio" class="form-input" style="padding-left: 32px;" placeholder="Ej: 350000000" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Tipo de Inmueble</label>
+                                <div class="input-with-icon">
+                                    <i data-lucide="building" class="input-icon" size="18"></i>
+                                    <select id="tipo" class="form-input">
+                                        <option value="">Selecciona tipo</option>
+                                        <option value="Casa">Casa</option>
+                                        <option value="Departamento">Departamento</option>
+                                        <option value="Terreno">Terreno</option>
+                                        <option value="Oficina Comercial">Oficina Comercial</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Descripci&oacute;n Detallada</label>
+                            <div class="input-with-icon">
+                                <i data-lucide="align-left" class="input-icon" size="18"></i>
+                                <textarea id="descripcion" class="form-input" rows="4" placeholder="Describe los detalles del inmueble (habitaciones, ba&ntilde;os, parqueaderos, &aacute;reas comunes)..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Imagen de la Propiedad</label>
+                            <div id="foto-drag-drop" class="drag-drop-zone">
+                                <div class="drag-drop-msg">
+                                    <i data-lucide="cloud-upload" class="drag-drop-icon"></i>
+                                    <p>Arrastra tu foto aqu&iacute;</p>
+                                    <span>o haz click para seleccionar &middot; JPG, PNG, WEBP &middot; M&aacute;x 5MB</span>
+                                </div>
+                                <div id="foto-preview-container" class="drag-drop-preview d-none">
+                                    <img id="foto-preview" src="" alt="Vista previa">
+                                    <button type="button" id="btn-remove-foto" class="btn-remove-img">
+                                        <i data-lucide="x"></i>
+                                    </button>
+                                </div>
+                                <input type="file" id="foto" class="d-none" accept="image/*">
+                            </div>
+                        </div>
+
+                        <button type="submit" id="submitPropBtn" class="btn-primary">Publicar propiedad</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- MIS PROPIEDADES -->
+            <div id="mispropiedades" class="form-card">
+                <div class="section-header">
+                    <i data-lucide="building-2"></i>
+                    <h2>Mis Propiedades</h2>
+                </div>
+                <hr class="section-divider">
+
+                <div class="props-toolbar">
+                    <div class="search-wrapper">
+                        <i data-lucide="search" class="search-icon" size="18"></i>
+                        <input type="text" id="buscarPropiedad" placeholder="Buscar por t&iacute;tulo, ubicaci&oacute;n...">
+                    </div>
+                    <span class="prop-count-label"><strong id="propCountHeader">0</strong> propiedades</span>
+                </div>
+
+                <div id="listaCasas">
+                    <div class="col-12">
+                        <div class="alert alert-light text-center">No se encontraron propiedades.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEGURIDAD -->
+            <div id="seguridad" class="form-card">
+                <div class="section-header">
+                    <i data-lucide="shield"></i>
+                    <h2>Seguridad</h2>
+                </div>
+                <p class="section-subtitle">Administra tu contrase&ntilde;a y cuenta</p>
+                <hr class="section-divider">
+
+                <div class="form-card-inner">
+
+                    <!-- Cambio de Contraseña -->
+                    <div class="security-section">
+                        <h3 class="security-title">
+                            <i data-lucide="key" size="20"></i>
+                            Cambio de Contrase&ntilde;a
+                        </h3>
+                        <form id="password-form" data-handled="true">
+                            <div class="form-group">
+                                <label class="form-label">Contrase&ntilde;a Actual</label>
+                                <div class="input-with-icon">
+                                    <i data-lucide="lock" class="input-icon" size="18"></i>
+                                    <input type="password" class="form-input" name="currentPassword" placeholder="Contrase&ntilde;a actual" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Nueva Contrase&ntilde;a</label>
+                                    <div class="input-with-icon">
+                                        <i data-lucide="key" class="input-icon" size="18"></i>
+                                        <input type="password" class="form-input" name="newPassword" placeholder="Nueva contrase&ntilde;a" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Confirmar Nueva Contrase&ntilde;a</label>
+                                    <div class="input-with-icon">
+                                        <i data-lucide="key" class="input-icon" size="18"></i>
+                                        <input type="password" class="form-input" name="confirmPassword" placeholder="Confirmar nueva contrase&ntilde;a" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn-primary">Cambiar Contrase&ntilde;a</button>
+                        </form>
+                    </div>
+
+                    <!-- Zona de Peligro -->
+                    <div class="security-section danger-card">
+                        <h3 class="security-title">
+                            <i data-lucide="alert-triangle" size="20"></i>
+                            Zona de Peligro
+                        </h3>
+                        <p>Esta acci&oacute;n no se puede deshacer. Se eliminar&aacute;n permanentemente todos tus datos, propiedades listadas y actividad.</p>
+                        <button id="delete-account" class="btn-danger-outline">Eliminar Mi Cuenta</button>
+                    </div>
+
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="real-estate-footer pt-5" id="contacto">
         <div class="container pt-4 pb-3">
             <div class="row">
                 <!-- COLUMNA 1: Logo y Descripción -->
                 <div class="col-lg-3 col-md-6 mb-5 pe-lg-4">
-                    <img src="img/LOGOV2.png" alt="Inmobiliaria Manuela Logo" style="max-height: 55px;" class="mr-2"></i>Inm. Manuela</h3>
+                    <img src="img/LOGOV2.png" alt="Manuela Bermudez Logo" style="max-height: 55px;" class="mr-2"></i>Inm. Manuela</h3>
                     <p class="text-white-50" style="line-height: 1.8; font-size: 0.95rem;">Tu aliado estratégico en bienes raíces. Brindamos certeza jurídica y oportunidades únicas de inversión con un enfoque profesional y humano.</p>
                 </div>
                 
@@ -135,7 +381,7 @@
                    
                     <div class="d-flex w-100 footer-social">
                         <a class="btn btn-outline-light btn-social mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-light btn-social mr-2" href="#"><i class="fab fa-instagram"></i></a>
+                        <a class="btn btn-outline-light btn-social mr-2" href="https://www.instagram.com/manubermu_realtor?igsh=dXUxcTJ4bXZua2w0"><i class="fab fa-instagram"></i></a>
                         <a class="btn btn-outline-light btn-social mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
                         <a class="btn btn-outline-light btn-social" href="#"><i class="fab fa-twitter"></i></a>
                     </div>
@@ -147,42 +393,31 @@
         <div class="container-fluid" style="background-color: #111111;">
             <div class="row pt-4 pb-4">
                 <div class="col-12 text-center">
-                    <p class="m-0 text-white-50" style="font-size: 0.9rem;">&copy; <span class="text-white">Inmobiliaria Manuela</span>. Todos los derechos reservados.</p>
+                    <p class="m-0 text-white-50" style="font-size: 0.9rem;">&copy; <span class="text-white">Manuela Bermudez</span>. Todos los derechos reservados.</p>
                 </div>
             </div>
         </div>
     </footer>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <script>
+        window.mostrarToast = function(mensaje, tipo) {
+            var toast = document.createElement('div');
+            toast.className = 'seller-toast seller-toast-' + tipo;
+            toast.textContent = mensaje;
+            document.body.appendChild(toast);
+            setTimeout(function() { toast.classList.add('show'); }, 10);
+            setTimeout(function() {
+                toast.classList.remove('show');
+                setTimeout(function() { toast.remove(); }, 300);
+            }, 3500);
+        };
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
-    <script type="module">
-        import { verificarEstadoSesion, obtenerUsuarioActual } from './js/auth.js';
-
-        const cuentaBtn = document.querySelector('.btn-cta');
-
-        verificarEstadoSesion(async (user) => {
-            if (user) {
-                // Usuario logueado: "Cuenta" con opciones
-                cuentaBtn.textContent = 'Cuenta';
-                cuentaBtn.onclick = (e) => {
-                    e.preventDefault();
-                    // Mostrar menú simple o redirigir
-                    if (confirm('¿Quieres cerrar sesión?')) {
-                        import('https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js').then(({ getAuth, signOut }) => {
-                            const auth = getAuth();
-                            signOut(auth).then(() => {
-                                window.location.href = 'home.html';
-                            });
-                        });
-                    }
-                };
-            } else {
-                // No logueado: redirigir a login
-                cuentaBtn.textContent = 'Inicia sesión';
-                cuentaBtn.href = 'profiles.html';
-                cuentaBtn.onclick = null;
-            }
-        });
-    </script>
+    <script type="module" src="js/auth.js"></script>
+    <script src="js/buyer.js"></script>
+    <script type="module" src="js/seller.js"></script>
 </body>
 </html>
