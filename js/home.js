@@ -56,7 +56,7 @@ function renderProperties(properties) {
                         <p class="text-muted mb-3"><i class="fa fa-map-marker-alt text-primary mr-2"></i>${escapeHtml(p.location)}</p>
                         <p class="text-muted small mb-4 flex-grow-1">${escapeHtml(truncate(p.description, 120))}</p>
                         <div class="mt-auto">
-                            <a href="contact.html" class="btn btn-outline-primary btn-block rounded py-2 font-weight-bold">Ver Detalles</a>
+                            <a href="property-details.html?id=${encodeURIComponent(p.id)}" class="btn btn-outline-primary btn-block rounded py-2 font-weight-bold">Ver Detalles</a>
                         </div>
                     </div>
                 </div>
