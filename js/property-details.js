@@ -1,3 +1,5 @@
+import { listAllProperties } from './props.js';
+
 const properties = [
     {
         id: 1,
@@ -295,10 +297,39 @@ const properties = [
     }
 ];
 
-function loadProperty() {
+function getPropertyFeatures(property) {
+    if (Array.isArray(property.features) && property.features.length > 0) {
+        return property.features;
+    }
+
+    return [
+        { icon: 'fa-bed', label: 'Habitaciones', value: property.bedrooms || 0 },
+        { icon: 'fa-bath', label: 'Baños', value: property.bathrooms || 0 },
+        { icon: 'fa-car', label: 'Garaje', value: property.garage || 0 },
+        { icon: 'fa-ruler-combined', label: 'Área', value: property.area ? `${property.area} m²` : 'No especificada' },
+        { icon: 'fa-map-marker-alt', label: 'Ubicación', value: property.location || 'No especificada' },
+        { icon: 'fa-tag', label: 'Tipo', value: property.type || 'Propiedad' },
+    ];
+}
+
+function getPropertyAmenities(property) {
+    if (Array.isArray(property.amenities) && property.amenities.length > 0) {
+        return property.amenities;
+    }
+
+    return [
+        property.type || 'Propiedad',
+        property.location || 'Ubicación disponible',
+        'Consulta con nuestro equipo para más detalles'
+    ];
+}
+
+async function loadProperty() {
     const urlParams = new URLSearchParams(window.location.search);
-    const propertyId = parseInt(urlParams.get('id'));
-    const property = properties.find(p => p.id === propertyId);
+    const propertyId = urlParams.get('id');
+
+    const allProperties = await listAllProperties();
+    const property = [...allProperties, ...properties].find(p => String(p.id) === String(propertyId));
 
     if (!property) {
         document.getElementById('property-container').innerHTML = `
@@ -310,23 +341,33 @@ function loadProperty() {
         return;
     }
 
+    const imageSrc = property.imageUrl || property.image || 'img/placeholder.png';
+    const title = property.title || 'Propiedad';
+    const location = property.location || 'Ubicación no especificada';
+    const price = Number(property.price || 0);
+    const type = property.type || 'Propiedad';
+    const status = property.status || 'En Venta';
+    const description = property.description || 'Descripción no disponible por el momento.';
+    const features = getPropertyFeatures(property);
+    const amenities = getPropertyAmenities(property);
+
     const html = `
         <div class="row">
             <div class="col-lg-8 mb-4">
                 <div class="mb-4">
-                    <img src="${property.image}" alt="${property.title}" class="img-fluid rounded-lg shadow-lg" style="max-height: 500px; object-fit: cover; width: 100%;">
+                    <img src="${imageSrc}" alt="${title}" class="img-fluid rounded-lg shadow-lg" style="max-height: 500px; object-fit: cover; width: 100%;">
                 </div>
 
                 <div class="bg-white p-5 rounded-lg shadow-sm mb-4">
                     <div class="d-flex justify-content-between align-items-start mb-4">
                         <div>
-                            <h1 class="text-dark font-weight-bold mb-2">${property.title}</h1>
-                            <p class="text-muted mb-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>${property.location}</p>
+                            <h1 class="text-dark font-weight-bold mb-2">${title}</h1>
+                            <p class="text-muted mb-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>${location}</p>
                         </div>
                         <div class="text-right">
-                            <div class="badge badge-primary p-2 mb-2">${property.type}</div>
+                            <div class="badge badge-primary p-2 mb-2">${type}</div>
                             <br>
-                            <div class="badge badge-${property.status === 'Venta' ? 'success' : 'info'} p-2">${property.status}</div>
+                            <div class="badge badge-${status === 'Venta' ? 'success' : 'info'} p-2">${status}</div>
                         </div>
                     </div>
 
@@ -334,18 +375,18 @@ function loadProperty() {
 
                     <div class="mb-4">
                         <h2 class="text-primary font-weight-bold mb-3">
-                            $${property.price.toLocaleString('es-CO')} <span class="small text-muted">${property.currency}</span>
+                            $${price.toLocaleString('es-CO')} <span class="small text-muted">COP</span>
                         </h2>
                     </div>
 
                     <h5 class="font-weight-bold mb-3">Descripción</h5>
-                    <p class="text-muted lead">${property.description}</p>
+                    <p class="text-muted lead">${description}</p>
                 </div>
 
                 <div class="bg-white p-5 rounded-lg shadow-sm mb-4">
                     <h4 class="font-weight-bold mb-4">Características</h4>
                     <div class="row">
-                        ${property.features.map(feature => `
+                        ${features.map(feature => `
                             <div class="col-md-6 mb-3">
                                 <div class="d-flex align-items-center">
                                     <i class="fas ${feature.icon} text-primary fa-lg mr-3" style="min-width: 30px;"></i>
@@ -362,7 +403,7 @@ function loadProperty() {
                 <div class="bg-white p-5 rounded-lg shadow-sm">
                     <h4 class="font-weight-bold mb-4">Comodidades</h4>
                     <ul class="list-unstyled">
-                        ${property.amenities.map(amenity => `
+                        ${amenities.map(amenity => `
                             <li class="mb-2">
                                 <i class="fas fa-check text-primary mr-2"></i>
                                 <span class="text-dark">${amenity}</span>
