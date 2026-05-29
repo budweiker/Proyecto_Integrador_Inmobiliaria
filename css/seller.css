@@ -356,6 +356,7 @@ a { text-decoration: none; }
   font-weight: 700;
   font-size: 1.3rem;
   margin: 0;
+  color: #ffffff !important;
 }
 .welcome-banner p {
   font-family: 'Poppins', sans-serif;
@@ -363,6 +364,10 @@ a { text-decoration: none; }
   font-size: 0.85rem;
   margin: 4px 0 0;
   opacity: 0.85;
+  color: #ffffff !important;
+}
+.welcome-banner-text {
+  color: #ffffff !important;
 }
 .welcome-banner-stats {
   display: flex;
@@ -821,4 +826,56 @@ select.form-input {
   .seller-navbar .navbar-brand h1 { font-size: 0.9rem; }
   .props-toolbar { flex-direction: column; align-items: stretch; }
   .search-wrapper { min-width: 0; }
+}
+
+/* === FOOTER STYLES === */
+.real-estate-footer {
+  background-color: #D9D6CF !important;
+}
+.real-estate-footer h3,
+.real-estate-footer h5 {
+  color: #2c2a25 !important;
+}
+.real-estate-footer p,
+.real-estate-footer span,
+.real-estate-footer i:not(.btn-social i) {
+  color: #7a7672 !important;
+}
+.real-estate-footer .fa.text-primary {
+  color: #1976d2 !important;
+}
+.real-estate-footer .footer-links a {
+  transition: 0.3s all ease;
+  text-decoration: none;
+  display: inline-block;
+  color: #7a7672 !important;
+}
+.real-estate-footer .footer-links a:hover {
+  color: #1976d2 !important;
+  transform: translateX(5px);
+}
+.real-estate-footer .btn-social {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid #2c2a25 !important;
+  color: #2c2a25 !important;
+  background: transparent;
+  transition: 0.3s all ease;
+}
+.real-estate-footer .btn-social:hover {
+  background-color: #1976d2 !important;
+  border-color: #1976d2 !important;
+  color: #ffffff !important;
+  transform: translateY(-3px);
+}
+.real-estate-footer .container-fluid {
+  background-color: #E7E3DB !important;
+}
+.real-estate-footer .container-fluid p,
+.real-estate-footer .container-fluid span {
+  color: #2c2a25 !important;
 }
